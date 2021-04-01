@@ -846,16 +846,16 @@ a {
 }
 .cart-link {
   display: block;
-  padding: .1rem;
+  padding: 0.3rem;
   color: rgb(60, 60, 60)
   ;
 }
 
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
   .cart {
     margin: 0 0 0 -3em;
   }
-}
+} */
 /* endcart */
 
 
@@ -1192,12 +1192,12 @@ a {
 .text-white p {
   color: rgba(255, 255, 255, 0.5);
 }
-.row .row:not(:last-child) {
+/* .row .row:not(:last-child) {
   margin-bottom: 1.875rem;
 }
 .row:not(:last-child) {
   margin-bottom: 2.5rem;
-}
+} */
 
 .justify-content-end {
   justify-content: flex-end !important;

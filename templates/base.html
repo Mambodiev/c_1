@@ -41,27 +41,37 @@
           integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"/>
     <link href="static/icofont/icofont.min.css" rel="stylesheet">
 </head> 
-
+<div class="container">
+  <div class="row">
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
     
       <a class="navbar-brand" href="{% url 'home' %}">Fixed navbar</a>
 
-      <div class="d-block d-md-none nav-item cart float-right">
-         <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
-      </div>
+      <div class="row">
+        <!-- <div class="d-block d-md-none nav-item cart">
+          <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
+       </div> -->
+       
+       <span class="badge d-block d-md-none"><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/></span>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+      </div>
+      
+    
 
 
       {% include 'navbar.html' %} 
 
-      <div class="d-none  d-md-block mr-1 nav-item cart">
+      <!-- <div class="d-none  d-md-block mr-1 nav-item cart">
          <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
-      </div>
+      </div> -->
+      <span class="badge d-none  d-md-block"><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/></span>
 
     </nav>
+</div>
+</div>
 
     {% if messages %}
       {% for message in messages %}

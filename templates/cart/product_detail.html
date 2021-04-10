@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="bg-white py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                <a href="{% url 'home' %}">Home</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">{{ product.title }}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <!-- <img src="{{ product.image.url }}" class="img-fluid"> -->
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="{% static 'images/demo/product-3.jpg' %}" /></div>
+                    <div class="tab-pane" id="pic-2"><img src="{% static 'images/demo/product-3-2.jpg' %}" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="{% static 'images/demo/product-3-3.jpg' %}" /></div>
+                    <!-- <div class="tab-pane" id="pic-4"><img src="{% static 'images/demo/product-3.jpg' %}" /></div>
+                    <div class="tab-pane" id="pic-5"><img src="{% static 'images/demo/product-3.jpg' %}" /></div> -->
+                  </div>
+                  <ul class="preview-thumbnail nav nav-tabs  justify-content-center">
+                    <li class="active">
+                        <a data-target="#pic-1" data-toggle="tab"><img src="{% static 'images/demo/product-3.jpg' %}" /></a>
+                    </li>
+                    <li>
+                        <a data-target="#pic-2" data-toggle="tab"><img src="{% static 'images/demo/product-3-2.jpg' %}" /></a>
+                    </li>
+                    <li>
+                        <a data-target="#pic-3" data-toggle="tab"><img src="{% static 'images/demo/product-3-3.jpg' %}" /></a>
+                    </li>
+                    <!-- <li>
+                        <a data-target="#pic-4" data-toggle="tab"><img src="{% static 'images/demo/product-3.jpg' %}" /></a>
+                    </li>
+                    <li>
+                        <a data-target="#pic-5" data-toggle="tab"><img src="{% static 'images/demo/product-3.jpg' %}" /></a>
+                    </li> -->
+                  </ul>
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-black">{{ product.title }}</h2>
+                <span class="item-price"><small  class="text-muted"><del>$113</del></small >  ${{ product.get_price }}</span>
+                <p>Available stock: {{ product.stock }} units</p>
+                {% if product.in_stock %}
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                      <div class="col-6">
+                        {{ form.colour|as_crispy_field }}
+                      </div>
+                      <div class="col-6" id="qty">
+                        {{ form.size|as_crispy_field }}
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="col-3">
+                          {{ form.quantity|as_crispy_field }}
+                      </div>
+                      <div class="col-9" id="qty">
+                        <button type="submit" class="btn btn-primary btn-sm btn-block" id="addtocart">Add to cart</button>
+                      </div>
+                    </div>   
+                </form>
+
+                <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">                     
+                        <div class="clearfix">
+                          <span class="float-left"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Collapsible 01</a>
+                          </button></span>
+                          <span class="float-right"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fa fa-angle-down float"></i></a>
+                          </button></span>
+                        </div>
+                      </h5>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h5 class="mb-0">                      
+                        <div class="clearfix">
+                          <span class="float-left"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Collapsible 02
+                          </button></span>
+                          <span class="float-right"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="fa fa-angle-down float"></i>
+                          </button></span>
+                        </div>
+                      </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingThree">
+                      <h5 class="mb-0">
+                        
+                        <div class="clearfix">
+                          <span class="float-left"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Collapsible 03
+                          </button></span>
+                          <span class="float-right"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="fa fa-angle-down float"></i>
+                          </button></span>
+                        </div>
+                      </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% else %}
+                <p>This item is out of stock</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}

@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 import json
 import stripe
@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
-from django.shortcuts import get_object_or_404, reverse, redirect
+from django.shortcuts import get_object_or_404, reverse, redirect, render
 from django.utils import timezone
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
@@ -100,6 +100,11 @@ class ProductDetailView(generic.FormView):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         context['product'] = self.get_object()
         return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['Comments'] = Comment_set.all()
+    #     return context
 
 
 class CartView(generic.TemplateView):

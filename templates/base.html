@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head> 
 
 
@@ -52,8 +52,9 @@
         <!-- <div class="d-block d-md-none nav-item cart">
           <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
        </div> -->
-       
-       <span class="badge d-block d-md-none"><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/></span>
+       <a class="d-block d-md-none" href="{% url 'cart:summary' %}">
+       <span class="badge "><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/><span class="badge badge-danger rounded-circle mh-100">{{ request|cart_item_count }}</span></span>
+      </a>
 
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -68,11 +69,13 @@
       <!-- <div class="d-none  d-md-block mr-1 nav-item cart">
          <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
       </div> -->
-      <span class="badge d-none  d-md-block"><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/><span class="badge badge-danger rounded-circle">5</span></span>
+      <a class="d-none  d-md-block" href="{% url 'cart:summary' %}">
+      <span class="badge "><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/><span class="badge badge-danger rounded-circle mh-100">{{ request|cart_item_count }}</span></span>
+      </a>
 
     </nav>
 </div>
-</div>
+</div><br> <br>
 
     {% if messages %}
       {% for message in messages %}
@@ -85,7 +88,7 @@
         </div>
       {% endfor %}
     {% endif %}
-    <br> <br> 
+     
 
     {% block content %}
     {% endblock content %}

@@ -1673,6 +1673,20 @@ td {
 .product .product-rating>i.empty {
   color: #DADADA;
 }
+
+.review-rating {
+  display: inline-block;
+}
+
+.review-rating>i {
+  color: #FFB656;
+}
+
+.review-rating>i.empty {
+  color: #DADADA;
+}
+
+
 /* end review */
 
 
@@ -1691,7 +1705,100 @@ qty{
   border-radius: 50%;
 }
 
+/* img */
+#featured{
 
+  object-fit: cover;
+  cursor: pointer;
+  /* border: 2px solid black; */
+
+}
+
+
+
+.thumbnail{
+  object-fit: cover;
+  max-width: 180px;
+  max-height: 100px;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 5px;
+  border: 1px solid black;
+
+}
+
+.thumbnail:hover{
+  opacity:1;
+}
+
+.active{
+  opacity: 1;
+}
+
+#slide-wrapper{
+  max-width: 500px;
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+}
+
+#slider{
+  width: 440px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+
+}
+
+#slider{
+  width: 440px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+
+}
+
+#slider::-webkit-scrollbar {
+  display: none;
+
+}
+
+#slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+}
+ 
+/*#slider::-webkit-scrollbar-thumb {
+  background-color: #dede2e;
+  outline: 1px solid slategrey;
+   border-radius: 100px;
+
+}
+
+#slider::-webkit-scrollbar-thumb:hover{
+    background-color: #18b5ce;
+}/*  */
+
+
+
+.arrow{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.arrow:hover{
+  opacity: .5;
+  width: 35px;
+  height: 35px;
+}
+
+
+
+
+/* end img */
 
 
 

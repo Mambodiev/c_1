@@ -103,7 +103,9 @@ class ProductDetailView(generic.FormView):
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
-    #     context['Comments'] = Comment_set.all()
+    #     context.update({
+    #         'form': CommentForm()
+    #     })
     #     return context
 
 

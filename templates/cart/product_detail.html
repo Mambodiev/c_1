@@ -20,31 +20,24 @@
 <div class="container">
   <div class="row mb-5">
       <div class="col-sm-6 ">
-        <!-- <img src="{{ product.image.url }}" class="img-fluid"> -->
-        <div class="preview-pic tab-content">
-          <div class="tab-pane active" id="pic-1"><img src="{% static 'images/demo/product-3.jpg' %}" /></div>
-          <div class="tab-pane" id="pic-2"><img src="{% static 'images/demo/product-3-2.jpg' %}" /></div>
-          <div class="tab-pane" id="pic-3"><img src="{% static 'images/demo/product-3-3.jpg' %}" /></div>
-          <!-- <div class="tab-pane" id="pic-4"><img src="{% static 'images/demo/product-3.jpg' %}" /></div>
-          <div class="tab-pane" id="pic-5"><img src="{% static 'images/demo/product-3.jpg' %}" /></div> -->
+        <div class="container-fluid">
+          <img id="featured" class="img-fluid" src="{{product.imageURL}}">
         </div>
-        <ul class="preview-thumbnail nav nav-tabs  justify-content-center">
-          <li class="active">
-              <a data-target="#pic-1" data-toggle="tab"><img src="{% static 'images/demo/product-3.jpg' %}" /></a>
-          </li>
-          <li>
-              <a data-target="#pic-2" data-toggle="tab"><img src="{% static 'images/demo/product-3-2.jpg' %}" /></a>
-          </li>
-          <li>
-              <a data-target="#pic-3" data-toggle="tab"><img src="{% static 'images/demo/product-3-3.jpg' %}" /></a>
-          </li>
-          <!-- <li>
-              <a data-target="#pic-4" data-toggle="tab"><img src="{% static 'images/demo/product-3.jpg' %}" /></a>
-          </li>
-          <li>
-              <a data-target="#pic-5" data-toggle="tab"><img src="{% static 'images/demo/product-3.jpg' %}" /></a>
-          </li> -->
-        </ul>
+        
+
+        <div id="slide-wrapper">
+          <img id="slideLeft" class="arrow" src="{% static 'images/arrow/arrow-left.png' %}">
+          
+  
+          <div id="slider">
+            {% for image in product.image_set.all%}
+            <img class="thumbnail" src="{{image.imageURL}}"> 
+            {% endfor %}
+        
+          </div>
+          
+          <img id="slideRight" class="arrow" src="{% static 'images/arrow/arrow-right.png' %}">
+        </div>
       </div>
       <div class=" col-sm-6">
         <h2 class="text-black">{{ product.title }}</h2>
@@ -228,7 +221,6 @@
           <form class="review-form" 
             action="/cart/addcomment/{{ product.id }}" method="post">
             {% csrf_token %}
-            
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -276,114 +268,63 @@
 
         <!-- Reviews -->
         
+      
+
       <div class="container">
-        <div class="row mb-5">
-            <!-- <div class="col-sm-6 ">
-              <div class="bg-light p-3">
-                <div class="d-flex justify-content-between">
-                  <div class="p-2">
-                    <img class="profile-pic" src="{% static 'images/demo/user-1.jpg' %}">
-                  </div>
-                  <div class="p-2">
-                    <h4 class="">Marc Mesh </h4>
-                  </div>
-                  <div class="p-2">
-                    <p class="text-muted">10 Sept</p>
+        <div class="row">
+          {% for comment in product.comment_set.all%}
+          <div class="col-md-4 col-equal">
+            <div class="col bg-light p-3">
+              <div class="d-flex justify-content-between">
+                <div class="p-2">
+                  <img class="profile-pic" src="{% static 'images/demo/index2-slide-1.jpg' %}">
                 </div>
+                <div class="p-2">
+                  <!-- <h4 class="">Marc Mesh </h4> -->
+                  <h4 class="">{{ comment.user.first_name }} </h4>
                 </div>
-        
-                <div>
-                  <div class="product-rating">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                  </div>
-                  
-                </div>
-        
-                <h4 class="blue-text mt-3">" Experience An awesome activity to"</h4>
-        
-                <p class="content">
-                Ergonomic office chair with lumbar support mesh back for breathability. Updated thick padded Seat provide extra comfort for daily use.
-                </p>    
-                <div class="d-flex justify-content-start">
-                  <div class="p-">
-                    <img class="pic" src="{% static 'demo/product-1-2.jpg' %}">
-                  </div>
-                  <div class="p-">
-                    <img class="pic" src="{% static 'demo/product-1-2.jpg' %}">
-                  </div>
-                  <div class="p-">
-                    <img class="pic" src="{% static 'demo/product-1-2.jpg' %}">
-                  </div>
-                  
+                <div class="p-2">
+                  <!-- <p class="text-muted">10 Sept</p> -->
+                  <p class="text-muted">{{ comment.create_at}}</p>
+              </div>
+              </div>      
+              <div>
+                <div class="review-rating">
+                  <i class="fa fa-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
+                  <i class="fa fa-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
+                  <i class="fa fa-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
+                  <i class="fa fa-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
+                  <i class="fa fa-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
                 </div>
               </div>
-
-            </div> -->
-            <div class="col-sm-6">
-
-              {% for comment in object.comments %}
-                <div class="bg-light p-3">
-                  <div class="d-flex justify-content-between">
-                    <div class="p-2">
-                      <img class="profile-pic" src="{% static 'images/demo/index2-slide-1.jpg' %}">
-                    </div>
-                    <div class="p-2">
-                      <!-- <h4 class="">Marc Mesh </h4> -->
-                      <h4 class="">{{ comment.user.first_name }}h </h4>
-                    </div>
-                    <div class="p-2">
-                      <!-- <p class="text-muted">10 Sept</p> -->
-                      <p class="text-muted">{{ comment.create_at}}</p>
-                  </div>
-                  </div>
-          
-                  <div>
-                    <div class="product-rating review-rating">
-                        <!-- <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i> -->
-                        <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
-                        <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
-                    </div>
-                  </div>
-          
-                  <!-- <h4 class="blue-text mt-3">" Experience An awesome activity to" {{ subject.comment }}</h4> -->
-                  <h4 class="blue-text mt-3">"{{ comment.subject }}"</h4>
-                  
-          
-                  <!-- <p class="content">
-                    Ergonomic office chair with lumbar support mesh back for breathability. Updated thick padded Seat provide extra comfort for daily use.
-                  </p>     -->
-                  <p class="content">
-                    {{ comment.comment }}
-                  </p>
-                  <div class="d-flex justify-content-start">
-                    <div class="p-">
-                      <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
-                    </div>
-                    <div class="p-">
-                      <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
-                    </div>
-                    <div class="p-">
-                      <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
-                    </div>
-                    
-                  </div>
+              <!-- <h4 class="blue-text mt-3">" Experience An awesome activity to" {{ subject.comment }}</h4> -->
+              <h4 class="blue-text mt-3">"{{ comment.subject }}"</h4>
+              <!-- <p class="content">
+                Ergonomic office chair with lumbar support mesh back for breathability. Updated thick padded Seat provide extra comfort for daily use.
+              </p>     -->
+              <p class="content">
+                {{ comment.comment }}
+              </p>
+              <div class="d-flex justify-content-start">
+                <div class="p-">
+                  <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
                 </div>
-              {% endfor %}
-             </div>  
+                <div class="p-">
+                  <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
+                </div>
+                <div class="p-">
+                  <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
+                </div>
+                
+              </div>
+            </div> <br>
+          
+          </div>
+          {% endfor %}
         </div>
       </div>
       
+
         <!-- Pagination -->
         <nav class="d-flex justify-content-center mt-9">
           <ul class="pagination pagination-sm text-gray-400">
@@ -412,6 +353,39 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    let thumbnails = document.getElementsByClassName('thumbnail')
+    let activeImages = document.getElementsByClassName('active')
+    for (var i=0; i < thumbnails.length; i++){
+      thumbnails[i].addEventListener('mouseover', function(){
+
+        if (activeImages.length > 0){
+          activeImages[0].classList.remove('active')
+        }
+      
+        this.classList.add('active')
+        document.getElementById('featured').src = this.src
+      })
+
+
+    }
+
+    const buttonRight = document.getElementById('slideRight');
+    const buttonLeft = document.getElementById('slideLeft');
+
+
+    buttonRight.addEventListener('click', function(){
+      document.getElementById('slider').scrollLeft += 180;
+      })
+
+
+
+      buttonLeft.addEventListener('click', function(){
+        document.getElementById('slider').scrollLeft -= 180;
+      })
+
+</script>
 </section>
 
 

@@ -57,7 +57,7 @@ class SizeVariation(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='product_images')
+    featured = models.ImageField(upload_to='product_images')
     description = models.TextField()
     price = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
@@ -86,6 +86,15 @@ class Product(models.Model):
         return "{:.2f}".format(self.price / 100)
 
     @property
+    def imageURL(self):
+        try:
+            url = self.featured.url
+        except Url.DoesNotExist:
+            url = ''
+        print('URL:', url)
+        return url
+
+    @property
     def in_stock(self):
         return self.stock > 0
 
@@ -106,6 +115,24 @@ class Product(models.Model):
         if reviews["count"] is not None:
             cnt = int(reviews["count"])
         return cnt
+
+
+class Image(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    image = models.ImageField()
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except Url.DoesNotExist:
+            url = ''
+        print('URL:', url)
+        return url
 
 
 class Comment(models.Model):

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Product, OrderItem, Order, ColourVariation,
-    SizeVariation, Address, Payment, Comment, Category, StripePayment
+    SizeVariation, Address, Payment, Comment, Category, StripePayment, Image
 )
 
 
@@ -31,6 +31,4 @@ admin.site.register(Order)
 admin.site.register(SizeVariation)
 admin.site.register(Payment)
 admin.site.register(StripePayment)
-
-
-
+admin.site.register(Image)

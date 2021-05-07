@@ -1819,12 +1819,12 @@ qty{
     position: static;
     float: none; }
     .nav-link {
-      color: rgba(255,255,255,.5);}
+      color: rgb(60, 60, 60);}
             .cart {
               max-width: 6.25rem;
               height: 1.3rem;
               margin: 0.7rem 0 0 0;
-              border: 1px solid rgba(255, 255, 255, 0.5); }
+              border: 1px solid rgba(0, 0, 0); }
               .cart a {
                 display: flex;
                 padding: 0 !important; }
@@ -1840,28 +1840,29 @@ qty{
                     border-left: 1px solid rgba(255, 255, 255, 0.5); 
                     height: 1.3rem;} */
                     #cart{
-                      border-left: 1px solid rgba(255, 255, 255, 0.5); 
+                      border-left: 1px solid rgba(0, 0, 0); 
                       height: 1.2rem;
                       margin-top: 0.1px!important;
                       margin-right: -0.6rem!important;
                     }
                     #cart:hover {
-                      border-color: #fff; }
+                      border-color: rgb(60, 60, 60); }
                       .cart:hover a {
-                        color: #fff !important; }
+                        color: rgb(60, 60, 60) !important; }
                         .cart:hover a > *:not(:first-child) {
-                          border-color: #fff; }
+                          border-color: rgb(60, 60, 60); }
               .cart:hover {
-                border-color: #fff; }
+                border-color: rgb(60, 60, 60); }
                 .cart:hover a {
-                  color: #fff !important; }
+                  color: rgb(60, 60, 60) !important; }
                   .cart:hover a > *:not(:first-child) {
-                    border-color: #fff; }
+                    border-color: rgb(60, 60, 60); }
             .login{
               padding-right: 0.8rem;
             }
             .search{
               padding-right: 0.8rem;
+              color: red;
             }
             
             .header-light .cart {

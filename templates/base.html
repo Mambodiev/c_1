@@ -44,7 +44,7 @@
 
 <div class="container">
   <div class="row">
-    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     
       <a class="navbar-brand" href="{% url 'home' %}">Fixed navbar</a>
 
@@ -52,9 +52,26 @@
         <!-- <div class="d-block d-md-none nav-item cart">
           <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
        </div> -->
-       <a class="d-block d-md-none" href="{% url 'cart:summary' %}">
+       <!-- <a class="d-block d-md-none" href="{% url 'cart:summary' %}">
        <span class="badge "><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/><span class="badge badge-danger rounded-circle mh-100">{{ request|cart_item_count }}</span></span>
-      </a>
+      </a> -->
+
+      <ul class="navbar-navv ml-auto" id='cart-mobile'>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="portal.html">Log In</a>
+        </li> -->
+        <li class="d-inline nav-item search_login">
+          <a data-toggle="modal" data-target="#search" class="nav-link"><i class="icon-search"></i></a>
+        </li>
+        <li class="d-inline nav-item cart">
+          <a data-toggle="modal" data-target="#cart" class="nav-link" 
+          ><span>Cart</span>
+          <span id="cart" ></span>
+          <span>2</span></a>
+        </li>
+      </ul>
+
+      
 
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -69,9 +86,24 @@
       <!-- <div class="d-none  d-md-block mr-1 nav-item cart">
          <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
       </div> -->
-      <a class="d-none  d-md-block" href="{% url 'cart:summary' %}">
+      <!-- <a class="d-none  d-md-block" href="{% url 'cart:summary' %}">
       <span class="badge "><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/><span class="badge badge-danger rounded-circle mh-100">{{ request|cart_item_count }}</span></span>
-      </a>
+      </a> -->
+
+      <ul class="navbar-navv ml-auto" id='cart-desktop'”>
+        <li class="nav-item login">
+          <a class="nav-link" href="portal.html">Log In</a>
+        </li>
+        <li class="nav-item search" >
+          <a data-toggle="modal" data-target="#search" class="nav-link"><i class="icon-search"></i></a>
+        </li>
+        <li class="nav-item cart">
+          <a data-toggle="modal" data-target="#cart" class="nav-link">
+            <span>Cart</span>
+            <span id="cart"></span>
+            <span>{{ request|cart_item_count }}</span></a>
+        </li>
+      </ul>
 
     </nav>
 </div>

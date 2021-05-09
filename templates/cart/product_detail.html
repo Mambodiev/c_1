@@ -20,7 +20,7 @@
 <div class="container">
   <div class="row mb-5">
       <div class="col-sm-6 ">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid">
           <img id="featured" class="img-fluid" src="{{product.imageURL}}">
         </div>
         
@@ -37,6 +37,25 @@
           </div>
           
           <img id="slideRight" class="arrow" src="{% static 'images/arrow/arrow-right.png' %}">
+        </div> -->
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-2 img_small">
+              <!-- <img id="slideLeft" class="arrow" src="{% static 'images/arrow/arrow-left.png' %}"> -->
+          
+  
+              
+                {% for image in product.image_set.all%}
+                <img class="thumbnail" src="{{image.imageURL}}"> 
+                {% endfor %}
+            
+              
+              
+              <!-- <img id="slideRight" class="arrow" src="{% static 'images/arrow/arrow-right.png' %}"> -->
+            </div>
+            <div class="col-10"><img id="featured" class="img-fluid" src="{{product.imageURL}}"></div>
+          </div>
         </div>
       </div>
       <div class=" col-sm-6">
@@ -57,7 +76,9 @@
           </div>
         </div>
 
-        <span class="item-price"><small  class="text-muted"><del>$113</del></small >  ${{ product.get_price }}</span>
+        <span class="item-price">
+          <small  class="text-muted"><del>$113</del></small >
+              ${{ product.get_price }}</span>
         <p>Available stock: {{ product.stock }} units</p>
         {% if product.in_stock %}
         <form method="POST">
@@ -95,7 +116,7 @@
               <h5 class="mb-0">                     
                 <div class="clearfix">
                   <span class="float-left"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Collapsible 01</a>
+                   DETAILS</a>
                   </button></span>
                   <span class="float-right"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <i class="fa fa-angle-down float"></i></a>
@@ -115,7 +136,7 @@
               <h5 class="mb-0">                      
                 <div class="clearfix">
                   <span class="float-left"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Collapsible 02
+                    SHIPPING & RETURNS
                   </button></span>
                   <span class="float-right"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fa fa-angle-down float"></i>

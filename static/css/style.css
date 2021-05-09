@@ -862,10 +862,19 @@ a {
 #cart-desktop {display: flex;}
 #cart-mobile {display: none!important;}
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px)  */
+@media only screen and (max-width: 768px){
 
   #cart-desktop {display: none!important;}
-  #cart-mobile {display: flex!important;}
+  #cart-mobile {
+    display: flex!important;
+    margin-right: 1.7rem;
+  }
+  .navbar-brand
+  {
+    text-align: center;
+  }
+
   
   }
 /* endcart */
@@ -1082,7 +1091,7 @@ a {
   font-size: 1.125rem;
   font-family: "Muli", sans-serif;
   color: #000; }
-  .item-price s {
+  .text-muted {
     margin-right: 0.625rem; }
 
 .item-offer {
@@ -1716,6 +1725,9 @@ qty{
 }
 
 /* img */
+.img_small{
+  vertical-align: middle;
+}
 #featured{
 
   object-fit: cover;
@@ -1724,12 +1736,15 @@ qty{
 
 }
 
+#id_colour::before {
+  content: "color -"!important;
+}
 
 
 .thumbnail{
   object-fit: cover;
-  max-width: 180px;
-  max-height: 100px;
+  max-width: 50px;
+  max-height: 50px;
   cursor: pointer;
   opacity: 0.5;
   margin: 5px;
@@ -1762,7 +1777,7 @@ qty{
 
 #slider{
   width: 440px;
-  display: flex;
+  display: grid;
   flex-wrap: nowrap;
   overflow-x: auto;
 
@@ -1862,7 +1877,7 @@ qty{
             }
             .search{
               padding-right: 0.8rem;
-              color: red;
+              margin-top: -0.15rem;
             }
             
             .header-light .cart {
@@ -1875,7 +1890,19 @@ qty{
                   color: #101010 !important; }
                   .header-light .cart:hover a > *:not(:first-child) {
                     border-color: #101010; }
-    
+            #search{
+              width:"20px"!important;
+              height:"20px"!important;}
+    .navbar{
+      padding: .0rem 1rem!important;
+      height: 2rem;
+    }
+    @media only screen and (max-width: 768px){
+      .navbar{
+        padding: .0rem 0.2rem!important;
+        height: 2.5rem!important;
+      }
+    }
     /* .header-light .cart {
       border-color: rgba(16, 16, 16, 0.5); }
       .header-light .cart a > *:not(:first-child) {

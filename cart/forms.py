@@ -9,9 +9,8 @@ User = get_user_model()
 
 
 class AddToCartForm(forms.ModelForm):
-    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none())
-    # colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), widget=forms.TextInput(attrs={'placeholder': 'colour'}))
-    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none())
+    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None)
+    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None)
     quantity = forms.IntegerField(min_value=1)
 
     class Meta:

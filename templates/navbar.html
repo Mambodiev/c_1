@@ -13,22 +13,25 @@
 
 <div class="collapse navbar-collapse justify-content-md-center" id="navbarCollapse">
     <ul class="navbar-nav">
-        <li class="nav-item active">
-                <a class="nav-link" href="{% url 'cart:product-list' %}">Shop<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        </li>
-        <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
             <div class="dropdown-menu" aria-labelledby="dropdown10">
-                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="{% url 'cart:product-list' %}">Shop</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="{% url 'staff:staff' %}">Staff</a>
             </div>
+        </li> -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'cart:product-list' %}">SHOP</a>
+    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">ABOUT</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="">BEST SELLER<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}">CONTACT US</a>
         </li>
     </ul>
 </div>

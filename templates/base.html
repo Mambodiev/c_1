@@ -45,8 +45,12 @@
 <div class="container">
   <div class="row">
     <nav class="navbar navbar-expand-md navbar-light  fixed-top bg-light ">
-    
-      <a class="navbar-brand" href="{% url 'home' %}">Fixed navbar</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <a class="navbar-brand" href="{% url 'home' %}"><img style:width="140px" height="40px" src = "{% static 'images/logos3.png' %}" alt="LOGO"/></a>
 
       <div class="row">
         <!-- <div class="d-block d-md-none nav-item cart">
@@ -73,9 +77,9 @@
 
       
 
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+       <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
-       </button>
+       </button> -->
       </div>
       
     
@@ -95,7 +99,7 @@
           <a class="nav-link" href="portal.html">LOG IN</a>
         </li>
         <li class="nav-item search" >
-          <a data-toggle="modal" data-target="#search" class="nav-link"><img style:width="20px" height="20px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></a>
+          <a data-toggle="modal" data-target="#search" class="nav-link"><img style:width="19px" height="18px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></a>
         </li>
         <li class="nav-item cart">
           <a data-toggle="modal" data-target="#cart" class="nav-link">

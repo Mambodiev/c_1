@@ -42,9 +42,28 @@
 
 
 
-<div class="container">
-  <div class="row">
-    <nav class="navbar navbar-expand-md navbar-light  fixed-top bg-light ">
+<div class="topbar sticky-top">
+  <div class="top_header bg-secondary">
+    <div class="container d-flex justify-content-center ">
+      <div class="p-2">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner text-white text_nav">
+            <div class="carousel-item active">
+              Free Worldwide Shipping
+            </div>
+            <div class="carousel-item">
+              Secure Online Payment
+            </div>
+            <div class="carousel-item">
+              We return money within 30 days
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <nav class="navbar navbar-expand-md navbar-light   bg-light ">
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -64,7 +83,7 @@
         <!-- <li class="nav-item">
           <a class="nav-link" href="portal.html">Log In</a>
         </li> -->
-        <li class="d-inline nav-item search">
+        <!-- <li class="d-inline nav-item search">
           <a data-toggle="modal" data-target="#search" class="nav-link"><img style:width="20px" height="20px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></a>
         </li>
         <li class="d-inline nav-item cart">
@@ -72,8 +91,22 @@
           ><span>Cart</span>
           <span id="cart" ></span>
           <span>2</span></a>
-        </li>
+        </li> -->
       </ul>
+      <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
+        </a>
+
+      <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
+        </a>
+
+      <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+      <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
+
+      <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+      <span class="cart_item_count"><span class="badge badge-danger  rounded-circle">{{ request|cart_item_count }}</span></span>
+      </a>
 
       
 
@@ -90,11 +123,22 @@
       <!-- <div class="d-none  d-md-block mr-1 nav-item cart">
          <a data-toggle="modal" data-target="#cart" class="cart-link"><span>Cart</span><span>2</span></a>
       </div> -->
-      <!-- <a class="d-none  d-md-block" href="{% url 'cart:summary' %}">
-      <span class="badge "><img style:width="26px" height="26px" src = "{% static 'linea/ecommerce/svg/ecommerce_basket.svg' %}" alt="My Happy SVG"/><span class="badge badge-danger rounded-circle mh-100">{{ request|cart_item_count }}</span></span>
-      </a> -->
+      <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
+        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
+        </a>
 
-      <ul class="navbar-navv ml-auto" id='cart-desktop'”>
+      <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
+        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
+        </a>
+
+      <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
+      <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
+      </a>
+      <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
+      <span class="badge"><span class="badge badge-danger count rounded-circle">{{ request|cart_item_count }}</span></span>
+      </a>
+
+      <!-- <ul class="navbar-navv ml-auto" id='cart-desktop'”>
         <li class="nav-item login">
           <a class="nav-link" href="portal.html">LOG IN</a>
         </li>
@@ -107,11 +151,11 @@
             <span id="cart"></span>
             <span>{{ request|cart_item_count }}</span></a>
         </li>
-      </ul>
+      </ul> -->
 
     </nav>
 </div>
-</div><br> <br>
+</div>
 
     {% if messages %}
       {% for message in messages %}

@@ -36,9 +36,10 @@ class AddToCartForm(forms.ModelForm):
 
 class AddressForm(forms.Form):
 
+    shipping_country = forms.CharField(required=False)
     shipping_address_line_1 = forms.CharField(required=False)
-    shipping_address_line_2 = forms.CharField(required=False)
     shipping_zip_code = forms.CharField(required=False)
+    shipping_state = forms.CharField(required=False)
     shipping_city = forms.CharField(required=False)
 
     billing_address_line_1 = forms.CharField(required=False)
@@ -47,10 +48,10 @@ class AddressForm(forms.Form):
     billing_city = forms.CharField(required=False)
 
     selected_shipping_address = forms.ModelChoiceField(
-        Address.objects.none(), required=False
+        Address.objects.none(), required=False, empty_label=None
     )
     selected_billing_address = forms.ModelChoiceField(
-        Address.objects.none(), required=False
+        Address.objects.none(), required=False, empty_label=None
     )
 
     def __init__(self, *args, **kwargs):
@@ -76,14 +77,17 @@ class AddressForm(forms.Form):
 
         selected_shipping_address = data.get('selected_shipping_address', None)
         if selected_shipping_address is None:
+            if not data.get('shipping_country', None):
+                self.add_error("shipping_country",
+                               "Please fill in this field")
             if not data.get('shipping_address_line_1', None):
                 self.add_error("shipping_address_line_1",
                                "Please fill in this field")
-            if not data.get('shipping_address_line_2', None):
-                self.add_error("shipping_address_line_2",
-                               "Please fill in this field")
             if not data.get('shipping_zip_code', None):
                 self.add_error("shipping_zip_code",
+                               "Please fill in this field")
+            if not data.get('shipping_state', None):
+                self.add_error("shipping_state",
                                "Please fill in this field")
             if not data.get('shipping_city', None):
                 self.add_error("shipping_city", "Please fill in this field")

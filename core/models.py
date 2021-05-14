@@ -19,3 +19,14 @@ def post_save_user_receiver(sender, instance, created, **kwargs):
 
 
 post_save.connect(post_save_user_receiver, sender=User)
+
+
+class Carousel(models.Model):
+    image = models.ImageField()
+    logo_slider = models.ImageField()
+    title = models.CharField(max_length=100, blank=True)
+    sub_title = models.CharField(max_length=100)
+    action = models.CharField(max_length=100) or models
+
+    def __str__(self):
+        return self.title

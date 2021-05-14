@@ -308,8 +308,8 @@
 
       <div class="container">
         <div class="row">
-          {% for comment in product.comment_set.all%}
-          <div class="col-md-4 col-equal">
+          {% for comment in product.comment_set.all %}
+          <div class="col-md-6 col-equal">
             <div class="col bg-light p-3">
               <div class="d-flex justify-content-between">
                 <div class="p-2">
@@ -341,7 +341,7 @@
               <p class="content">
                 {{ comment.comment }}
               </p>
-              <div class="d-flex justify-content-start">
+              <!-- <div class="d-flex justify-content-start">
                 <div class="p-">
                   <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
                 </div>
@@ -352,13 +352,15 @@
                   <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
                 </div>
                 
-              </div>
+              </div> -->
             </div> <br>
           
           </div>
           {% endfor %}
         </div>
       </div>
+
+      
       
 
         <!-- Pagination -->

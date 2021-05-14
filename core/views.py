@@ -6,6 +6,7 @@ from django.shortcuts import reverse
 from django.views import generic
 from cart.models import Order
 from .forms import ContactForm
+from .models import Carousel
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
@@ -19,8 +20,9 @@ class ProfileView(LoginRequiredMixin, generic.TemplateView):
         return context
 
 
-class HomeView(generic.TemplateView):
-    template_name = 'index.html'
+class HomeListView(generic.ListView):
+    template_name = 'home.html'
+    queryset = Carousel.objects.all()
 
 
 class AboutView(generic.TemplateView):

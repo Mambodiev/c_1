@@ -1600,6 +1600,7 @@ td {
 .review-form .input-rating .stars {
   display: inline-block;
   vertical-align: top;
+  font-family: 'FontAwesome';
 }
 
 .review-form .input-rating .stars input[type="radio"] {
@@ -1752,6 +1753,7 @@ qty{
 
   object-fit: cover;
   cursor: pointer;
+  /* margin-top: -5rem!important; */
   
   /* border: 2px solid black; */
 
@@ -1769,7 +1771,7 @@ qty{
   cursor: pointer;
   opacity: 0.5;
   margin: 0 5px 5px 0;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 
 }
 
@@ -1990,6 +1992,43 @@ topbar {
 .table th {
   border: 0;
 }
+
+
+.table td .table thead th {
+  border: 0!important;
+}
+
 .table thead th {
-  border-bottom: 1px solid #dee2e6;
+  border-bottom:1px #d9d9d9 solid!important;
+}
+.table td {
+  border-top: 0;
+}
+
+/* slider */
+
+
+.logo_slider{
+  width: 150px;
+}
+
+
+#third{
+    background: url("/static/images/slider/main-bg.jpg") 100% 0 no-repeat fixed;
+    /* color: white; */
+    /* height: 650px; */
+    /* padding: 100px 0 0 0;    */
+    }
+#third {
+    width: 100%;
+    /* min-height: 580px; */
+    background-position: center;
+    background-color: #f5f5f5;
+    background-repeat: repeat;
+    background-size: cover;
+    overflow: hidden;
+    background-attachment: scroll;
+  }
+  #third{
+  min-height:430px;
 }

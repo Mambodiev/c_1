@@ -164,10 +164,11 @@ class CheckoutView(LoginRequiredMixin, generic.FormView):
             address = Address.objects.create(
                 address_type='S',
                 user=self.request.user,
-                address_line_1=form.cleaned_data['shipping_address_line_1'],
-                address_line_2=form.cleaned_data['shipping_address_line_2'],
+                address_line_1=form.cleaned_data['shipping_country'],
+                address_line_2=form.cleaned_data['shipping_address_line_1'],
                 zip_code=form.cleaned_data['shipping_zip_code'],
                 city=form.cleaned_data['shipping_city'],
+                state=form.cleaned_data['shipping_state'],
             )
             order.shipping_address = address
 

@@ -29,12 +29,13 @@ class Address(models.Model):
     address_line_1 = models.CharField(max_length=150)
     address_line_2 = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=20)
     address_type = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
     default = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.address_line_1}, {self.address_line_2}, {self.city}, {self.zip_code}"
+        return f"{self.address_line_1}, {self.address_line_2}, {self.city}, {self.zip_code}, {self.state},"
 
     class Meta:
         verbose_name_plural = 'Addresses'
@@ -119,7 +120,7 @@ class Product(models.Model):
 
 class Image(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True)
     image = models.ImageField()
 
     def __str__(self):

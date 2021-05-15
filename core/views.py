@@ -6,7 +6,7 @@ from django.shortcuts import reverse
 from django.views import generic
 from cart.models import Order
 from .forms import ContactForm
-from .models import Carousel
+from .models import Carousel, Product
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
@@ -22,7 +22,19 @@ class ProfileView(LoginRequiredMixin, generic.TemplateView):
 
 class HomeListView(generic.ListView):
     template_name = 'home.html'
-    queryset = Carousel.objects.all()
+
+    # queryset = Product.objects.all()
+    # queryset = Carousel.objects.all()
+
+    def get_queryset(self):
+        qs = Product.objects.all()
+        qs = Carousel.objects.all()
+
+        return qs
+    # def get_all_documents():
+    #     product = Product.objects.all()
+    #     carousel = Carousel.objects.all()
+    #     return list(chain(product, carousel))
 
 
 class AboutView(generic.TemplateView):

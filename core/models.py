@@ -1,6 +1,9 @@
+from cart.models import Product
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
+
+from cart.models import Product
 
 User = get_user_model()
 
@@ -22,11 +25,11 @@ post_save.connect(post_save_user_receiver, sender=User)
 
 
 class Carousel(models.Model):
-    image = models.ImageField()
-    logo_slider = models.ImageField()
-    title = models.CharField(max_length=100, blank=True)
-    sub_title = models.CharField(max_length=100)
-    action = models.CharField(max_length=100) or models
+    carousel_image = models.ImageField()
+    carousel_logo_slider = models.ImageField()
+    carousel_title = models.CharField(max_length=100, blank=True)
+    carousel_sub_title = models.CharField(max_length=100)
+    carousel_action = models.CharField(max_length=100) or models
 
     def __str__(self):
-        return self.title
+        return self.carousel_title

@@ -10,7 +10,6 @@ class AddressAdmin(admin.ModelAdmin):
         'address_line_1',
         'address_line_2',
         'city',
-        'state',
         'zip_code',
         'address_type',
     ]

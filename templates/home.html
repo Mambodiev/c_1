@@ -13,15 +13,6 @@
     </ol>
     <div class="carousel-inner" id="third">
       {% for carousel in object_list %}
-      <!-- <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}"  >
-        <img src="{{carousel.image.url }}" style="height: 800px;" class="img-fluid d-block w-100" alt="...">
-        <div class="carousel-caption">
-          <h2>{{ carousel.title }}</h2>
-          <p>{{ carousel.sub_title }}</p>
-          <a href="#" class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true">{{ carousel.action }}</a>
-        </div>
-      </div> -->
-
       <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}"  >
         <div class="item">
           <div class="container padding-top-3x">
@@ -29,7 +20,7 @@
               <div class="col-lg-5 col-md-6 padding-bottom-2x text-md-left text-center">
                 <div class="from-bottom"><img class="d-inline-block w-150 mb-4 img-fluid logo_slider" src="{{carousel.carousel_logo_slider.url }}" alt="Puma">
                   <div class="h2 text-body text-normal mb-2 pt-1">{{ carousel.carousel_title }}</div>
-                  <div class="p text-body text-normal mb-4 pb-1">{{ carousel.carousel_sub_title }} <span class="text-bold">$37.99</span></div>
+                  <div class="p text-body text-normal mb-4 pb-1">{{ carousel.carousel_sub_title }}</div>
                 </div><a class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true" href="{% url 'cart:product-list' %}">{{ carousel.carousel_action }}</a>
               </div>
               <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto img-fluid " src="{{carousel.carousel_image.url }}" alt="Puma Backpack"></div>
@@ -37,22 +28,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="item">
-        <div class="container padding-top-3x">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-lg-5 col-md-6 padding-bottom-2x text-md-left text-center">
-              <div class="from-bottom"><img class="d-inline-block w-150 mb-4" src="img/hero-slider/logo02.png" alt="Puma">
-                <div class="h2 text-body text-normal mb-2 pt-1">{{ carousel.title }}</div>
-                <div class="h2 text-body text-normal mb-4 pb-1">{{ carousel.sub_title }} <span class="text-bold">$37.99</span></div>
-              </div><a class="btn btn-primary scale-up delay-1" href="shop-grid-ls.html">{{ carousel.action }}</a>
-            </div>
-            <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto" src="{{carousel.image.url }}" alt="Puma Backpack"></div>
-          </div>
-        </div>
-      </div> -->
-
-
       {% endfor %}
     </div>
     <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -100,130 +75,8 @@
             </div>
           </div>
           {% endfor %}
-          <!-- <div class="col-6 col-lg-3">
-            <div class="product">
-              <figure class="product-image">
-                <a href="#!">
-                  <img src="{% static 'images/product/product-3.jpg' %}" alt="Image">
-                  <img src="{% static 'images/product/product-3-2.jpg' %}" alt="Image">
-                </a>
-              </figure>
-              <div class="product-meta">
-                <h3 class="product-title"><a href="#!">Black IC Pendant Light</a></h3>
-                <div class="product-price">
-                  <span>$410</span>
-                  <span class="product-action">
-                    <a href="#!">Add to cart</a>
-                  </span>
-                </div>
-                <a href="#!" class="product-like"></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6 col-lg-3">
-            <div class="product">
-              <figure class="product-image">
-                <span class="product-promo">-25%</span>
-                <a href="#!">
-                  <img src="{% static 'images/product/product-4.jpg' %}" alt="Image">
-                  <img src="{% static 'images/product/product-4-2.jpg' %}" alt="Image">
-                </a>
-              </figure>
-              <div class="product-meta">
-                <h3 class="product-title"><a href="#!">Red Analog Magazine Rack</a></h3>
-                <div class="product-price">
-                  <span>$120</span>
-                  <span class="product-action">
-                    <a href="#!">Add to cart</a>
-                  </span>
-                </div>
-                <a href="#!" class="product-like"></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="product">
-              <figure class="product-image">
-                <a href="#!">
-                  <img src="{% static 'images/product/product-6.jpg' %}" alt="Image">
-                  <img src="{% static 'images/product/product-6-2.jpg' %}" alt="Image">
-                </a>
-              </figure>
-              <div class="product-meta">
-                <h3 class="product-title"><a href="#!">Black Piani Table Lamp</a></h3>
-                <div class="product-price">
-                  <span>$290</span>
-                  <span class="product-action">
-                    <a href="#!">Add to cart</a>
-                  </span>
-                </div>
-                <a href="#!" class="product-like"></a>
-              </div>
-            </div>
-          </div> -->
-          <!-- <div class="col-6 col-lg-3">
-            <div class="product">
-              <figure class="product-image">
-                <a href="#!">
-                  <img src="{% static '' '' %}/images/demo/product-6.jpg" alt="Image">
-                  <img src="{% static '' '' %}/images/demo/product-6-2.jpg" alt="Image">
-                </a>
-              </figure>
-              <div class="product-meta">
-                <h3 class="product-title"><a href="#!">Grey Pendant Bell Lamp</a></h3>
-                <div class="product-price">
-                  <span>$258</span>
-                  <span class="product-action">
-                    <a href="#!">Add to cart</a>
-                  </span>
-                </div>
-                <a href="#!" class="product-like"></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="product">
-              <figure class="product-image">
-                <a href="#!">
-                  <img src="{% static '' '' %}/images/demo/product-25.jpg" alt="Image">
-                  <img src="{% static '' '' %}/images/demo/product-25-2.jpg" alt="Image">
-                </a>
-              </figure>
-              <div class="product-meta">
-                <h3 class="product-title"><a href="#!">Gravel Black Sigg Water Bottle</a></h3>
-                <div class="product-price">
-                  <span>$23</span>
-                  <span class="product-action">
-                    <a href="#!">Add to cart</a>
-                  </span>
-                </div>
-                <a href="#!" class="product-like"></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="product">
-              <figure class="product-image">
-                <a href="#!">
-                  <img src="{% static '' '' %}/images/demo/product-7.jpg" alt="Image">
-                  <img src="{% static '' '' %}/images/demo/product-7-2.jpg" alt="Image">
-                </a>
-              </figure>
-              <div class="product-meta">
-                <h3 class="product-title"><a href="#!">Garnet Must Sofa</a></h3>
-                <div class="product-price">
-                  <span>$4,668</span>
-                  <span class="product-action">
-                    <a href="#!">Add to cart</a>
-                  </span>
-                </div>
-                <a href="#!" class="product-like"></a>
-              </div>
-            </div>
-          </div>  -->
-
         </div><br><br>
+        
         <div class="row">
           <div class="col text-center">
             <a href="#!" class="btn btn-outline-secondary">Load More</a>

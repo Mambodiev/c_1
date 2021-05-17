@@ -2,13 +2,15 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http.response import HttpResponse
 from queryset_sequence import QuerySetSequence
 from django.core.mail import send_mail
-from django.shortcuts import reverse
+from django.shortcuts import reverse, render
 from django.views import generic
 from .forms import ContactForm
 from .models import Carousel
 from cart.models import Order, Product
+from django.http import HttpResponse, request
 
 
 
@@ -25,16 +27,30 @@ class ProfileView(LoginRequiredMixin, generic.TemplateView):
         return context
 
 
-class HomeListView(generic.ListView):
-    template_name = 'home.html'
+def home(request):
+
+    product = Product.objects.all()
+    carousel = Carousel.objects.all()
+
+    page='home'
+
+    context={
+        'page':'page',
+        'product':product,
+        'carousel':carousel,
+    }
+
+    return render(request, 'home.html',context)
 
     # query = QuerySetSequence(Product.objects.all(), Carousel.objects.all())
 
-    def get_queryset(self):
-        return QuerySetSequence(Carousel.objects.all(), Product.objects.all() )
+    # def get_queryset(self):
+    #     return QuerySetSequence(Carousel.objects.all()[:3], Product.objects.all() )
+
 
     # queryset = Product.objects.all()
     # queryset = Carousel.objects.all()
+
 
     # def get_queryset(self):
     #     qs = Product.objects.all()

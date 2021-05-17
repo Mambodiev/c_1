@@ -2,8 +2,9 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import paginator
 from django.http.response import HttpResponse
-from queryset_sequence import QuerySetSequence
+from django.core.paginator import Paginator, EmptyPage,  PageNotAnInteger
 from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
@@ -33,6 +34,15 @@ def home(request):
     carousel = Carousel.objects.all()
 
     page='home'
+
+    paginator = Paginator(product,4)
+    page=request.GET.get('page')
+    try:
+        product=paginator.page(page)
+    except PageNotAnInteger:
+        product=paginator.page(1)
+    except EmptyPage:
+        product=paginator.page(paginator.num_pages)
 
     context={
         'page':'page',

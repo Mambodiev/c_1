@@ -33,44 +33,19 @@ def home(request):
     product = Product.objects.all()
     carousel = Carousel.objects.all()
 
-    page='home'
-
-    paginator = Paginator(product,4)
-    page=request.GET.get('page')
-    try:
-        product=paginator.page(page)
-    except PageNotAnInteger:
-        product=paginator.page(1)
-    except EmptyPage:
-        product=paginator.page(paginator.num_pages)
+    paginator = Paginator(product, per_page=4)
+    page_number = request.GET.get('page',1)
+    page_obj = paginator.get_page(page_number)
 
     context={
         'page':'page',
-        'product':product,
+        'product':page_obj.object_list,
         'carousel':carousel,
+        'paginator':paginator,
+        'page_number':int(page_number),
     }
 
     return render(request, 'home.html',context)
-
-    # query = QuerySetSequence(Product.objects.all(), Carousel.objects.all())
-
-    # def get_queryset(self):
-    #     return QuerySetSequence(Carousel.objects.all()[:3], Product.objects.all() )
-
-
-    # queryset = Product.objects.all()
-    # queryset = Carousel.objects.all()
-
-
-    # def get_queryset(self):
-    #     qs = Product.objects.all()
-    #     qs = Carousel.objects.all()
-
-    #     return qs
-    # def get_all_documents():
-    #     product = Product.objects.all()
-    #     carousel = Carousel.objects.all()
-    #     return list(chain(product, carousel))
 
 
 class AboutView(generic.TemplateView):

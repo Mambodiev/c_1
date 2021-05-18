@@ -42,8 +42,9 @@
                     <!-- {{ form.shipping_address_line_1|as_crispy_field }}
 
                     {{ form.shipping_address_line_2|as_crispy_field }} -->
-                    
-                    <div class="form-row">
+                    {{ form.shipping_address_line_1|as_crispy_field }}
+                    {{ form.shipping_address_line_2|as_crispy_field }}
+                    <!-- <div class="form-row">
                         <div class="form-group col-md-6 mb-0">
                             {{ form.shipping_address_line_1|as_crispy_field }}
                         </div>
@@ -51,32 +52,34 @@
                         <div class="form-group col-md-6 mb-0">
                             {{ form.shipping_address_line_2|as_crispy_field }}
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-row">
-                        <div class="form-group col-md-4 mb-0">
+                        <div class="form-group col-md-6 mb-0">
                             {{ form.shipping_city|as_crispy_field }}
                         </div>
 
-                        <div class="form-group col-md-4 mb-0">
+                        <div class="form-group col-md-6 mb-0">
                             {{ form.shipping_zip_code|as_crispy_field }}
                         </div>
                     </div>
 
 
-                    <div class="form-row">
+                    {{ form.billing_address_line_1|as_crispy_field }}
+                    {{ form.billing_address_line_2|as_crispy_field }}
+                    <!-- <div class="form-row">
                         <div class="form-group col-md-6 mb-0">
                           {{ form.billing_address_line_1|as_crispy_field }}
                         </div>
                         <div class="form-group col-md-6 mb-0">
                           {{ form.billing_address_line_2|as_crispy_field }}
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-row">
-                        <div class="form-group col-md-4 mb-0">
+                        <div class="form-group col-md-6 mb-0">
                           {{ form.billing_city|as_crispy_field }}
                         </div>
-                        <div class="form-group col-md-4 mb-0">
+                        <div class="form-group col-md-6 mb-0">
                           {{ form.billing_zip_code|as_crispy_field }}
                         </div>
                     </div>

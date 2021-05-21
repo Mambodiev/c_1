@@ -34,5 +34,32 @@ class Carousel(models.Model):
     
     def __str__(self):
         return self.carousel_title
+
+
+class About(models.Model):
+    about_text = models.TextField(blank=True, null=True,)
     
+    def __str__(self):
+        return self.about_text
+
+
+class Faq(models.Model):
+    faq_text = models.TextField(blank=True, null=True,)
     
+    def __str__(self):
+        return self.faq_text
+
+
+class Shipping_returns(models.Model):
+    shipping_returns_text = models.TextField(blank=True, null=True,)
+    
+    def __str__(self):
+        return self.shipping_returns_text
+    
+
+
+class Terms_of_use(models.Model):
+    terms_of_use_text = models.TextField(blank=True, null=True,)
+    
+    def __str__(self):
+        return self.terms_of_use_text

@@ -101,7 +101,7 @@ class Product(models.Model):
 
     @property
     def comments(self):
-        return self.comment_set.all()
+        return self.comment_set.all()[:3]
 
     def avaregereview(self):
         reviews = Comment.objects.filter(product=self, status='True').aggregate(avarage=Avg('rate'))

@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
 from .forms import ContactForm
-from .models import Carousel
+from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use
 from cart.models import Order, Product
 from django.http import HttpResponse, request
 
@@ -48,8 +48,37 @@ def home(request):
     return render(request, 'home.html',context)
 
 
-class AboutView(generic.TemplateView):
-    template_name = 'about.html'
+def about(request):
+    about = About.objects.all()
+    context={
+        'about':about,
+    }
+
+    return render(request, 'about.html',context)
+
+
+def faq(request):
+    faq = Faq.objects.all()
+    context={
+        'faq':faq,
+    }
+    return render(request, 'faq.html', context)
+
+
+def terms_of_use(request): 
+    terms_of_use = Terms_of_use.objects.all()
+    context={
+        'terms_of_use':terms_of_use,
+    } 
+    return render(request, 'terms_of_use.html', context)
+
+
+def shipping_returns(request): 
+    shipping_returns = Shipping_returns.objects.all()
+    context={
+        'shipping_returns':shipping_returns,
+    } 
+    return render(request, 'shipping_returns.html', context)
 
 
 class ContactView(generic.FormView):

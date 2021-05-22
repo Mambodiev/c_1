@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.db.models import Avg, Count
 from django.db.models.signals import pre_save
@@ -57,9 +58,10 @@ class SizeVariation(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=150)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(null=False, unique=True)
     featured = models.ImageField(upload_to='product_images')
-    description = models.TextField()
+    # description = models.TextField()
+    # description_title = models.TextField()
     price = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -116,6 +118,19 @@ class Product(models.Model):
         if reviews["count"] is not None:
             cnt = int(reviews["count"])
         return cnt
+
+    @property
+    def product_detail(self):
+        return self.product_detail_set.all()
+
+
+class Product_detail(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    title = models.TextField(max_length=120, blank=True)
+    description = RichTextUploadingField()
+
+    def __str__(self):
+        return self.description
 
 
 class Image(models.Model):

@@ -68,11 +68,11 @@
           </div>
 
           <div class="d-flex justify-content-around">
-            <a href="#tab1"> {{ product.countreview}}  Review(s) / Add Review</a>
+            <a href="#tab1">{{ product.countreview}}  Review(s) / Add Review</a>
           </div>
         </div>
 
-        <h2 class="text-black">{{ product.title }}</h2>
+        <h1 class="text-black">{{ product.title }}</h1>
 
         <span class="item-price text-accent">
           <small  class="text-muted"><del>$113</del></small >
@@ -126,66 +126,42 @@
         </form><br>
 
         <div class="accordion" id="accordionExample">
-          <div class="card">
-            <div class="card-header" id="headingOne">
+          {% for product_detail in product.product_detail_set.all %}
+          <div class="card {% if forloop.counter0 == 0 %} active {% endif %}">
+            <div class="card-header " id="headingOne">
               <h5 class="mb-0">                     
                 <div class="clearfix">
-                  <span class="float-left"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                   DETAILS</a>
+                  <span class="float-left"><button class="btn btn-link" type="button" 
+                    data-toggle="collapse" 
+                    data-target="#collapseOne-{{ product_detail.pk }}" aria-expanded="true" 
+                    aria-controls="collapseOne">
+                    {{ product_detail.title }}</a>
                   </button></span>
-                  <span class="float-right"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <span class="float-right"><button class="btn btn-link" type="button" 
+                    data-toggle="collapse" 
+                    data-target="#collapseOne-{{ product_detail.pk }}"
+                    aria-expanded="true" 
+                    aria-controls="collapseOne">
                     <i class="fa fa-angle-down float"></i></a>
                   </button></span>
                 </div>
               </h5>
             </div>
         
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
+            <div id="collapseOne-{{ product_detail.pk }}" 
+              class="collapse show-{{ product_detail.pk }}" aria-labelledby="headingOne" 
+              data-parent="#accordionExample">
+              <div class="card-body">{{ product_detail.description|safe }}
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">                      
-                <div class="clearfix">
-                  <span class="float-left"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    SHIPPING & RETURNS
-                  </button></span>
-                  <span class="float-right"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class="fa fa-angle-down float"></i>
-                  </button></span>
-                </div>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingThree">
-              <h5 class="mb-0">
-                
-                <div class="clearfix">
-                  <span class="float-left"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    OUR CAUSE
-                  </button></span>
-                  <span class="float-right"><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="fa fa-angle-down float"></i>
-                  </button></span>
-                </div>
-              </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. 
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
+
+
+        
+
+        
         {% else %}
         <p>This item is out of stock</p>
         {% endif %}

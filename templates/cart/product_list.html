@@ -25,12 +25,30 @@
                                 <a href="{{ product.get_absolute_url }}"><img src="{{ product.featured.url }}" class="img-fluid"></a>
                             </figure>
 
-                            <div class="block-4-text p-4">
+                            <div class="block-4-text p-4 text-center product">
                                 <a href="{{ product.get_absolute_url }}">
-                                    <h3>{{ product.title }}</h3>
-                                </a>
-                                <p class="mb-0">{{ product.description |truncatechars:34 }}</p>
+                                    <p class="mb-0">{{ product.title }}</p>
+                                
+                                <div class="product-rating mb-0" id="product-rating">
+                                    <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                                    <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                                </div>
+
+                                <span class="text-muted text-center">${{ product.get_price }}
+                                    <span class="">/</span>
+                                    <span class="text-danger">Add to Cart</span>
+                                </span></a>
+                                
+                                <!-- <ol class="breadcrumb bg-white pt-">
+                                    <li class="breadcrumb-item text-center"><a href="#">${{ product.get_price }}</a></li>
+                                    <li class="breadcrumb-item text-center"><a href="#">Add to cart</a></li>
+                                </ol>
+                                 -->
                             </div>
+                            
                         </div>
                     {% endfor %}
                 </div>

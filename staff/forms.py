@@ -9,7 +9,7 @@ class ProductForm(forms.ModelForm):
         fields = [
             'title',
             'featured',
-            'description',
+            # 'description',
             'price',
             'available_colours',
             'available_sizes',

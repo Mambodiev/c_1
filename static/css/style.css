@@ -2,7 +2,7 @@
 body {
   /* line-height: 1.7; */
   color: #8c92a0;
-  font-weight: 300;
+  font-weight: 400!important;
   font-size: 16px;
   font-family: Verdana, sans-serif;
  }
@@ -2032,3 +2032,7 @@ topbar {
   #third{
   min-height:430px;
 }
+
+/* #collapseOne-1 {
+  display: block!important;
+} */

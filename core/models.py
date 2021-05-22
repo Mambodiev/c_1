@@ -1,4 +1,4 @@
-from cart.models import Product
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
@@ -37,21 +37,29 @@ class Carousel(models.Model):
 
 
 class About(models.Model):
-    about_text = models.TextField(blank=True, null=True,)
+    about_text = RichTextUploadingField()
     
     def __str__(self):
         return self.about_text
 
 
 class Faq(models.Model):
-    faq_text = models.TextField(blank=True, null=True,)
+    faq_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):
         return self.faq_text
+        
+
+class Privacy_policy(models.Model):
+    privacy_policiy_text = RichTextUploadingField(blank=True, null=True,)
+    
+    def __str__(self):
+        return self.privacy_policiy_text
+
 
 
 class Shipping_returns(models.Model):
-    shipping_returns_text = models.TextField(blank=True, null=True,)
+    shipping_returns_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):
         return self.shipping_returns_text
@@ -59,7 +67,7 @@ class Shipping_returns(models.Model):
 
 
 class Terms_of_use(models.Model):
-    terms_of_use_text = models.TextField(blank=True, null=True,)
+    terms_of_use_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):
         return self.terms_of_use_text

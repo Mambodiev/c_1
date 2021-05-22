@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Carousel, Terms_of_use, Faq, About, Shipping_returns
+from .models import Customer, Carousel, Terms_of_use, Faq, About, Shipping_returns, Privacy_policy
 
 
 admin.site.register(Customer)
@@ -8,3 +8,4 @@ admin.site.register(About)
 admin.site.register(Faq)
 admin.site.register(Terms_of_use)
 admin.site.register(Shipping_returns)
+admin.site.register(Privacy_policy)

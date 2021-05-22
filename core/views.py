@@ -9,12 +9,12 @@ from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
 from .forms import ContactForm
-from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use
+from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use,  Privacy_policy 
 from cart.models import Order, Product
 from django.http import HttpResponse, request
 
 
-
+ 
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
@@ -71,6 +71,14 @@ def terms_of_use(request):
         'terms_of_use':terms_of_use,
     } 
     return render(request, 'terms_of_use.html', context)
+
+
+def privacy_policy(request): 
+    privacy_policy = Privacy_policy.objects.all()
+    context={
+        'privacy_policy':privacy_policy,
+    } 
+    return render(request, 'privacy_policy.html', context)
 
 
 def shipping_returns(request): 

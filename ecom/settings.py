@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
 
+    'ckeditor',
+    'ckeditor_uploader',
     'cart',
     'core',
     'staff'
@@ -144,3 +146,23 @@ if DEBUG is False:
 
     # PAYPAL_CLIENT_ID = env('PAYPAL_LIVE_CLIENT_ID')
     # PAYPAL_SECRET_KEY = env('PAYPAL_LIVE_SECRET_KEY')
+
+#...
+SITE_ID = 1
+
+####################################
+    ##  CKEDITOR CONFIGURATION ##
+####################################
+
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
+CKEDITOR_UPLOAD_PATH = 'images/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': None,
+    },
+}
+
+###################################

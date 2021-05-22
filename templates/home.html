@@ -55,14 +55,14 @@
         </div>
         <div class="row gutter-2 gutter-md-3">
           {% for product in product %}
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-3 text-center">
             <div class="product">
               <figure class="product-image">
                 <a href="{{ product.get_absolute_url }}">
                   <img src="{{ product.featured.url }}" alt="Image">
                 </a>
               </figure>
-              <div class="product-meta">
+              <!-- <div class="product-meta">
                 <h3 class="product-title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h3>
                 <div class="product-price">
                   <span>${{ product.get_price }}</span>
@@ -70,8 +70,23 @@
                     <a class="bg-secondary text-white" href="{{ product.get_absolute_url }}">Add to cart</a>
                   </span>
                 </div>
-                <!-- <a href="#!" class="product-like"></a> -->
-              </div>
+              </div> -->
+
+              <a href="{{ product.get_absolute_url }}">
+                <p class="mb-0">{{ product.title }}</p>
+            
+            <div class="product-rating mb-0" id="product-rating">
+                <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+            </div>
+
+            <span class="text-muted text-center">${{ product.get_price }}
+                <span class="">/</span>
+                <span class="text-danger">Add to Cart</span>
+            </span></a>
             </div>
           </div>
           {% endfor %}

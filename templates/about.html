@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
+
 
 <div class="bg-white py-3">
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0">
-                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'home' %}">{% trans 'Home' %}</a>
                 <span class="mx-2 mb-0">/</span>
-                <strong class="text-black">About</strong>
+                <strong class="text-black">{% trans 'About' %}</strong>
             </div>
         </div>
     </div>
@@ -18,7 +19,7 @@
         <div class="row justify-content-center">
             {% for about in about %}
             <div class="col-lg-8">
-                <h1 class="mb-2">Our Story</h1>
+                <h1 class="mb-2">{% trans 'Our Story' %}</h1>
                 <p class="lead">{{ about.about_text|safe }}</p>
             </div>
             {% endfor %}

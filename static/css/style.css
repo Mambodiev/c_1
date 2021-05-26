@@ -1412,12 +1412,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   background-color: transparent;
   background: none;
   padding: .0rem 0rem;
+  /* border-bottom: 0.5px solid rgba(0,0,0,.125)!important; */
 }
 .card{
-  border-bottom: 1px solid #d8d9d8!important;
-  border-top: 1px solid #d8d9d8!important;
-  border-left: transparent!important;
-  border-right: transparent!important;
+  border: 0.5px solid #dde4eb!important;
 }
 .accordion .highlight i {
 	transform: rotate(180deg);
@@ -2036,3 +2034,27 @@ topbar {
 /* #collapseOne-1 {
   display: block!important;
 } */
+
+
+/* dropdown curency */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}
+
+.select:hover  {
+  background-color: #92a8d1;
+}

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 {% load account %}
 
 {% block content %}
@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7">
-                    <h2 class="h3 mb-3 text-black">Sign in</h2>
+                    <h2 class="h3 mb-3 text-black">{% trans "Sign in" %}</h2>
                 </div>
                 <div class="col-md-7">
                     <form method="post" action="{% url 'account_login' %}">

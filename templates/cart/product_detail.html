@@ -131,11 +131,11 @@
             <div class="card-header " id="headingOne">
               <h5 class="mb-0">                     
                 <div class="clearfix">
-                  <span class="float-left"><button class="btn btn-link" type="button" 
+                  <span class="float-left"><button class="btn btn-link text-capitalize" type="button" 
                     data-toggle="collapse" 
                     data-target="#collapseOne-{{ product_detail.pk }}" aria-expanded="true" 
                     aria-controls="collapseOne">
-                    {{ product_detail.title }}</a>
+                    {{ product_detail.title|safe }}</a>
                   </button></span>
                   <span class="float-right"><button class="btn btn-link" type="button" 
                     data-toggle="collapse" 

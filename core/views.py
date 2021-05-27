@@ -2,19 +2,18 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.core import paginator
 from django.http.response import HttpResponse
-from django.core.paginator import Paginator, EmptyPage,  PageNotAnInteger
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
 from .forms import ContactForm
-from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use,  Privacy_policy 
+from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use, Privacy_policy
 from cart.models import Order, Product
-from django.http import HttpResponse, request
-
-
- 
+from django.http import HttpResponse, HttpResponseRedirect, request
+from django.utils import translation
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
@@ -37,54 +36,65 @@ def home(request):
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
 
-    context={
-        'page':'page',
-        'product':page_obj.object_list,
-        'carousel':carousel,
-        'paginator':paginator,
-        'page_number':int(page_number),
+    context = {
+        'page': 'page',
+        'product': page_obj.object_list,
+        'carousel': carousel,
+        'paginator': paginator,
+        'page_number': int(page_number),
     }
 
     return render(request, 'home.html',context)
 
 
+def selectlanguage(request):
+    if request.method == 'POST':  # check post
+        cur_language = translation.get_language()
+        lasturl = request.META.get('HTTP_REFERER')
+        lang = request.POST['language']
+        translation.activate(lang)
+        request.session[translation.LANGUAGE_SESSION_KEY] = lang
+        # return HttpResponse(lang)
+        return HttpResponseRedirect("/" + lang)
+
+
 def about(request):
     about = About.objects.all()
-    context={
-        'about':about,
+    context = {
+        'about': about,
     }
 
-    return render(request, 'about.html',context)
+    return render(request, 'about.html', context)
 
 
 def faq(request):
     faq = Faq.objects.all()
-    context={
-        'faq':faq,
+    context = {
+        'faq': faq,
     }
     return render(request, 'faq.html', context)
 
 
-def terms_of_use(request): 
+def terms_of_use(request):
     terms_of_use = Terms_of_use.objects.all()
-    context={
-        'terms_of_use':terms_of_use,
+    context = {
+        'terms_of_use': terms_of_use,
     } 
     return render(request, 'terms_of_use.html', context)
 
 
-def privacy_policy(request): 
+def privacy_policy(request):
     privacy_policy = Privacy_policy.objects.all()
-    context={
-        'privacy_policy':privacy_policy,
+    context = {
+        'privacy_policy': privacy_policy,
     } 
     return render(request, 'privacy_policy.html', context)
 
 
-def shipping_returns(request): 
+def shipping_returns(request):
     shipping_returns = Shipping_returns.objects.all()
-    context={
-        'shipping_returns':shipping_returns,
+    context = {
+        'shipping_returns': shipping_returns,
     } 
     return render(request, 'shipping_returns.html', context)
 
@@ -117,3 +127,16 @@ class ContactView(generic.FormView):
             recipient_list=[settings.NOTIFY_EMAIL]
         )
         return super(ContactView, self).form_valid(form)
+
+
+@login_required(login_url='/login')  # Check login
+def savelangcur(request):
+    lasturl = request.META.get('HTTP_REFERER')
+    curren_user = request.user
+    language = Language.objects.get(code=request.LANGUAGE_CODE[0:2])
+    # Save to User profile database
+    data = UserProfile.objects.get(user_id=curren_user.id)
+    data.language_id = language.id
+    data.currency_id = request.session['currency']
+    data.save()  # save data
+    return HttpResponseRedirect(lasturl)

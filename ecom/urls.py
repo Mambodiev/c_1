@@ -8,9 +8,9 @@ from core import views
 from django.utils.translation import gettext_lazy as _
 
 urlpatterns = [
-    # path('selectlanguage', views.selectlanguage, name='selectlanguage'),
+    path('selectlanguage', views.selectlanguage, name='selectlanguage'),
     # path('selectcurrency', views.selectcurrency, name='selectcurrency'),
-    # path('savelangcur', views.savelangcur, name='savelangcur'),
+    path('savelangcur', views.savelangcur, name='savelangcur'),
     path('i18n/', include('django.conf.urls.i18n')),
 ]
 
@@ -27,8 +27,8 @@ urlpatterns += i18n_patterns(
     path('cart/', include('cart.urls', namespace='cart')),
     path('staff/', include('staff.urls', namespace='staff')),
     path('profile/', views.ProfileView.as_view(), name='profile'),
-    path('ckeditor/', include('ckeditor_uploader.urls'))
-    
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    prefix_default_language=False,
 )
 
 if settings.DEBUG:

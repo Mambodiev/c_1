@@ -1,12 +1,13 @@
+{% load i18n %}
 {% comment %} 
 <nav class="site-navigation text-right text-md-center" role="navigation">
     <div class="container">
         <ul class="site-menu js-clone-nav d-none d-md-block" style="padding: 0;">
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'cart:product-list' %}">Shop</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="/">{% trans "Home" %}</a></li>
+            <li><a href="{% url 'cart:product-list' %}">{% trans "Shop" %}</a></li>
+            <li><a href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
             {% if request.user.is_staff %}
-                <li><a href="{% url 'staff:staff' %}">Staff</a></li>
+                <li><a href="{% url 'staff:staff' %}">{% trans "Staff" %}</a></li>
             {% endif %}
         </ul>
     </div>
@@ -24,16 +25,16 @@
             </div>
         </li> -->
     <li class="nav-item">
-        <a class="nav-link active" href="{% url 'cart:product-list' %}">Shop</a>
+        <a class="nav-link active" href="{% url 'cart:product-list' %}">{% trans "Shop" %}</a>
     </li>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">About</a>
+            <a class="nav-link" href="{% url 'about' %}">{% trans "About" %}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">Best Seller<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="">{% trans "Best Seller" %}<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link nav_link" href="{% url 'contact' %}">Contact us</a>
+            <a class="nav-link nav_link" href="{% url 'contact' %}">{% trans "Contact us" %}</a>
         </li>
     </ul>
 </div>

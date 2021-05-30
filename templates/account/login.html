@@ -19,7 +19,8 @@
                                    value="{{ redirect_field_value }}"/>
                         {% endif %}
                         {{ form|crispy }}
-                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Sign in">
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="{% trans "Sign in" %}"
+                        >
                     </form>
                     <div class="row mt-3">
                         <div class="col-6">

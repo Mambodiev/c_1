@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-27 20:48+0300\n"
+"POT-Creation-Date: 2021-05-29 23:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: .\ecom\urls.py:24
 msgid "contact/"
-msgstr "contacte"
+msgstr ""
 
 #: .\env\lib\python3.8\site-packages\crispy_forms\tests\test_form_helper.py:129
 #: .\env\lib\python3.8\site-packages\crispy_forms\tests\test_form_helper.py:139
@@ -1545,15 +1545,15 @@ msgstr ""
 
 #: .\templates\about.html:11 .\templates\contact.html:11
 msgid "Home"
-msgstr "Accueil"
+msgstr ""
 
 #: .\templates\about.html:13 .\templates\navbar.html:31
 msgid "About"
-msgstr "A propos"
+msgstr "À PROPOS"
 
 #: .\templates\about.html:22
 msgid "Our Story"
-msgstr "A propos"
+msgstr ""
 
 #: .\templates\account\account_inactive.html:5
 #: .\templates\account\account_inactive.html:8
@@ -1693,20 +1693,20 @@ msgstr ""
 
 #: .\templates\account\login.html:12
 msgid "Sign in"
-msgstr ""
+msgstr "S'identifier"
 
 #: .\templates\account\login.html:26
 msgid "Forgot password?"
-msgstr ""
+msgstr "Mot de passe oublié?"
 
 #: .\templates\account\login.html:29
 msgid "Create new account?"
-msgstr ""
+msgstr "Créer un nouveau compte?"
 
 #: .\templates\account\logout.html:5 .\templates\account\logout.html:8
 #: .\templates\account\logout.html:17
 msgid "Sign Out"
-msgstr ""
+msgstr "Se déconnecter"
 
 #: .\templates\account\logout.html:10
 msgid "Are you sure you want to sign out?"
@@ -1874,25 +1874,37 @@ msgid ""
 "mail address</a>."
 msgstr ""
 
+#: .\templates\base.html:53
+msgid "Free Worldwide Shipping"
+msgstr "Livraison gratuite à travers le monde"
+
+#: .\templates\base.html:56
+msgid "Secure Online Payment"
+msgstr "Paiement en ligne sécurisé"
+
+#: .\templates\base.html:59
+msgid "We return money within 30 days"
+msgstr "Nous retournons l'argent dans les 30 jours"
+
 #: .\templates\contact.html:13
 msgid "Contact"
-msgstr "Contact"
+msgstr ""
 
 #: .\templates\contact.html:23
 msgid "Get in touch"
-msgstr "Nous contacter"
+msgstr ""
 
 #: .\templates\navbar.html:28
 msgid "Shop"
-msgstr "Boutique"
+msgstr "MAGASIN"
 
 #: .\templates\navbar.html:34
 msgid "Best Seller"
-msgstr "Meilleur"
+msgstr "MEILLEUR VENTE"
 
 #: .\templates\navbar.html:37
 msgid "Contact us"
-msgstr "Nous Ecrire"
+msgstr "NOUS CONTACTER"
 
 #: .\templates\openid\login.html:9
 msgid "OpenID Sign In"
@@ -1900,7 +1912,7 @@ msgstr ""
 
 #: .\templates\openid\login.html:16
 msgid "Sign In"
-msgstr ""
+msgstr "S'identifier"
 
 #: .\templates\socialaccount\authentication_error.html:5
 #: .\templates\socialaccount\authentication_error.html:8
@@ -1943,7 +1955,7 @@ msgid ""
 "You decided to cancel logging in to our site using one of your existing "
 "accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
 "\">sign in</a>."
-msgstr ""
+msgstr "S'identifier"
 
 #: .\templates\socialaccount\messages\account_connected.txt:2
 msgid "The social account has been connected."
@@ -1959,12 +1971,12 @@ msgstr ""
 
 #: .\templates\socialaccount\signup.html:5
 msgid "Signup"
-msgstr ""
+msgstr "Inscrivez-vous"
 
 #: .\templates\socialaccount\signup.html:8
 #: .\templates\socialaccount\signup.html:19
 msgid "Sign Up"
-msgstr ""
+msgstr "Inscrivez-vous"
 
 #: .\templates\socialaccount\signup.html:10
 #, python-format

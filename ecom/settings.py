@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'core',
     'staff',
     'rosetta',
+    'parler',
 ]
 
 # DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
@@ -109,11 +110,22 @@ LANGUAGES = [
     ('fr', _('French')),
 ]
 
+PARLER_LANGUAGES = {
+    1: (
+        {'code': 'en'},
+        {'code': 'fr'},
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 USE_I18N = True

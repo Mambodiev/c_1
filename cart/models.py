@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
+from parler.models import TranslatableModel, TranslatedFields
 from django.db.models import Avg, Count
 from django.db.models.signals import pre_save
 from django.shortcuts import reverse
@@ -10,8 +11,10 @@ from django.forms import ModelForm
 User = get_user_model()
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
+class Category(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(max_length=100)
+    )
 
     class Meta:
         verbose_name_plural = "Categories"
@@ -56,9 +59,16 @@ class SizeVariation(models.Model):
         return self.name
 
 
-class Product(models.Model):
-    title = models.CharField(max_length=150)
-    slug = models.SlugField(null=False, unique=True)
+class Product(TranslatableModel):
+    translations = TranslatedFields(
+        title = models.CharField(max_length=200,
+                                db_index=True),
+        slug = models.SlugField(null=False, max_length=200,
+                                db_index=True,
+                                unique=True)
+    )
+    # title = models.CharField(max_length=150)
+    # slug = models.SlugField(null=False, unique=True)
     featured = models.ImageField(upload_to='product_images')
     # description = models.TextField()
     # description_title = models.TextField()

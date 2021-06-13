@@ -1,5 +1,4 @@
 import os
-from django.utils.translation import gettext_lazy as _
 import environ
 
 env = environ.Env()
@@ -105,6 +104,10 @@ LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LANGUAGE_CODE = 'en'
+
+from django.utils.translation import gettext_lazy as _
+
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
@@ -116,7 +119,7 @@ PARLER_LANGUAGES = {
         {'code': 'fr'},
     ),
     'default': {
-        'fallback': 'en',
+        'fallback': ['en', 'fr'],
         'hide_untranslated': False,
     }
 }
@@ -125,7 +128,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-LANGUAGE_CODE = 'en'
+
 
 TIME_ZONE = 'UTC'
 USE_I18N = True

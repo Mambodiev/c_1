@@ -22,6 +22,22 @@ class Category(TranslatableModel):
     def __str__(self):
         return self.name
 
+class ColourVariation(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(max_length=50)
+    )  
+
+    def __str__(self):
+        return self.name
+
+
+class SizeVariation(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(max_length=50)
+    )
+
+    def __str__(self):
+        return self.name
 
 class Address(models.Model):
     ADDRESS_CHOICES = (
@@ -45,28 +61,11 @@ class Address(models.Model):
         verbose_name_plural = 'Addresses'
 
 
-class ColourVariation(models.Model):
-    name = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.name
-
-
-class SizeVariation(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 
 
 class Product(TranslatableModel):
-    translations = TranslatedFields(
-        title = models.CharField(max_length=200,
-                                db_index=True),
-        slug = models.SlugField(null=False, max_length=200,
-                                db_index=True,
-                                unique=True)
-    )
+    
     # title = models.CharField(max_length=150)
     # slug = models.SlugField(null=False, unique=True)
     featured = models.ImageField(upload_to='product_images')
@@ -80,15 +79,24 @@ class Product(TranslatableModel):
     available_sizes = models.ManyToManyField(SizeVariation)
     primary_category = models.ForeignKey(
         Category, related_name='primary_products', blank=True, null=True, on_delete=models.CASCADE)
-    secondary_categories = models.ManyToManyField(Category, blank=True)
+    # secondary_categories = models.ManyToManyField(Category, blank=True)
     stock = models.IntegerField(default=0)
 
+    translations = TranslatedFields(
+        title = models.CharField(max_length=200,
+                                db_index=True),
+        slug = models.SlugField(null=False, unique=True),
+        secondary_categories = models.ManyToManyField(Category, blank=True)
+    )
     def __str__(self):
         return self.title
 
+    
     def get_absolute_url(self):
-        return reverse("cart:product-detail", kwargs={'slug': self.slug})
-
+        
+        return reverse("cart:product-detail", 
+                        kwargs={'slug': self.slug})
+    
     def get_update_url(self):
         return reverse("staff:product-update", kwargs={'pk': self.pk})
 

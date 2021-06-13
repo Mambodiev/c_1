@@ -21,13 +21,16 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ['status']
     readonly_fields = ('subject', 'comment', 'user', 'product', 'rate', 'id')
 
+
 @admin.register(Category)
 class CategoryAdmin(TranslatableAdmin):
     list_display = ('name',)
 
+
 @admin.register(SizeVariation)
 class SizeVariationAdmin(TranslatableAdmin):
     list_display = ('name',)
+
 
 @admin.register(ColourVariation)
 class ColourVariationAdmin(TranslatableAdmin):
@@ -36,20 +39,20 @@ class ColourVariationAdmin(TranslatableAdmin):
 
 @admin.register(Product)
 class ProductAdmin(TranslatableAdmin):
-    list_display = ['title', 
-                    'price', 
-                    'stock', 
+    list_display = ['title',
+                    'price',
+                    'stock',
                     'updated']
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug'),
+            'fields': ('title', 'slug', 'featured', 'price', 'active', 'available_colours', 'available_sizes', 'stock', 'primary_category',)
         }),
     )
+
     def get_prepopulated_fields(self, request, obj=None):
         return {'slug': ('title',)}
 
 
-# admin.site.register(Category)
 admin.site.register(Address, AddressAdmin)
 # admin.site.register(ColourVariation)
 # admin.site.register(Product, ProductAdmin)

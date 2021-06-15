@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-29 23:51+0300\n"
+"POT-Creation-Date: 2021-06-01 17:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,12 +30,44 @@ msgstr ""
 msgid "admin/"
 msgstr ""
 
+#: .\ecom\urls.py:19
+msgid "accounts/"
+msgstr ""
+
 #: .\ecom\urls.py:21
 msgid "about/"
 msgstr ""
 
+#: .\ecom\urls.py:22
+msgid "privacy_policy/"
+msgstr ""
+
+#: .\ecom\urls.py:23
+msgid "shipping_returns/"
+msgstr ""
+
 #: .\ecom\urls.py:24
 msgid "contact/"
+msgstr ""
+
+#: .\ecom\urls.py:25
+msgid "faq/"
+msgstr ""
+
+#: .\ecom\urls.py:26
+msgid "terms_of_use/"
+msgstr ""
+
+#: .\ecom\urls.py:27
+msgid "cart/"
+msgstr ""
+
+#: .\ecom\urls.py:28
+msgid "staff/"
+msgstr ""
+
+#: .\ecom\urls.py:29
+msgid "profile/"
 msgstr ""
 
 #: .\env\lib\python3.8\site-packages\crispy_forms\tests\test_form_helper.py:129
@@ -1691,15 +1723,15 @@ msgid ""
 "\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
 
-#: .\templates\account\login.html:12
+#: .\templates\account\login.html:12 .\templates\account\login.html:22
 msgid "Sign in"
 msgstr "S'identifier"
 
-#: .\templates\account\login.html:26
+#: .\templates\account\login.html:27
 msgid "Forgot password?"
 msgstr "Mot de passe oublié?"
 
-#: .\templates\account\login.html:29
+#: .\templates\account\login.html:30
 msgid "Create new account?"
 msgstr "Créer un nouveau compte?"
 
@@ -1905,6 +1937,10 @@ msgstr "MEILLEUR VENTE"
 #: .\templates\navbar.html:37
 msgid "Contact us"
 msgstr "NOUS CONTACTER"
+
+#: .\templates\navbar.html:40
+msgid "Trying"
+msgstr "Essaie"
 
 #: .\templates\openid\login.html:9
 msgid "OpenID Sign In"

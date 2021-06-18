@@ -7,6 +7,8 @@ from django.shortcuts import reverse
 from django.utils.text import slugify
 from django.forms import ModelForm
 
+from core.models import Language
+
 User = get_user_model()
 
 
@@ -277,3 +279,58 @@ def pre_save_product_receiver(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(pre_save_product_receiver, sender=Product)
+
+
+llist = Language.objects.filter(status=True)
+list1 = []
+for language in llist:
+    list1.append((language.code,language.name))
+langlist = (list1)
+
+
+class ColourVariationLang(models.Model):
+    colourVariation = models.ForeignKey(ColourVariation, on_delete=models.CASCADE) 
+    lang =  models.CharField(max_length=6, choices=langlist)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class SizeVariationLang(models.Model):
+    sizeVariation = models.ForeignKey(SizeVariation, on_delete=models.CASCADE) 
+    lang =  models.CharField(max_length=6, choices=langlist)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
+class ProductLang(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE) 
+    lang =  models.CharField(max_length=6, choices=langlist)
+    title = models.CharField(max_length=150)
+    slug = models.SlugField(null=False, unique=True)
+    available_colours = models.ManyToManyField(ColourVariation, blank=True)
+    available_sizes = models.ManyToManyField(SizeVariation)
+    primary_category = models.ForeignKey(
+        Category, related_name='primary_productlangs', blank=True, null=True, on_delete=models.CASCADE)
+    secondary_categories = models.ManyToManyField(Category, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("cart:product-detail", kwargs={'slug': self.slug})
+
+
+class CategoryLang(models.Model):
+    category = models.ForeignKey(Category, related_name='categorylangs', on_delete=models.CASCADE) 
+    lang =  models.CharField(max_length=6, choices=langlist)
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name

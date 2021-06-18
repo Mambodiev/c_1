@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
 from .forms import ContactForm
-from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use, Privacy_policy
+from core.models import About, AboutLang, Language, Faq, Shipping_returns, Carousel, Terms_of_use, Privacy_policy
 from cart.models import Order, Product
 from django.http import HttpResponse, HttpResponseRedirect, request
 from django.utils import translation
@@ -57,15 +57,18 @@ def selectlanguage(request):
         # return HttpResponse(lang)
         return HttpResponseRedirect("/" + lang)
 
-
 def about(request):
-    about = About.objects.all()
+    defaultlang = settings.LANGUAGE_CODE[0:2]
+    currentlang = request.LANGUAGE_CODE[0:2]
+    about = About.objects.get(pk=1)
+    if defaultlang != currentlang:
+        about = AboutLang.objects.get(lang=currentlang)
+
     context = {
         'about': about,
     }
 
     return render(request, 'about.html', context)
-
 
 def faq(request):
     faq = Faq.objects.all()

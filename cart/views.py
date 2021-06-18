@@ -12,7 +12,7 @@ from django.utils import timezone
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from .forms import AddToCartForm, AddressForm, StripePaymentForm
-from .models import Product, OrderItem, Address, Payment, Order, Category, StripePayment, CommentForm, Comment
+from .models import Product, OrderItem, Address, Payment, Order, Category, StripePayment, CommentForm, Comment, ColourVariationLang, SizeVariationLang, ProductLang, CategoryLang
 from .utils import get_or_set_order_session
 
 # stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -59,6 +59,8 @@ class ProductListView(generic.ListView):
 
 
 class ProductDetailView(generic.FormView):
+    # defaultlang = settings.LANGUAGE_CODE[0:2] #en-EN
+    # currentlang = request.LANGUAGE_CODE[0:2]
     template_name = 'cart/product_detail.html'
     form_class = AddToCartForm
 

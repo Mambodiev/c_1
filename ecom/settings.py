@@ -27,9 +27,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
-
     'ckeditor',
     'ckeditor_uploader',
+    'modeltranslation',
+    'rosetta',
+
     'cart',
     'core',
     'staff'
@@ -103,16 +105,24 @@ LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LANGUAGE_CODE = 'en'
+
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
 ]
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'cart.translation',
+    # 'core.translation',
 )
 
-LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'cart/locale/'),
+    os.path.join(BASE_DIR, 'core/locale/'),
+)
+
 
 TIME_ZONE = 'UTC'
 USE_I18N = True

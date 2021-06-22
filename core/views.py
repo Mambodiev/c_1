@@ -47,17 +47,34 @@ def home(request):
     return render(request, 'home.html',context)
 
 
-def selectlanguage(request):
-    if request.method == 'POST':  # check post
-        cur_language = translation.get_language()
-        lasturl = request.META.get('HTTP_REFERER')
-        lang = request.POST['language']
-        translation.activate(lang)
-        request.session[translation.LANGUAGE_SESSION_KEY] = lang
-        # return HttpResponse(lang)
-        return HttpResponseRedirect("/" + lang)
+# def selectlanguage(request):
+#     if request.method == 'POST':  # check post
+#         cur_language = translation.get_language()
+#         lasturl = request.META.get('HTTP_REFERER')
+#         lang = request.POST['language']
+#         translation.activate(lang)
+#         request.session[translation.LANGUAGE_SESSION_KEY] = lang
+#         # return HttpResponse(lang)
+#         return HttpResponseRedirect("/" + lang)
 
+def change_language(request):
+    response = HttpResponseRedirect('/')
+    if request.method == 'POST':
+        language = request.POST.get('language')
+        if language:
+            if language != settings.LANGUAGE_CODE and [lang for lang in settings.LANGUAGES if lang[0] == language]:
+                redirect_path = f'/{language}/'
+            elif language == settings.LANGUAGE_CODE:
+                redirect_path = '/'
+            else:
+                return response
+            from django.utils import translation
+            translation.activate(language)
+            response = HttpResponseRedirect(redirect_path)
+            response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+    return response
 
+    
 def about(request):
     about = About.objects.all()
     context = {

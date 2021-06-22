@@ -22,20 +22,58 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'price', 'stock', 'updated']
+    list_display = [
+                    'title', 
+                    # 'featured',
+                    'active',
+                    'price', 
+                    'stock', 
+                    'updated']
     # list_filter = ['status']
-    # readonly_fields = ('subject', 'comment', 'user', 'product', 'rate', 'id')
-    prepopulated_fields = {'slug': ('title',)}
+    fieldsets = [
+            (u'ColourVariation', {'fields': (
+                    'title_en',
+                    'slug_en',
+                    'featured',
+                    'available_colours',
+                    'available_sizes',
+                    'active',
+                    'primary_category',
+                    'price', 
+                    'stock', 
+                    'title_fr',
+                    'slug_fr',
+                    
+                    
+            )})
+        ]
+    prepopulated_fields = {'slug_en': ('title_en',), 'slug_fr': ('title_fr',)}
+
+
+class SizeVariationAdmin(admin.ModelAdmin):
+    list_display = ['name',]
+    
+    fieldsets = [
+            (u'SizeVariation', {'fields': ('name_en', 'name_fr',)})
+        ]
+        
+
+class ColourVariationAdmin(admin.ModelAdmin):
+    list_display = ['name',]
+    
+    fieldsets = [
+            (u'ColourVariation', {'fields': ('name_en', 'name_fr',)})
+        ]
 
 
 admin.site.register(Category)
 admin.site.register(Address, AddressAdmin)
-admin.site.register(ColourVariation)
+admin.site.register(ColourVariation,ColourVariationAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(OrderItem)
 admin.site.register(Order)
-admin.site.register(SizeVariation)
+admin.site.register(SizeVariation, SizeVariationAdmin)
 admin.site.register(Payment)
 admin.site.register(StripePayment)
 admin.site.register(Image)

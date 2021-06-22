@@ -6,11 +6,13 @@ from django.urls import path, include
 
 from core import views
 from django.utils.translation import gettext_lazy as _
+from core.views import change_language
 
 urlpatterns = [
-    path('selectlanguage', views.selectlanguage, name='selectlanguage'),
+    # path('selectlanguage', views.selectlanguage, name='selectlanguage'),
     # path('selectcurrency', views.selectcurrency, name='selectcurrency'),
-    path('savelangcur', views.savelangcur, name='savelangcur'),
+    # path('savelangcur', views.savelangcur, name='savelangcur'),
+    path('change_language/',change_language,name='change_language'),
     path('i18n/', include('django.conf.urls.i18n')),
 ]
 
@@ -28,6 +30,7 @@ urlpatterns += i18n_patterns(
     path(_('staff/'), include('staff.urls', namespace='staff')),
     path(_('profile/'), views.ProfileView.as_view(), name='profile'),
     path('_ckeditor/', include('ckeditor_uploader.urls')),
+    path('rosetta/', include('rosetta.urls')),
     prefix_default_language=False,
 )
 

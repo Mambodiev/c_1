@@ -14,6 +14,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .forms import AddToCartForm, AddressForm, StripePaymentForm
 from .models import Product, OrderItem, Address, Payment, Order, Category, StripePayment, CommentForm, Comment
 from .utils import get_or_set_order_session
+from django.utils.translation import gettext as _
+
 
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 

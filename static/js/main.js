@@ -233,3 +233,10 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
   
 	return false;
   });
+
+//   language
+
+  $('.selectpicker').on('change', function () {
+	$(this).closest('form').submit();
+  });
+//   end language

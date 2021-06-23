@@ -32,7 +32,7 @@ def home(request):
     product = Product.objects.all()
     carousel = Carousel.objects.all()
 
-    paginator = Paginator(product, per_page=4)
+    paginator = Paginator(product, per_page=1)
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
 
@@ -73,6 +73,8 @@ def change_language(request):
             response = HttpResponseRedirect(redirect_path)
             response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
     return response
+
+
 
     
 def about(request):

@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
+
 from django import forms
 from .models import (
     OrderItem, ColourVariation, Product, SizeVariation,
@@ -9,9 +11,9 @@ User = get_user_model()
 
 
 class AddToCartForm(forms.ModelForm):
-    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None)
-    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None)
-    quantity = forms.IntegerField(min_value=1, initial=1,)
+    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None, label=_('colour'))
+    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None, label=_('size'))
+    quantity = forms.IntegerField(min_value=1, initial=1, label=_('quantity'))
 
     class Meta:
         model = OrderItem

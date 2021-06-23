@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0">
-                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'home' %}">{% trans "Home" %}</a>
                 <span class="mx-2 mb-0">/</span>
                 <strong class="text-black">{{ product.title }}</strong>
             </div>
@@ -69,7 +69,7 @@
           </div>
 
           <div class="d-flex justify-content-around">
-            <a href="#tab1">{{ product.countreview}}  Review(s) / Add Review</a>
+            <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
           </div>
         </div>
 
@@ -78,7 +78,7 @@
         <span class="item-price text-accent">
           <small  class="text-muted"><del>$113</del></small >
               ${{ product.get_price }}</span>
-        <p>Available stock: {{ product.stock }} units</p>
+        <p>{% trans "Available stock:" %} {{ product.stock }} {% trans "units" %}</p>
         {% if product.in_stock %}
         <form method="POST">
             {% csrf_token %}
@@ -107,7 +107,7 @@
               </div>
 
               <div class="col-10 col-sm-9">
-                <button type="submit" class="btn btn-primary btn-sm btn-block addtocart" id="addtocart">Add to cart</button>
+                <button type="submit" class="btn btn-primary btn-sm btn-block addtocart" id="addtocart">{% trans "Add to cart" %}</button>
               </div>
 
               
@@ -164,7 +164,6 @@
 
         
         {% else %}
-        <p>This item is out of stock</p>
         {% endif %}
       </div>  
   </div>
@@ -177,7 +176,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <h4 class="CustomerReview text-center">Customer Reviews</h4>
+        <h4 class="CustomerReview text-center">{% trans "Customer Reviews" %}</h4>
         
         <div class="d-flex justify-content-between mb-3">
           <!-- <div class="p-2">
@@ -215,13 +214,13 @@
               <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
               <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
               <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-              Reviews ({{ product.avaregereview |stringformat:".2f"}})
+              {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
             </div>
           </div>
 
           <div class="p-2">
-            <a class="btn btn-sm btn-dark" data-toggle="collapse" href="#reviewForm">
-              Write Review
+            <a class="btn btn-sm btn-dark" data-toggle="collapse" href="#reviewForm">{% trans "Write Review" %}
+              
             </a>
           </div>
         </div>
@@ -237,14 +236,14 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="sr-only" for="reviewEmail">subject:</label>
+                  <label class="sr-only" for="reviewEmail">{% trans "subject" %}:</label>
                   <input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
-                <label class="sr-only" for="reviewText">Review:</label>
+                <label class="sr-only" for="reviewText">{% trans "Review" %}:</label>
                 <textarea class="form-control form-control-sm" name="comment" rows="5" placeholder="Your review " required></textarea>
               </div>
             </div>
@@ -253,7 +252,7 @@
                 <div class="p-2">
                   <div class="form-group">
                     <div class="input-rating">
-                        <strong class="">Please rate: </strong>
+                        <strong class="">{% trans "Please rate" %}: </strong>
                         <div class="stars">
                             <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
                             <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
@@ -268,10 +267,10 @@
                 <div class="p-2 d-flex justify-content-between">
                   {% if user.id is not None %}
                   <button class="btn btn-outline-dark" type="submit">
-                    Post Review
+                    {% trans "Post Review" %}
                   </button>
                   {% else %}
-                      You must be logged in to post a review
+                  {% trans "You must be logged in to post a review" %}
                   {% endif %}
                 </div>
               </div>

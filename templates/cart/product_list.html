@@ -6,9 +6,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0">
-                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'home' %}">{% trans "Home" %}</a>
                 <span class="mx-2 mb-0">/</span>
-                <strong class="text-black">Shop</strong>
+                <strong class="text-black">{% trans "Shop" %}</strong>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
 
                                 <span class="text-muted text-center">${{ product.get_price }}
                                     <span class="">/</span>
-                                    <span class="text-danger">Add to Cart</span>
+                                    <span class="text-danger">{% trans "Add to Cart" %}</span>
                                 </span></a>
                                 
                                 <!-- <ol class="breadcrumb bg-white pt-">
@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-3 mb-4">
                 <div class="border p-4 rounded mb-4">
-                    <h3 class="h6 text-uppercase text-black">Categories</h3>
+                    <h3 class="h6 text-uppercase text-black">{% trans "Categories" %}</h3>
                     <ul>
                         {% for category in categories %}
                         <li class="mb-1">

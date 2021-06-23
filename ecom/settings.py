@@ -119,8 +119,8 @@ MODELTRANSLATION_TRANSLATION_FILES = (
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
-    os.path.join(BASE_DIR, 'cart/locale/'),
-    os.path.join(BASE_DIR, 'core/locale/'),
+    # os.path.join(BASE_DIR, 'cart/locale/'),
+    # os.path.join(BASE_DIR, 'core/locale/'),
 )
 
 

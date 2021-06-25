@@ -1798,15 +1798,15 @@ qty{
   width: 440px;
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: hidden!important;
+  /* overflow-x: hidden!important; */
 
 }
 
 #slider{
   width: 440px;
-  display: grid;
+  display: flex;
   flex-wrap: nowrap;
-  overflow-x: hidden !important;
+  /* overflow-x: hidden !important; */
 
 
 }
@@ -2085,3 +2085,82 @@ topbar {
    margin:0;
 }
 /* end change language */
+
+/* checkout */
+.image-checkout{
+  padding: 0!important;
+}
+/* end checkout */
+
+/* img slider */
+
+
+/* slide img  */
+.splide__slide img {
+	width : 100%;
+	height: auto;
+}
+
+.splide--nav>.splide__track>.splide__list>.splide__slide.is-active {
+  border-color: #000!important;
+}
+
+.splide--nav>.splide__track>.splide__list>.splide__slide {
+  border: 1px solid transparent!important;
+}
+
+.elementstyle {
+  width: 540px!important;
+  height: 540px!important;
+}
+
+/* If the browser window is 600px or smaller, the background color will be lightblue: */
+
+@media only screen and (max-width: 1200px) {
+  .elementstyle {
+    width: 500px!important;
+    height: 500px!important;
+  }
+  
+}
+@media only screen and (max-width: 991px) {
+  .elementstyle {
+    width: 350px!important;
+    height: 350px!important;
+  }
+  #secondary-slider{
+    width: 340px!important;
+    /* height: 50px!important; */
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .elementstyle {
+    width: 320px!important;
+    height: 320px!important;
+  }
+  #secondary-slider{
+    width: 320px!important;
+    height: 35px!important;
+  }
+}
+/* @media only screen and (max-width: 600px) {
+  .elementstyle {
+    width: 240px!important;
+    height: 240px!important;
+  }
+} */
+.splide__pagination {
+  margin: 4rem 0 !important;
+}
+/* end slide img  */
+
+/* write a review */
+
+@media screen and (max-width: 419px){
+  
+  #writeReview{
+    padding: 1px 0!important;
+    
+  }
+}

@@ -24,7 +24,6 @@ class CommentAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
                     'title', 
-                    # 'featured',
                     'active',
                     'price', 
                     'stock', 

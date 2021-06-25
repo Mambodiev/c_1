@@ -19,7 +19,8 @@
 
 
 <div class="container">
-  <div class="row mb-5">
+  <div class="row mb-5 row justify-content-center">
+    
       <div class="col-sm-6 ">
         <!-- <div class="container-fluid">
           <img id="featured" class="img-fluid" src="{{product.imageURL}}">
@@ -40,7 +41,92 @@
           <img id="slideRight" class="arrow" src="{% static 'images/arrow/arrow-right.png' %}">
         </div> -->
 
-        <div class="container-fluid">
+        <!-- <div class="card mb-4 shadow-sm">
+          <img id="featured" class="img-fluid" src="{{product.imageURL}}">
+
+          <div class="card-body">
+            
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">9 mins</small>
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div> -->
+        
+        
+
+        
+          <!-- <div class="card mb-4 shadow-sm">
+            <div id="primary-slider" class="splide">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  {% for image in product.image_set.all%}
+                    <li class="splide__slide">
+      
+                      <img class="img-fluid" src="{{image.imageURL}}">
+                      
+                    </li>
+                    {% endfor %}
+                  
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div id="secondary-slider" class="splide">
+                  <div class="splide__track">
+                    <ul class="splide__list">
+                      {% for image in product.image_set.all%}
+                        <li class="splide__slide">
+                          <img class="img-fluid" src="{{image.imageURL}}">    
+                        </li>
+                        {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        
+        <div id="primary-slider" class="splide">
+          <div class="splide__track">
+            
+
+            
+            
+            
+            
+            
+            <ul class="splide__list">
+              {% for image in product.image_set.all%}
+                <li class="splide__slide elementstyle">
+                  <img src="{{image.imageURL}}">    
+                </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div><br>
+        <div id="secondary-slider" class="splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              {% for image in product.image_set.all%}
+                <li class="splide__slide">
+                  <img src="{{image.imageURL}}">    
+                </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div> 
+
+      </div><br><br>
+
+      
+        <!-- <div class="container-fluid">
           <div class="row">
 
             <div class="col-lg-10 order-lg-2 img_featured">
@@ -53,11 +139,12 @@
             </div>
 
           </div>
-        </div>
-      </div>
-      <div class=" col-sm-6">
+        </div> -->
+      
+      <div class=" col-sm-6 mt-4">
         <!-- <h2 class="text-black">{{ product.title }}</h2> -->
-
+        <h1 class="text-black">{{ product.title }}</h1>
+        <br>
         <div class="product">
           <div class="product-rating  float-left" id="product-rating">
             <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
@@ -71,13 +158,11 @@
           <div class="d-flex justify-content-around">
             <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
           </div>
-        </div>
-
-        <h1 class="text-black">{{ product.title }}</h1>
+        </div><br>
 
         <span class="item-price text-accent">
-          <small  class="text-muted"><del>$113</del></small >
-              ${{ product.get_price }}</span>
+            US  ${{ product.get_price }}  <small  class="text-muted ml-3"><del> $113</del></small ></span><br><hr>
+
         <p>{% trans "Available stock:" %} {{ product.stock }} {% trans "units" %}</p>
         {% if product.in_stock %}
         <form method="POST">
@@ -165,7 +250,8 @@
         
         {% else %}
         {% endif %}
-      </div>  
+      </div> 
+    </div> 
   </div>
 </div>
 
@@ -219,9 +305,10 @@
           </div>
 
           <div class="p-2">
-            <a class="btn btn-sm btn-dark" data-toggle="collapse" href="#reviewForm">{% trans "Write Review" %}
+            <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %}
               
             </a>
+            <!-- <button type="submit" class="btn btn-primary btn-sm btn-block" id="addtocart">Add to cart</button> -->
           </div>
         </div>
         

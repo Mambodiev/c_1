@@ -8,9 +8,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0">
-                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'home' %}">{% trans "Home" %}</a>
                 <span class="mx-2 mb-0">/</span>
-                <strong class="text-black">Privacy Policy & Returns</strong>
+                <strong class="text-black">{% trans "Privacy Policy & Returns" %}</strong>
             </div>
         </div>
     </div>
@@ -18,10 +18,10 @@
 
 <div class="container">
     <div class="row justify-content-center">
-    {% for shipping_returns in shipping_returns %}
+    {% for privacy_policy in privacy_policy %}
     <div class="col-lg-8">
         <h1 class="mb-2"></h1>
-        <p class="lead">{{ shipping_returns.shipping_returns_text|safe}}</p>
+        <p class="lead">{{ privacy_policy.privacy_policy_text|safe}}</p>
     </div>
     {% endfor %}
     </div>

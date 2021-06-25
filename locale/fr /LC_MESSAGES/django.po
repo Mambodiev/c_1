@@ -8,16 +8,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 03:05-0700\n"
-"PO-Revision-Date: 2021-06-24 10:28+0000\n"
-"Last-Translator: b'  <>'\n"
+"POT-Creation-Date: 2021-06-24 04:14-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Translated-Using: django-rosetta 0.9.3\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: cart/forms.py:14
+msgid "colour"
+msgstr ""
+
+#: cart/forms.py:15
+msgid "size"
+msgstr ""
+
+#: cart/forms.py:16
+msgid "quantity"
+msgstr ""
+
+#: core/forms.py:7
+msgid "Your name"
+msgstr "Votre e-mail"
+
+#: core/forms.py:8
+msgid "Name"
+msgstr "Votre nom"
+
+#: core/forms.py:10
+msgid "Your e-mail"
+msgstr ""
+
+#: core/forms.py:11
+msgid "Email"
+msgstr "Email"
+
+#: core/forms.py:13
+#, fuzzy
+#| msgid "Submit message"
+msgid "Your message"
+msgstr "Soumettre un message"
+
+#: core/forms.py:14
+msgid "Message"
+msgstr "Message"
+
+#: core/views.py:142
+msgid "name"
+msgstr "Nom"
+
+#: core/views.py:143
+msgid "email"
+msgstr "email"
+
+#: core/views.py:144
+#, fuzzy
+#| msgid "Submit message"
+msgid "message"
+msgstr "Soumettre un message"
 
 #: ecom/settings.py:111
 msgid "English"
@@ -37,7 +88,7 @@ msgstr ""
 
 #: ecom/urls.py:27
 msgid "about/"
-msgstr "a propos"
+msgstr ""
 
 #: ecom/urls.py:28
 msgid "privacy_policy/"
@@ -159,8 +210,8 @@ msgstr ""
 #: env/lib/python3.8/site-packages/django/core/validators.py:247
 #: env/lib/site-packages/django/core/validators.py:247
 msgid ""
-"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or"
-" hyphens."
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/core/validators.py:256
@@ -384,16 +435,16 @@ msgstr ""
 #: env/lib/site-packages/django/db/models/fields/__init__.py:1237
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
-"HH:MM[:ss[.uuuuuu]][TZ] format."
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1241
 #: env/lib/site-packages/django/db/models/fields/__init__.py:1241
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD "
-"HH:MM[:ss[.uuuuuu]][TZ]) but it is an invalid date/time."
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1245
@@ -416,8 +467,8 @@ msgstr ""
 #: env/lib/site-packages/django/db/models/fields/__init__.py:1534
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid format. It must be in [DD] "
-"[[HH:]MM:]ss[.uuuuuu] format."
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/db/models/fields/__init__.py:1537
@@ -562,7 +613,7 @@ msgstr ""
 #: env/lib/site-packages/django/db/models/fields/files.py:360
 #: templates/cart/cart.html:144 templates/cart/checkout.html:113
 msgid "Image"
-msgstr "Photo"
+msgstr ""
 
 #: env/lib/python3.8/site-packages/django/db/models/fields/related.py:778
 #: env/lib/site-packages/django/db/models/fields/related.py:778
@@ -598,8 +649,7 @@ msgid "Many-to-many relationship"
 msgstr ""
 
 #. Translators: If found as last label character, these punctuation
-#. characters will prevent the default label_suffix to be appended to the
-#. label
+#. characters will prevent the default label_suffix to be appended to the label
 #: env/lib/python3.8/site-packages/django/forms/boundfield.py:149
 #: env/lib/site-packages/django/forms/boundfield.py:149
 msgid ":?.!"
@@ -658,8 +708,7 @@ msgstr ""
 #: env/lib/python3.8/site-packages/django/forms/fields.py:537
 #: env/lib/site-packages/django/forms/fields.py:537
 #, python-format
-msgid ""
-"Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
@@ -783,8 +832,7 @@ msgstr ""
 
 #: env/lib/python3.8/site-packages/django/forms/models.py:1161
 #: env/lib/site-packages/django/forms/models.py:1161
-msgid ""
-"Select a valid choice. That choice is not one of the available choices."
+msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/forms/models.py:1277
@@ -1349,11 +1397,11 @@ msgstr ""
 #: env/lib/python3.8/site-packages/django/views/csrf.py:124
 #: env/lib/site-packages/django/views/csrf.py:124
 msgid ""
-"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or"
-" including the “Referrer-Policy: no-referrer” header, please remove them. "
-"The CSRF protection requires the “Referer” header to do strict referer "
-"checking. If you’re concerned about privacy, use alternatives like <a "
-"rel=\"noreferrer\" …> for links to third-party sites."
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
+"\" …> for links to third-party sites."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/views/csrf.py:132
@@ -1417,8 +1465,8 @@ msgstr ""
 #: env/lib/site-packages/django/views/generic/dates.py:589
 #, python-format
 msgid ""
-"Future %(verbose_name_plural)s not available because "
-"%(class_name)s.allow_future is False."
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/views/generic/dates.py:623
@@ -1489,10 +1537,10 @@ msgstr ""
 #: env/lib/site-packages/django/views/templates/default_urlconf.html:369
 #, python-format
 msgid ""
-"You are seeing this page because <a "
-"href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
-"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> is in your settings file "
-"and you have not configured any URLs."
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
 msgstr ""
 
 #: env/lib/python3.8/site-packages/django/views/templates/default_urlconf.html:384
@@ -1536,11 +1584,11 @@ msgstr ""
 #: templates/faq.html:11 templates/privacy_policy.html:11
 #: templates/shipping_returns.html:11 templates/terms_of_use.html:11
 msgid "Home"
-msgstr "Accueil"
+msgstr ""
 
 #: templates/about.html:13 templates/navbar.html:31
 msgid "About"
-msgstr "a propos"
+msgstr ""
 
 #: templates/account/account_inactive.html:5
 #: templates/account/account_inactive.html:8
@@ -1590,8 +1638,7 @@ msgstr ""
 #: templates/account/email.html:43
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
-"an e-mail address so you can receive notifications, reset your password, "
-"etc."
+"an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
 
 #: templates/account/email.html:48
@@ -1611,7 +1658,8 @@ msgstr ""
 msgid ""
 "Hello from %(site_name)s!\n"
 "\n"
-"You're receiving this e-mail because user %(user_display)s has given yours as an e-mail address to connect their account.\n"
+"You're receiving this e-mail because user %(user_display)s has given yours "
+"as an e-mail address to connect their account.\n"
 "\n"
 "To confirm this is correct, go to %(activate_url)s\n"
 msgstr ""
@@ -1632,8 +1680,10 @@ msgstr ""
 msgid ""
 "Hello from %(site_name)s!\n"
 "\n"
-"You're receiving this e-mail because you or someone else has requested a password for your user account.\n"
-"It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
+"You're receiving this e-mail because you or someone else has requested a "
+"password for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password."
 msgstr ""
 
 #: templates/account/email/password_reset_key_message.txt:8
@@ -1671,8 +1721,8 @@ msgstr ""
 #: templates/account/email_confirm.html:27
 #, python-format
 msgid ""
-"This e-mail confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
 
 #: templates/account/login.html:12 templates/account/login.html:22
@@ -1760,8 +1810,8 @@ msgstr ""
 
 #: templates/account/password_reset.html:15
 msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send you"
-" an e-mail allowing you to reset it."
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
 msgstr ""
 
 #: templates/account/password_reset.html:20
@@ -1771,16 +1821,12 @@ msgstr ""
 #: templates/account/password_reset.html:23
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
-"Veuillez nous contacter si vous rencontrez des problèmes pour réinitialiser "
-"votre mot de passe."
 
 #: templates/account/password_reset_done.html:15
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
-"Nous vous avons envoyé un e-mail. Veuillez nous contacter si vous ne le "
-"recevez pas dans quelques minutes."
 
 #: templates/account/password_reset_from_key.html:7
 msgid "Bad Token"
@@ -1790,8 +1836,8 @@ msgstr ""
 #, python-format
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
-"reset</a>."
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
 msgstr ""
 
 #: templates/account/password_reset_from_key.html:17
@@ -1830,9 +1876,6 @@ msgid ""
 "finalize the signup process. Please contact us if you do not receive it "
 "within a few minutes."
 msgstr ""
-"Nous vous avons envoyé un e-mail pour vérification. Suivez le lien fourni "
-"pour finaliser le processus d'inscription. Veuillez nous contacter si vous "
-"ne le recevez pas dans quelques minutes."
 
 #: templates/account/verified_email_required.html:12
 msgid ""
@@ -1847,28 +1890,25 @@ msgid ""
 "verification. Please click on the link inside this e-mail. Please\n"
 "contact us if you do not receive it within a few minutes."
 msgstr ""
-"Nous vous avons envoyé un e-mail pour\n"
-"vérification. Veuillez cliquer sur le lien à l'intérieur de cet e-mail. S'il te plaît\n"
-"contactez-nous si vous ne le recevez pas dans quelques minutes."
 
 #: templates/account/verified_email_required.html:20
 #, python-format
 msgid ""
-"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
-"e-mail address</a>."
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
 msgstr ""
 
 #: templates/base.html:53
 msgid "Free Worldwide Shipping"
-msgstr "Livraison gratuite à travers le monde"
+msgstr ""
 
 #: templates/base.html:56
 msgid "Secure Online Payment"
-msgstr "Paiement en ligne sécurisé"
+msgstr ""
 
 #: templates/base.html:59
 msgid "We return money within 30 days"
-msgstr "Nous retournons l'argent dans les 30 jours"
+msgstr ""
 
 #: templates/base.html:100
 msgid "Language"
@@ -1880,32 +1920,32 @@ msgstr ""
 
 #: templates/cart/cart.html:145 templates/cart/checkout.html:114
 msgid "Product"
-msgstr "Produit"
+msgstr ""
 
 #: templates/cart/cart.html:146
 msgid "Price"
-msgstr "Prix"
+msgstr ""
 
 #: templates/cart/cart.html:147
 msgid "Quantity"
-msgstr "Quantité"
+msgstr ""
 
 #: templates/cart/cart.html:148 templates/cart/cart.html:221
 #: templates/cart/checkout.html:115
 msgid "Total"
-msgstr "Totale"
+msgstr ""
 
 #: templates/cart/cart.html:149
 msgid "Actions"
-msgstr "Action"
+msgstr ""
 
 #: templates/cart/cart.html:160
 msgid "Size"
-msgstr "Dimension"
+msgstr ""
 
 #: templates/cart/cart.html:161
 msgid "Colour"
-msgstr "Couleur"
+msgstr ""
 
 #: templates/cart/cart.html:188
 msgid "There are no items in your cart."
@@ -1913,19 +1953,19 @@ msgstr ""
 
 #: templates/cart/cart.html:189 templates/cart/cart.html:202
 msgid "Continue shopping"
-msgstr "Continuer vos achats"
+msgstr ""
 
 #: templates/cart/cart.html:211
 msgid "Cart Totals"
-msgstr "Totale Panier"
+msgstr ""
 
 #: templates/cart/cart.html:215 templates/cart/checkout.html:134
 msgid "Subtotal"
-msgstr "Petit Totale"
+msgstr ""
 
 #: templates/cart/cart.html:228
 msgid "Proceed to checkout"
-msgstr "Passer à la caisse"
+msgstr ""
 
 #: templates/cart/checkout.html:13
 msgid "Checkout"
@@ -1950,89 +1990,91 @@ msgstr ""
 
 #: templates/cart/checkout.html:100
 msgid "Proceed to payment"
-msgstr "Passer au payment"
+msgstr ""
 
 #: templates/cart/checkout.html:107
 msgid "Your Order"
-msgstr "Votre commande"
+msgstr ""
 
 #: templates/cart/checkout.html:138
 msgid "Order Total"
-msgstr "Totale Commanne"
+msgstr ""
 
 #: templates/cart/product_detail.html:72
 msgid "Review(s) / Add Review"
-msgstr "Avis / Ajouté Avis"
+msgstr ""
 
 #: templates/cart/product_detail.html:81
 msgid "Available stock:"
-msgstr "Stock Disponible"
+msgstr ""
 
 #: templates/cart/product_detail.html:81
 msgid "units"
-msgstr "pièces"
+msgstr ""
 
 #: templates/cart/product_detail.html:110
 msgid "Add to cart"
-msgstr "ajouter au panier"
+msgstr ""
 
 #: templates/cart/product_detail.html:179
 msgid "Customer Reviews"
-msgstr "Les Avis Laissé par nos Client"
+msgstr ""
 
 #: templates/cart/product_detail.html:217
 msgid "Reviews"
-msgstr "Avis"
+msgstr ""
 
 #: templates/cart/product_detail.html:222
 msgid "Write Review"
-msgstr "Ecrire un Avis"
+msgstr ""
 
 #: templates/cart/product_detail.html:239
 msgid "subject"
-msgstr "Sujet"
+msgstr ""
 
 #: templates/cart/product_detail.html:246
 msgid "Review"
-msgstr "Avis"
+msgstr ""
 
 #: templates/cart/product_detail.html:255
 msgid "Please rate"
-msgstr "Votre appreciation"
+msgstr ""
 
 #: templates/cart/product_detail.html:270
 msgid "Post Review"
-msgstr "Posté"
+msgstr ""
 
 #: templates/cart/product_detail.html:273
 msgid "You must be logged in to post a review"
-msgstr "Vous devez être connecté pour poster un avis"
+msgstr ""
 
 #: templates/cart/product_list.html:11 templates/navbar.html:28
 msgid "Shop"
-msgstr "Boutique"
+msgstr ""
 
 #: templates/cart/product_list.html:42 templates/home.html:89
-#, fuzzy
-#| msgid "Add to cart"
 msgid "Add to Cart"
-msgstr "ajouter au panier"
+msgstr ""
 
 #: templates/cart/product_list.html:58
 msgid "Categories"
-msgstr "CATEGORIES"
+msgstr ""
 
 #: templates/contact.html:13
 msgid "Contact"
-msgstr "Nous contacter"
+msgstr ""
 
 #: templates/contact.html:23
 msgid "Get in touch"
-msgstr "Entrer en contact"
+msgstr ""
+
+#: templates/contact.html:29
+msgid "Submit message"
+msgstr "Soumettre un message"
 
 #: templates/faq.html:13
 msgid "frequently asked questions"
-msgstr "Questions fréquemment posées"
+msgstr ""
 
 #: templates/home.html:37
 msgid "Previous"
@@ -2044,15 +2086,15 @@ msgstr ""
 
 #: templates/home.html:54
 msgid "Latest Products"
-msgstr "Nos Favoris"
+msgstr ""
 
 #: templates/navbar.html:34
 msgid "Best Seller"
-msgstr "meilleur vente"
+msgstr ""
 
 #: templates/navbar.html:37
 msgid "Contact us"
-msgstr "nous contacter"
+msgstr ""
 
 #: templates/openid/login.html:9
 msgid "OpenID Sign In"
@@ -2064,15 +2106,12 @@ msgstr ""
 
 #: templates/privacy_policy.html:13
 msgid "Privacy Policy & Returns"
-msgstr "Politique de confidentialité et retours"
+msgstr ""
 
 #: templates/shipping_returns.html:13
 msgid "Shipping & Returns"
-msgstr "Expédition & retours"
+msgstr ""
 
 #: templates/terms_of_use.html:13
 msgid "Terms of use"
-msgstr "Conditions d'utilisation"
-
-#~ msgid "Our Story"
-#~ msgstr "notre histoire"
+msgstr ""

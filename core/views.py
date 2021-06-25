@@ -9,11 +9,15 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
+from django.views.generic.list import ListView
+
 from .forms import ContactForm
 from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use, Privacy_policy
 from cart.models import Order, Product
 from django.http import HttpResponse, HttpResponseRedirect, request
 from django.utils import translation
+from django.utils.translation import gettext as _
+
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
@@ -75,47 +79,54 @@ def change_language(request):
     return response
 
 
+class AboutListView(ListView):
+    model = About
+    template_name = 'about.html'
 
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['about'] = About.objects.all()
+        return context
+        
     
-def about(request):
-    about = About.objects.all()
-    context = {
-        'about': about,
-    }
+class FaqListView(ListView):
+    model = Faq
+    template_name = 'faq.html'
 
-    return render(request, 'about.html', context)
-
-
-def faq(request):
-    faq = Faq.objects.all()
-    context = {
-        'faq': faq,
-    }
-    return render(request, 'faq.html', context)
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['faq'] = Faq.objects.all()
+        return context
 
 
-def terms_of_use(request):
-    terms_of_use = Terms_of_use.objects.all()
-    context = {
-        'terms_of_use': terms_of_use,
-    } 
-    return render(request, 'terms_of_use.html', context)
+class Terms_of_useListView(ListView):
+    model = Terms_of_use
+    template_name = 'terms_of_use.html'
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['terms_of_use'] = Terms_of_use.objects.all()
+        return context
 
 
-def privacy_policy(request):
-    privacy_policy = Privacy_policy.objects.all()
-    context = {
-        'privacy_policy': privacy_policy,
-    } 
-    return render(request, 'privacy_policy.html', context)
+class Privacy_policyListView(ListView):
+    model = Privacy_policy
+    template_name = 'privacy_policy.html'
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['privacy_policy'] = Privacy_policy.objects.all()
+        return context
 
 
-def shipping_returns(request):
-    shipping_returns = Shipping_returns.objects.all()
-    context = {
-        'shipping_returns': shipping_returns,
-    } 
-    return render(request, 'shipping_returns.html', context)
+class Shipping_returnsListView(ListView):
+    model = Shipping_returns
+    template_name = 'shipping_returns.html'
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['shipping_returns'] = Shipping_returns.objects.all()
+        return context
 
 
 class ContactView(generic.FormView):
@@ -128,9 +139,9 @@ class ContactView(generic.FormView):
     def form_valid(self, form):
         messages.info(
             self.request, "Thanks for getting in touch. We have received your message.")
-        name = form.cleaned_data.get('name')
-        email = form.cleaned_data.get('email')
-        message = form.cleaned_data.get('message')
+        name = form.cleaned_data.get(_('name'))
+        email = form.cleaned_data.get(_('email'))
+        message = form.cleaned_data.get(_('message'))
 
         full_message = f"""
             Received message below from {name}, {email}

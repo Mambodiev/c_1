@@ -19,7 +19,6 @@
         <div class="row justify-content-center">
             {% for about in about %}
             <div class="col-lg-8">
-                <h1 class="mb-2">{% trans 'Our Story' %}</h1>
                 <p class="lead">{{ about.about_text|safe }}</p>
             </div>
             {% endfor %}

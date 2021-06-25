@@ -38,12 +38,13 @@
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/splide.min.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head> 
 
 
-
-<div class="topbar sticky-top">
+<div class="sticky-top">
+  <div class="topbar ">
   <div class="top_header bg-secondary">
     <div class="container d-flex justify-content-between ">
       <div class="p-2">
@@ -178,7 +179,7 @@
     
   </div>
 
-    <nav class="navbar navbar-expand-md navbar-light   bg-light ">
+  <nav class="navbar navbar-expand-md navbar-light  bg-light">
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -186,12 +187,12 @@
       
       <a class="navbar-brand" href="{% url 'home' %}"><img style:width="140px" height="35px" src = "{% static 'images/logo_new.png' %}" alt="LOGO"/></a>
 
-      <!-- icon mobile -->
+      <!-- icon for mobile -->
       <div class="row">
         <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
           <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
           </a>
-        {% if request.user.is_authenticated %}
+        <!-- {% if request.user.is_authenticated %}
         <a class="mr-2 d-block d-md-none" href="{% url 'profile' %}">
           <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/></span>
         </a>
@@ -199,7 +200,7 @@
         <a class="mr-2 d-block d-md-none" href="{% url 'account_login' %}">
           <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
         </a>
-        {% endif %}
+        {% endif %} -->
         
         <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
         <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
@@ -207,10 +208,12 @@
         <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
         <span class="cart_item_count"><span class="badge badge-danger  rounded-circle">{{ request|cart_item_count }}</span></span>
         </a>
-      </div>    
+      </div>
+      <!-- end icon for mobile -->    
 
       {% include 'navbar.html' %} 
-      <!-- icon desktop -->
+
+      <!-- icon for desktop -->
       <div class="row">
         <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
           <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
@@ -235,8 +238,10 @@
         <span class="badge"><span class="badge badge-danger count rounded-circle">{{ request|cart_item_count }}</span></span>
         </a>
       </div>
-    </nav>
+      <!-- end icon for desktop -->
+  </nav>
 </div>
+
 
 
 

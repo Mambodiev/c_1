@@ -1453,7 +1453,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: inline-flex;
 }
 .CustomerReview{
-  margin-bottom: 4rem!important;
+  margin: 4rem 0 4rem 0!important;
   color: #111;
 }
 .align-items-center
@@ -2101,32 +2101,56 @@ topbar {
 	height: auto;
 }
 
-.splide--nav>.splide__track>.splide__list>.splide__slide.is-active {
-  border-color: #000!important;
-}
-
-.splide--nav>.splide__track>.splide__list>.splide__slide {
-  border: 1px solid transparent!important;
-}
-
 .elementstyle {
-  width: 540px!important;
-  height: 540px!important;
+  width: 500px!important;
+  height: 500px!important;
 }
 
-/* If the browser window is 600px or smaller, the background color will be lightblue: */
-
+/* If the browser window is ...px or smaller, the background color will be lightblue: */
 @media only screen and (max-width: 1200px) {
   .elementstyle {
-    width: 500px!important;
-    height: 500px!important;
+    width: 400px!important;
+    height: 400px!important;
   }
   
 }
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 1025px) {
   .elementstyle {
-    width: 350px!important;
-    height: 350px!important;
+    width: 400px!important;
+    height: 400px!important;
+  }
+  
+}
+@media only screen and (max-width: 999px) {
+  .elementstyle {
+    width: 360px!important;
+    height: 360px!important;
+  }
+  
+}
+@media only screen and (max-width: 769px) {
+  .elementstyle {
+    width: 280px!important;
+    height: 280px!important;
+  }
+
+  @media only screen and (max-width: 320px ) {
+    .elementstyle {
+      width: 320px!important;
+      height: 320px!important;
+    }
+    #secondary-slider{
+      width: 320px!important;
+      height: 35px!important;
+    }
+  }
+  
+}
+@media only screen and (max-width: 481px) {
+  .elementstyle {
+    width: 300px!important;
+    height: 300px!important;
+    align-items: center!important;
   }
   #secondary-slider{
     width: 340px!important;
@@ -2134,7 +2158,7 @@ topbar {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 320px ) {
   .elementstyle {
     width: 320px!important;
     height: 320px!important;
@@ -2150,9 +2174,21 @@ topbar {
     height: 240px!important;
   }
 } */
+
 .splide__pagination {
   margin: 4rem 0 !important;
 }
+.splide--nav>.splide__track>.splide__list>.splide__slide.is-active {
+  border-color: #000!important;
+}
+.splide--nav>.splide__track>.splide__list>.splide__slide {
+  border: 1px solid transparent!important;
+}
+
+
+/* .splide__track {
+  margin-left: 4rem;
+} */
 /* end slide img  */
 
 /* write a review */
@@ -2164,3 +2200,4 @@ topbar {
     
   }
 }
+

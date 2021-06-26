@@ -26,7 +26,40 @@
       <div class="col-lg-10">
         <div class="demo-content bg-alt">
           <div class="row">
-            <div class="col-sm-6">        
+            <div class="col-sm-6"> 
+              
+              <!-- <div class="container">
+                <div class="row">
+                  <div class="col"><div id="primary-slider" class="splide d-flex justify-content-center">
+                    <div class="splide__track d-flex ">
+                      <ul class="splide__list ml-0">
+                        {% for image in product.image_set.all%}
+                          <li class="splide__slide elementstyle image-fluid">
+                            <img src="{{image.imageURL}}">    
+                          </li>
+                          {% endfor %}
+                      </ul>
+                    </div>
+                  </div><br></div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col"><div id="secondary-slider" class="splide">
+                    <div class="splide__track" id="splideTrack">
+                      <ul class="splide__list ">
+                        {% for image in product.image_set.all%}
+                          <li class="splide__slide ">
+                            <img src="{{image.imageURL}}">    
+                          </li>
+                          {% endfor %}
+                      </ul>
+                    </div>
+                  </div> </div>
+                </div>
+              </div> -->
+
+              
             <div id="primary-slider" class="splide d-flex justify-content-center">
               <div class="splide__track d-flex ">
                 <ul class="splide__list ml-0">
@@ -38,8 +71,9 @@
                 </ul>
               </div>
             </div><br>
-            <div id="secondary-slider" class="splide">
-              <div class="splide__track">
+
+            <div id="secondary-slider" class="splide d-flex justify-content-center">
+              <div class="splide__track d-flex " id="splideTrack">
                 <ul class="splide__list ">
                   {% for image in product.image_set.all%}
                     <li class="splide__slide ">
@@ -49,6 +83,8 @@
                 </ul>
               </div>
             </div> 
+
+
             </div> 
                   
             <div class=" col-sm-6 mt-4">
@@ -56,11 +92,11 @@
             <br>
             <div class="product">
               <div class="product-rating  float-left" id="product-rating">
-                <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-                <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-                <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-                <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-                <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
                 {{ product.avaregereview |stringformat:".2f"}}
               </div>
     
@@ -109,7 +145,7 @@
                         data-target="#collapseOne-{{ product_detail.pk }}"
                         aria-expanded="true" 
                         aria-controls="collapseOne">
-                        <i class="fa fa-angle-down float"></i></a>
+                        <i class="icon-angle-down float"></i></a>
                       </button></span>
                     </div>
                   </h5>
@@ -139,7 +175,7 @@
                   <h4 class="CustomerReview text-center">{% trans "Customer Reviews" %}</h4>
                   
                   <div class="d-flex justify-content-between mb-3">
-                    <div class="p-2">
+                    <!-- <div class="p-2">
                       <a class="dropdown-toggle text-reset" data-toggle="dropdown" href="#">
                         <strong>{% trans "Sort by: Newest" %}</strong>
                       </a>
@@ -147,18 +183,18 @@
                         <a class="dropdown-item" href="#!">{% trans "Newest" %}</a>
                         <a class="dropdown-item" href="#!">{% trans "Oldest" %}</a>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="product p-2">
                       <div class="product-rating  float-left" id="product-rating">
-                        <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-                        <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-                        <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-                        <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-                        <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                        <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                        <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                        <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                        <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                        <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
                         {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
                       </div>
                     </div>
-                    <div class="p-2">
+                    <div class="p-0">
                       <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %}
                         
                       </a>
@@ -175,7 +211,7 @@
                       action="/cart/addcomment/{{ product.id }}" method="post">
                       {% csrf_token %}
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                           <div class="form-group">
                             <label class="sr-only" for="reviewEmail">{% trans "subject" %}:</label>
                             <input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>
@@ -183,13 +219,13 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                           <label class="sr-only" for="reviewText">{% trans "Review" %}:</label>
                           <textarea class="form-control form-control-sm" name="comment" rows="5" placeholder="Your review " required></textarea>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6 d-flex justify-content-between"> 
+                        <div class="col-md-8 d-flex justify-content-between"> 
                           <div class="p-2">
                             <div class="form-group">
                               <div class="input-rating">
@@ -207,7 +243,7 @@
                           
                           <div class="p-2 d-flex justify-content-between">
                             {% if user.id is not None %}
-                            <button class="btn btn-outline-dark" type="submit">
+                            <button class="btn btn-outline-dark" type="submit" id="postReview">
                               {% trans "Post Review" %}
                             </button>
                             {% else %}
@@ -226,8 +262,8 @@
                 <div class="container">
                   <div class="row">
                     {% for comment in product.comment_set.all %}
-                    <div class="col-md-6 col-equal">
-                      <div class="col bg-light p-3">
+                    <div class="col-md-6 col-equal p-0">
+                      <div class="col bg-light p-0">
                         <div class="d-flex justify-content-between">
                           <div class="p-2">
                             <img class="profile-pic" src="{% static 'images/demo/index2-slide-1.jpg' %}">
@@ -243,11 +279,11 @@
                         </div>      
                         <div>
                           <div class="review-rating">
-                            <i class="fa fa-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
-                            <i class="fa fa-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
                           </div>
                         </div>
                         <!-- <h4 class="blue-text mt-3">" Experience An awesome activity to" {{ subject.comment }}</h4> -->
@@ -285,7 +321,7 @@
                     <ul class="pagination pagination-sm text-gray-400">
                       <li class="page-item">
                         <a class="page-link page-link-arrow" href="#">
-                          <i class="fa fa-caret-left"></i>
+                          <i class="icon-caret-left"></i>
                         </a>
                       </li>
                       <li class="page-item active">
@@ -299,7 +335,7 @@
                       </li>
                       <li class="page-item">
                         <a class="page-link page-link-arrow" href="#">
-                          <i class="fa fa-caret-right"></i>
+                          <i class="icon-caret-right"></i>
                         </a>
                       </li>
                     </ul>
@@ -310,21 +346,21 @@
             </div>
 
             <script type="text/javascript">
-              let thumbnails = document.getElementsByClassName('thumbnail')
-              let activeImages = document.getElementsByClassName('active')
-              for (var i=0; i < thumbnails.length; i++){
-                thumbnails[i].addEventListener('mouseover', function(){
+              // let thumbnails = document.getElementsByClassName('thumbnail')
+              // let activeImages = document.getElementsByClassName('active')
+              // for (var i=0; i < thumbnails.length; i++){
+              //   thumbnails[i].addEventListener('mouseover', function(){
 
-                  if (activeImages.length > 0){
-                    activeImages[0].classList.remove('active')
-                  }
+              //     if (activeImages.length > 0){
+              //       activeImages[0].classList.remove('active')
+              //     }
                 
-                  this.classList.add('active')
-                  document.getElementById('featured').src = this.src
-                })
+              //     this.classList.add('active')
+              //     document.getElementById('featured').src = this.src
+              //   })
 
 
-              }
+              // }
 
               // const buttonRight = document.getElementById('slideRight');
               // const buttonLeft = document.getElementById('slideLeft');
@@ -380,11 +416,11 @@
         <br>
         <div class="product">
           <div class="product-rating  float-left" id="product-rating">
-            <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-            <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-            <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-            <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-            <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+            <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+            <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+            <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+            <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+            <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
             {{ product.avaregereview |stringformat:".2f"}}
           </div>
 
@@ -433,7 +469,7 @@
                     data-target="#collapseOne-{{ product_detail.pk }}"
                     aria-expanded="true" 
                     aria-controls="collapseOne">
-                    <i class="fa fa-angle-down float"></i></a>
+                    <i class="icon-angle-down float"></i></a>
                   </button></span>
                 </div>
               </h5>
@@ -453,6 +489,34 @@
     </div> 
   </div>  -->
 </div><br><br>
+<script>
+  document.addEventListener( 'DOMContentLoaded', function () {
+	var secondarySlider = new Splide( '#secondary-slider', {
+		fixedWidth  : 100,
+		height      : 60,
+		gap         : 10,
+		cover       : true,
+		isNavigation: true,
+		focus       : 'center',
+		breakpoints : {
+			'600': {
+				fixedWidth: 66,
+				height    : 40,
+			}
+		},
+	} ).mount();
+	
+	var primarySlider = new Splide( '#primary-slider', {
+		type       : 'fade',
+		heightRatio: 0.5,
+		pagination : false,
+		arrows     : false,
+		cover      : true,
+	} ); // do not call mount() here.
+	
+	primarySlider.sync( secondarySlider ).mount();
+} );
+</script>
 
 
 

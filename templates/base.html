@@ -39,13 +39,13 @@
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/splide.min.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="{% static 'css/font-awesome.min.css"> -->
 </head> 
 
 
 <div class="sticky-top">
   <div class="topbar ">
-  <div class="top_header bg-secondary">
+    <div class="top_header bg-secondary">
     <div class="container d-flex justify-content-between ">
       <div class="p-2">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -61,55 +61,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <!-- <a class="nav-link dropdown-toggle text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Eng / $
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another</a></li>
-        <li class="dropdown-submenu-right">
-          <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Submenu2 </a></li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-              </ul>
-            </li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-              </ul>
-            </li> 
-          </ul>
-        </li>
-        
-      </ul> -->
-
-
-
-      <!-- {% get_current_language as LANGUAGE_CODE %}
-      {% get_available_languages as LANGUAGES %}
-      {% get_language_info_list for LANGUAGES as languages %}
-      <div class="languages">
-        <p>{% trans "Language" %}:</p>
-        <ul class="languages">
-          {% for lang in languages %}
-            <li>
-              <a href="{% url 'change_language' %}"
-              {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
-                {{ lang.name_local }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul> -->
-
+      </div>     
         <!-- {% get_current_language as LANGUAGE_CODE %}
 
         <form action="{% url 'change_language' %}" method="post">
@@ -126,12 +78,10 @@
          </select>
          <input type="submit" value="Go" />
         </form> -->
-
-
-        <form action="{% url 'change_language' %}" method="post">
+        <form action="{% url 'change_language' %}" method="post" class="language">
           {% csrf_token %}
           <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
-          <select name="language" class="selectpicker form-control-sm">
+          <select name="language" class="selectpicker ">
             {% get_language_info_list for LANGUAGES as languages %}
               {% for language in languages %}
                 <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
@@ -139,148 +89,87 @@
                 </option>
               {% endfor %}
           </select>
-          <!-- <input type="submit" value="Change" /> -->
         </form>
-
-        
-        
-        
-
-
-
-        <!-- <form action="{% url 'set_language' %}" method="post">
-          {% csrf_token %}
-          <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
-          <ul class="nav navbar-nav navbar-right language menu">
-              {% get_current_language as LANGUAGE_CODE %}
-              {% get_available_languages as LANGUAGES %}
-              {% get_language_info_list for LANGUAGES as languages %}
-              {% for language in languages %}
-                  <li>
-                      <button type="submit"
-                              name="language"
-                              value="{{ language.code }}"
-                              class="{% if language.code == LANGUAGE_CODE %}selected{% endif %}">
-                          {{ language.name_local }}
-                      </button>
-                  </li>
-              {% endfor %}
-
-              
-          </ul>
-        </form> -->
-
-        
-
-
-
       </div>
     </div>
-    
   </div>
 
-  <nav class="navbar navbar-expand-md navbar-light  bg-light">
+  <div class="sticky-top navbar-light bg-light">
+    <div class="container">
+      <div class="d-flex justify-content-between">
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <a class="navbar-brand" href="{% url 'home' %}"><img style:width="140px" height="35px" src = "{% static 'images/logo_new.png' %}" alt="LOGO"/></a>
-
-      <!-- icon for mobile -->
-      <div class="row">
-        <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-        <!-- {% if request.user.is_authenticated %}
-        <a class="mr-2 d-block d-md-none" href="{% url 'profile' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/></span>
-        </a>
-        {% else %}
-        <a class="mr-2 d-block d-md-none" href="{% url 'account_login' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
-        </a>
-        {% endif %} -->
-        
-        <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
-        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
-
-        <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
-        <span class="cart_item_count"><span class="badge badge-danger  rounded-circle">{{ request|cart_item_count }}</span></span>
-        </a>
-      </div>
-      <!-- end icon for mobile -->    
-
-      {% include 'navbar.html' %} 
-
-      <!-- icon for desktop -->
-      <div class="row">
-        <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-
-        {% if request.user.is_authenticated %}
+          <div class="p-0 d-block d-md-none">
+            <nav class="navbar navbar-expand-md">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>             
+            {% include 'navbar.html' %}
+            </nav>
+          </div>
           
-          <a class="mr-2 d-none  d-md-block" href="{% url 'profile' %}">
-            <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-        {% else %}
-          <a class="mr-2 d-none  d-md-block" href="{% url 'account_login' %}">
-            <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-        {% endif %}
+          
+          
+          
+          <div class="p-0">           
+            <a class="navbar-brand" href="{% url 'home' %}"><img style:width="140px" height="35px" src = "{% static 'images/logo_new.png' %}" alt="LOGO"/></a>
+          </div>
+          
+          <div class="p-0 d-none  d-md-block">
+            <nav class="navbar navbar-expand-md">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>             
+            {% include 'navbar.html' %}
+            </nav>
+          </div>
 
+          <div class="p-0 ">
+            <!-- icon for mobile -->
+            <div class="row">
+              <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+                <img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/>
+                </a>
+              <!-- {% if request.user.is_authenticated %}
+              <a class="mr-2 d-block d-md-none" href="{% url 'profile' %}">
+                <img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/>
+              </a>
+              {% else %}
+              <a class="mr-2 d-block d-md-none" href="{% url 'account_login' %}">
+                <img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/>
+              </a>
+              {% endif %}  -->
+              
+              <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+              <img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/><span id="cartItemCount">{{ request|cart_item_count }}</span>
+            </div>
+            <!-- end icon for mobile -->
 
-        <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
-        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
-        </a>
-        <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
-        <span class="badge"><span class="badge badge-danger count rounded-circle">{{ request|cart_item_count }}</span></span>
-        </a>
+            <!-- icon for desktop -->
+            <div class="row">
+              <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
+              <img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/>
+              </a>
+            {% if request.user.is_authenticated %}           
+              <a class="mr-2 d-none  d-md-block" href="{% url 'profile' %}">
+                <img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/>
+              </a>
+            {% else %}
+              <a class="mr-2 d-none  d-md-block" href="{% url 'account_login' %}">
+                <img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/>
+              </a>
+            {% endif %}
+            <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
+            <img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/><span id="cartItemCount">{{ request|cart_item_count }}</span>
+            </a>
+            </div>
+          <!-- end icon for desktop -->
+          </div>
+        
       </div>
-      <!-- end icon for desktop -->
-  </nav>
+    </div>
+  </div>
+
 </div>
-
-
-
-
-<!-- <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Eng / $
-</a>
-<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  <li><a class="dropdown-item" href="#">Action</a></li>
-  <li><a class="dropdown-item" href="#">Another</a></li>
-  <li class="dropdown-submenu-right">
-    <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Submenu2 </a></li>
-      <li class="dropdown-submenu">
-        <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-          <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-          <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  
-</ul> -->
-
-
-
-
-
-
-
 
 </div>
     {% if messages %}

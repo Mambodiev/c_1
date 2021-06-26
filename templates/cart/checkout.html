@@ -34,97 +34,7 @@
         </div>
         {% else %}
 
-        <!-- <form method="POST">
-            {% csrf_token %}
-            <div class="row">
-                <div class="col-md-6 mb-5 mb-md-0">
-                    <h2 class="h3 mb-3 text-black text-center">{% trans "Billing Details" %}</h2>
-                    <hr />
-                    {{ form.shipping_address_line_1|as_crispy_field }}
-                    {{ form.shipping_address_line_2|as_crispy_field }}
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.shipping_city|as_crispy_field }}
-                        </div>
-
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.shipping_zip_code|as_crispy_field }}
-                        </div>
-                    </div>
-                    {{ form.billing_address_line_1|as_crispy_field }}
-                    {{ form.billing_address_line_2|as_crispy_field }}
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-0">
-                          {{ form.billing_city|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-md-6 mb-0">
-                          {{ form.billing_zip_code|as_crispy_field }}
-                        </div>
-                    </div>                                   
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.selected_shipping_address|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.selected_billing_address|as_crispy_field }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-sm py-3 btn-block">
-                            {% trans "Proceed to payment" %}
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row mb-5">
-                        <div class="col-md-12">
-                            <h2 class="h3 mb-3 text-black text-center">{% trans "Your Order" %}</h2>
-                            <hr>
-                            <div class="p-3 p-lg-5">
-                                <table class="table site-block-order-table mb-5">
-                                    <thead>
-                                        <tr>
-                                            <th>{% trans "Image" %}</th>
-                                            <th>{% trans "Product" %}</th>
-                                            <th>{% trans "Total" %}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for item in order.items.all %}
-                                        <tr>
-                                            <td>
-                                                <img src="{{ item.product.featured.url }}" class="img-fluid" style="max-width: 90px;">
-                                            </td>
-                                            <td>
-                                                {{ item.size.name }}, {{ item.colour.name }} {{ item.product.title }}
-                                                <strong class="mx-2">x</strong> {{ item.quantity }}
-                                            </td>
-                                            <td>
-                                                ${{ item.get_total_item_price }}
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                        <tr>
-                                            <td><strong>{% trans "Subtotal" %}</strong></td>
-                                            <td>${{ order.get_subtotal }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong class="text-black font-weight-bold">{% trans "Order Total" %}</strong></td>
-                                            <td>
-                                                <strong class="text-black font-weight-bold">
-                                                    ${{ order.get_total }}
-                                                </strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form> -->
+        
 
 
         <form method="POST">
@@ -147,11 +57,13 @@
                                 {% for item in order.items.all %}
                                 <tr>
                                     <td>
+                                        <span id="orderQuantity">{{ item.quantity }}</span>
                                         <img src="{{ item.product.featured.url }}" class="img-fluid" style="max-width: 90px;">
                                     </td>
+                                    
                                     <td>
                                         {{ item.size.name }}, {{ item.colour.name }} {{ item.product.title }}
-                                        <strong class="mx-2">x</strong> {{ item.quantity }}
+                                        <!-- <strong class="mx-2">x</strong> {{ item.quantity }} -->
                                     </td>
                                     <td>
                                         ${{ item.get_total_item_price }}
@@ -163,9 +75,9 @@
                                     <td>${{ order.get_subtotal }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong class="text-black font-weight-bold">{% trans "Order Total" %}</strong></td>
+                                    <td><strong class="text-black font-weight-bold">{% trans "You Pay" %}</strong></td>
                                     <td>
-                                        <strong class="text-black font-weight-bold">
+                                        <strong class="text-black font-weight-bold" id="youPay">
                                             ${{ order.get_total }}
                                         </strong>
                                     </td>

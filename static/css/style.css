@@ -1938,6 +1938,12 @@ qty{
         margin-top: .4rem;
         /* height: 2.5rem!important; */
       }
+      #navbarLogo{
+        margin-left: 0rem !important;
+      }
+      #navbarMenu{
+        width: 25%!important;
+      }
       
     }
     

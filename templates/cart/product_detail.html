@@ -76,13 +76,13 @@
               <div class="splide__track d-flex " id="splideTrack">
                 <ul class="splide__list ">
                   {% for image in product.image_set.all%}
-                    <li class="splide__slide ">
+                    <li class="splide__slide productImage">
                       <img src="{{image.imageURL}}">    
                     </li>
                     {% endfor %}
                 </ul>
               </div>
-            </div> 
+            </div>  
 
 
             </div> 

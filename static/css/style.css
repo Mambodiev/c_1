@@ -1928,10 +1928,7 @@ qty{
             #search{
               width:"20px"!important;
               height:"20px"!important;}
-    .navbar{
-      /* padding: .0rem 1rem!important; */
-      /* height: 2rem; */
-    }
+    
     @media only screen and (max-width: 768px){
       .navbar{
         padding: .0rem 0rem!important;
@@ -2154,6 +2151,10 @@ topbar {
   width: 500px!important;
   height: 500px!important;
 }
+.productImage {
+  width: 60px!important;
+  height: 60px!important;
+}
 
 /* If the browser window is ...px or smaller, the background color will be lightblue: */
 @media only screen and (max-width: 1200px) {
@@ -2179,20 +2180,24 @@ topbar {
 }
 @media only screen and (max-width: 769px) {
   .elementstyle {
-    width: 280px!important;
-    height: 280px!important;
+    width: 230px!important;
+    height: 230px!important;
+  }
+  .productImage {
+    width: 40px!important;
+    height: 40px!important;
   }
 
-  @media only screen and (max-width: 320px ) {
+  /* @media only screen and (max-width: 320px ) {
     .elementstyle {
       width: 320px!important;
       height: 320px!important;
     }
     #secondary-slider{
       width: 320px!important;
-      height: 35px!important;
+      /* height: 60px!important; */
     }
-  }
+  } */
   
 }
 @media only screen and (max-device-width: 480px) {

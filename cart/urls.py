@@ -8,6 +8,9 @@ urlpatterns = [
     path('addcomment/<int:id>', views.addcomment, name='addcomment'),
     path('shop/', views.ProductListView.as_view(), name='product-list'),
     path('shop/<slug>/', views.ProductDetailView.as_view(), name='product-detail'),
+# 
+    path('shop/<slug>/', views.ProductDetailView.as_view(), name='product-list'),
+#     
     path('increase-quantity/<pk>/',
          views.IncreaseQuantityView.as_view(), name='increase-quantity'),
     path('decrease-quantity/<pk>/',

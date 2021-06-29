@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load blog_tags %}
 {% block content %}
 
 <div class="bg-white py-3">
@@ -26,142 +27,107 @@
       <div class="col-lg-10">
         <div class="demo-content bg-alt">
           <div class="row">
+
             <div class="col-sm-6"> 
-              
-              <!-- <div class="container">
-                <div class="row">
-                  <div class="col"><div id="primary-slider" class="splide d-flex justify-content-center">
-                    <div class="splide__track d-flex ">
-                      <ul class="splide__list ml-0">
-                        {% for image in product.image_set.all%}
-                          <li class="splide__slide elementstyle image-fluid">
-                            <img src="{{image.imageURL}}">    
-                          </li>
-                          {% endfor %}
-                      </ul>
-                    </div>
-                  </div><br></div>
+              <div id="primary-slider" class="splide d-flex justify-content-center">
+                <div class="splide__track d-flex ">
+                  <ul class="splide__list ml-0">
+                    {% for image in product.image_set.all%}
+                      <li class="splide__slide elementstyle">
+                        <img src="{{image.imageURL}}">    
+                      </li>
+                      {% endfor %}
+                  </ul>
                 </div>
-
-
-                <div class="row">
-                  <div class="col"><div id="secondary-slider" class="splide">
-                    <div class="splide__track" id="splideTrack">
-                      <ul class="splide__list ">
-                        {% for image in product.image_set.all%}
-                          <li class="splide__slide ">
-                            <img src="{{image.imageURL}}">    
-                          </li>
-                          {% endfor %}
-                      </ul>
-                    </div>
-                  </div> </div>
+              </div><br>
+              <div id="secondary-slider" class="splide d-flex justify-content-center">
+                <div class="splide__track d-flex " id="splideTrack">
+                  <ul class="splide__list ">
+                    {% for image in product.image_set.all%}
+                      <li class="splide__slide productImage">
+                        <img src="{{image.imageURL}}">    
+                      </li>
+                      {% endfor %}
+                  </ul>
                 </div>
-              </div> -->
-
-              
-            <div id="primary-slider" class="splide d-flex justify-content-center">
-              <div class="splide__track d-flex ">
-                <ul class="splide__list ml-0">
-                  {% for image in product.image_set.all%}
-                    <li class="splide__slide elementstyle">
-                      <img src="{{image.imageURL}}">    
-                    </li>
-                    {% endfor %}
-                </ul>
-              </div>
-            </div><br>
-
-            <div id="secondary-slider" class="splide d-flex justify-content-center">
-              <div class="splide__track d-flex " id="splideTrack">
-                <ul class="splide__list ">
-                  {% for image in product.image_set.all%}
-                    <li class="splide__slide productImage">
-                      <img src="{{image.imageURL}}">    
-                    </li>
-                    {% endfor %}
-                </ul>
-              </div>
-            </div>  
-
-
+              </div>  
             </div> 
                   
             <div class=" col-sm-6 mt-4">
-            <h1 class="text-black">{{ product.title }}</h1>
-            <br>
-            <div class="product">
-              <div class="product-rating  float-left" id="product-rating">
-                <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-                <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-                <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-                <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-                <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-                {{ product.avaregereview |stringformat:".2f"}}
-              </div>
-    
-              <div class="d-flex justify-content-around">
-                <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
-              </div>
-            </div><br>
-            <span class="item-price text-accent">
-                US  ${{ product.get_price }}  <small  class="text-muted ml-3"><del> $113</del></small ></span><br><hr>
-            <p>{% trans "Available stock:" %} {{ product.stock }} {% trans "units" %}</p>
-            {% if product.in_stock %}
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-row">
-                  <div class="col-4 col-sm-3">
-                    {{ form.colour|as_crispy_field }}
-                  </div>
-                  <div class="col-4 col-sm-3" id="qty">
-                    {{ form.size|as_crispy_field }}
-                  </div>            
+              <h1 class="text-black">{{ product.title }}</h1><br>
+              <div class="product">
+                <div class="product-rating  float-left" id="product-rating">
+                  <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                  {{ product.avaregereview |stringformat:".2f"}}
                 </div>
-                <div class="form-row">
-                  <div class="col-2 col-sm-3">
-                    {{ form.quantity|as_crispy_field }}
-                  </div>
-                  <div class="col-10 col-sm-9">
-                    <button type="submit" class="btn btn-primary btn-sm btn-block addtocart" id="addtocart">{% trans "Add to cart" %}</button>
-                  </div>
+      
+                <div class="d-flex justify-content-around">
+                  <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
                 </div>
-            </form><br>
-    
-            <div class="accordion" id="accordionExample">
-              {% for product_detail in product.product_detail_set.all %}
-              <div class="card {% if forloop.counter0 == 0 %} active {% endif %}">
-                <div class="card-header " id="headingOne">
-                  <h5 class="mb-0">                     
-                    <div class="clearfix">
-                      <span class="float-left"><button class="btn btn-link text-capitalize" type="button" 
-                        data-toggle="collapse" 
-                        data-target="#collapseOne-{{ product_detail.pk }}" aria-expanded="true" 
-                        aria-controls="collapseOne">
-                        {{ product_detail.title|safe }}</a>
-                      </button></span>
-                      <span class="float-right"><button class="btn btn-link" type="button" 
-                        data-toggle="collapse" 
-                        data-target="#collapseOne-{{ product_detail.pk }}"
-                        aria-expanded="true" 
-                        aria-controls="collapseOne">
-                        <i class="icon-angle-down float"></i></a>
-                      </button></span>
+              </div><br>
+              <span class="item-price text-accent">
+                US  ${{ product.get_price }}  <small  class="text-muted ml-3"><del> $113</del></small >
+              </span><br><hr>
+              <p>{% trans "Available stock:" %} {{ product.stock }} {% trans "units" %}</p>
+              {% if product.in_stock %}
+              <form method="POST">
+                  {% csrf_token %}
+                  <div class="form-row">
+                    <div class="col-4 col-sm-3">
+                      {{ form.colour|as_crispy_field }}
                     </div>
-                  </h5>
-                </div>
-            
-                <div id="collapseOne-{{ product_detail.pk }}" 
-                  class="collapse show-{{ product_detail.pk }}" aria-labelledby="headingOne" 
-                  data-parent="#accordionExample">
-                  <div class="card-body">{{ product_detail.description|safe }}
+                    <div class="col-4 col-sm-3" id="qty">
+                      {{ form.size|as_crispy_field }}
+                    </div>            
+                  </div>
+                  <div class="form-row">
+                    <div class="col-2 col-sm-3">
+                      {{ form.quantity|as_crispy_field }}
+                    </div>
+                    <div class="col-10 col-sm-9">
+                      <button type="submit" class="btn btn-primary btn-sm btn-block addtocart" id="addtocart">{% trans "Add to cart" %}</button>
+                    </div>
+                  </div>
+              </form><br>
+      
+              <div class="accordion" id="accordionExample">
+                {% for product_detail in product.product_detail_set.all %}
+                <div class="card {% if forloop.counter0 == 0 %} active {% endif %}">
+                  <div class="card-header " id="headingOne">
+                    <h5 class="mb-0">                     
+                      <div class="clearfix">
+                        <span class="float-left"><button class="btn btn-link text-capitalize" type="button" 
+                          data-toggle="collapse" 
+                          data-target="#collapseOne-{{ product_detail.pk }}" aria-expanded="true" 
+                          aria-controls="collapseOne">
+                          {{ product_detail.title|safe }}</a>
+                        </button></span>
+                        <span class="float-right"><button class="btn btn-link" type="button" 
+                          data-toggle="collapse" 
+                          data-target="#collapseOne-{{ product_detail.pk }}"
+                          aria-expanded="true" 
+                          aria-controls="collapseOne">
+                          <i class="icon-angle-down float"></i></a>
+                        </button></span>
+                      </div>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne-{{ product_detail.pk }}" 
+                    class="collapse show-{{ product_detail.pk }}" aria-labelledby="headingOne" 
+                    data-parent="#accordionExample">
+                    <div class="card-body">{{ product_detail.description|safe }}
+                    </div>
                   </div>
                 </div>
+                {% endfor %}
               </div>
-              {% endfor %}
-            </div>
-            {% else %}
-            {% endif %}
+              {% else %}
+              {% endif %}
             </div>
           
 
@@ -169,183 +135,164 @@
 
             <!-- review -->
             <section class="pt-9 pb-11" id="reviews">
-            <div class="container">
-              <div class="row">
-                <div class="col mx-0">
-                  <h4 class="CustomerReview text-center">{% trans "Customer Reviews" %}</h4>
-                  
-                  <div class="d-flex justify-content-between mb-3">
-                    <!-- <div class="p-2">
-                      <a class="dropdown-toggle text-reset" data-toggle="dropdown" href="#">
-                        <strong>{% trans "Sort by: Newest" %}</strong>
-                      </a>
-                      <div class="dropdown-menu mt-3">
-                        <a class="dropdown-item" href="#!">{% trans "Newest" %}</a>
-                        <a class="dropdown-item" href="#!">{% trans "Oldest" %}</a>
-                      </div>
-                    </div> -->
-                    <div class="product p-2">
-                      <div class="product-rating  float-left" id="product-rating">
-                        <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-                        <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-                        <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-                        <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-                        <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-                        {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
-                      </div>
-                    </div>
-                    <div class="p-0">
-                      <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %}
-                        
-                      </a>
-                      <!-- <button type="submit" class="btn btn-primary btn-sm btn-block" id="addtocart">Add to cart</button> -->
-                    </div>
-                  </div>
-                  
-                  
-
-                  <!-- New Review -->
-                  
-                  <div class="collapse" id="reviewForm">
-                    <form class="review-form" 
-                      action="/cart/addcomment/{{ product.id }}" method="post">
-                      {% csrf_token %}
-                      <div class="row">
-                        <div class="col-md-8">
-                          <div class="form-group">
-                            <label class="sr-only" for="reviewEmail">{% trans "subject" %}:</label>
-                            <input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8">
-                          <label class="sr-only" for="reviewText">{% trans "Review" %}:</label>
-                          <textarea class="form-control form-control-sm" name="comment" rows="5" placeholder="Your review " required></textarea>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-8 d-flex justify-content-between"> 
-                          <div class="p-2">
-                            <div class="form-group">
-                              <div class="input-rating">
-                                  <strong class="">{% trans "Please rate" %}: </strong>
-                                  <div class="stars">
-                                      <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-                                      <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                                      <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                                      <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                                      <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
-                                  </div>
-                              </div>
-                          </div>
-                          </div>
-                          
-                          <div class="p-2 d-flex justify-content-between">
-                            {% if user.id is not None %}
-                            <button class="btn btn-outline-dark" type="submit" id="postReview">
-                              {% trans "Post Review" %}
-                            </button>
-                            {% else %}
-                            {% trans "You must be logged in to post a review" %}
-                            {% endif %}
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div><br>
-
-                  <!-- Reviews -->
-                  
-                
-
-                <div class="container">
-                  <div class="row">
-                    {% for comment in product.comment_set.all %}
-                    <div class="col-md-6 col-equal p-0">
-                      <div class="col bg-light p-0">
-                        <div class="d-flex justify-content-between">
-                          <div class="p-2">
-                            <img class="profile-pic" src="{% static 'images/demo/index2-slide-1.jpg' %}">
-                          </div>
-                          <div class="p-2">
-                            <!-- <h4 class="">Marc Mesh </h4> -->
-                            <h4 class="">{{ comment.user.first_name }} </h4>
-                          </div>
-                          <div class="p-2">
-                            <!-- <p class="text-muted">10 Sept</p> -->
-                            <p class="text-muted">{{ comment.create_at}}</p>
-                        </div>
-                        </div>      
-                        <div>
-                          <div class="review-rating">
-                            <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
-                            <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
-                            <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
-                            <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
-                            <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
-                          </div>
-                        </div>
-                        <!-- <h4 class="blue-text mt-3">" Experience An awesome activity to" {{ subject.comment }}</h4> -->
-                        <h4 class="blue-text mt-3">"{{ comment.subject }}"</h4>
-                        <!-- <p class="content">
-                          Ergonomic office chair with lumbar support mesh back for breathability. Updated thick padded Seat provide extra comfort for daily use.
-                        </p>     -->
-                        <p class="content">
-                          {{ comment.comment }}
-                        </p>
-                        <!-- <div class="d-flex justify-content-start">
-                          <div class="p-">
-                            <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
-                          </div>
-                          <div class="p-">
-                            <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
-                          </div>
-                          <div class="p-">
-                            <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
-                          </div>
-                          
-                        </div> -->
-                      </div> <br>
+              <div class="container">
+                <div class="row">
+                  <div class="col mx-0">
+                    <h4 class="CustomerReview text-center">{% trans "Customer Reviews" %}</h4>
                     
+                    <div class="d-flex justify-content-between mb-3">
+                      <div class="product p-2">
+                        <div class="product-rating  float-left" id="product-rating">
+                          <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                          <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                          <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                          <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                          <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                          {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
+                        </div>
+                      </div>
+                      <div class="p-0">
+                        <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %} 
+                        </a>
+                      </div>
                     </div>
-                    {% endfor %}
+
+                    <!-- New Review -->
+                    <div class="collapse" id="reviewForm">
+                      <form class="review-form" 
+                        action="/cart/addcomment/{{ product.id }}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="form-group">
+                              <label class="sr-only" for="reviewEmail">{% trans "subject" %}:</label>
+                              <input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-8">
+                            <label class="sr-only" for="reviewText">{% trans "Review" %}:</label>
+                            <textarea class="form-control form-control-sm" name="comment" rows="5" placeholder="Your review " required></textarea>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-8 d-flex justify-content-between"> 
+                            <div class="p-2">
+                              <div class="form-group">
+                                <div class="input-rating">
+                                    <strong class="">{% trans "Please rate" %}: </strong>
+                                    <div class="stars">
+                                        <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                                        <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                                        <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                                        <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                                        <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="p-2 d-flex justify-content-between">
+                              {% if user.id is not None %}
+                              <button class="btn btn-outline-dark" type="submit" id="postReview">
+                                {% trans "Post Review" %}
+                              </button>
+                              {% else %}
+                              {% trans "You must be logged in to post a review" %}
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div><br>
+                    <!-- Reviews -->
+
+                  <div class="container">
+                    <div class="row">
+                      {% for comment in product.comment_set.all %}
+                      <div class="col-md-6 col-equal p-0">
+                        <div class="col bg-light p-0">
+                          <div class="d-flex justify-content-between">
+                            <div class="p-2">
+                              <img class="profile-pic" src="{% static 'images/demo/index2-slide-1.jpg' %}">
+                            </div>
+                            <div class="p-2">
+                              <!-- <h4 class="">Marc Mesh </h4> -->
+                              <h4 class="">{{ comment.user.first_name }} </h4>
+                            </div>
+                            <div class="p-2">
+                              <!-- <p class="text-muted">10 Sept</p> -->
+                              <p class="text-muted">{{ comment.create_at}}</p>
+                            </div>
+                          </div>      
+                          <div>
+                            <div class="review-rating">
+                              <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
+                              <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
+                              <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
+                              <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
+                              <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
+                            </div>
+                          </div>
+                          <!-- <h4 class="blue-text mt-3">" Experience An awesome activity to" {{ subject.comment }}</h4> -->
+                          <h4 class="blue-text mt-3">"{{ comment.subject }}"</h4>
+                          <!-- <p class="content">
+                            Ergonomic office chair with lumbar support mesh back for breathability. Updated thick padded Seat provide extra comfort for daily use.
+                          </p>     -->
+                          <p class="content">
+                            {{ comment.comment }}
+                          </p>
+                          <!-- <div class="d-flex justify-content-start">
+                            <div class="p-">
+                              <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
+                            </div>
+                            <div class="p-">
+                              <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
+                            </div>
+                            <div class="p-">
+                              <img class="pic" src="{% static 'images/demo/product-3-2.jpg' %}">
+                            </div>
+                            
+                          </div> -->
+                        </div><br>                  
+                      </div>
+                      {% endfor %}
+                    </div>
                   </div>
-                </div>
 
-                
-                
+                  
+                  
 
-                  <!-- Pagination -->
-                  <nav class="d-flex justify-content-center mt-9">
-                    <ul class="pagination pagination-sm text-gray-400">
-                      <li class="page-item">
-                        <a class="page-link page-link-arrow" href="#">
-                          <i class="icon-caret-left"></i>
-                        </a>
-                      </li>
-                      <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link page-link-arrow" href="#">
-                          <i class="icon-caret-right"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                    <!-- Pagination -->
+                    <nav class="d-flex justify-content-center mt-9">
+                      <ul class="pagination pagination-sm text-gray-400">
+                        <li class="page-item">
+                          <a class="page-link page-link-arrow" href="#">
+                            <i class="icon-caret-left"></i>
+                          </a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link page-link-arrow" href="#">
+                            <i class="icon-caret-right"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
 
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <script type="text/javascript">
+              <script type="text/javascript">
               // let thumbnails = document.getElementsByClassName('thumbnail')
               // let activeImages = document.getElementsByClassName('active')
               // for (var i=0; i < thumbnails.length; i++){
@@ -374,120 +321,31 @@
               //     document.getElementById('slider').scrollLeft -= 180;
               //   })
 
-          </script>
+              </script>
             </section>
             <!-- end review -->
           </div>  
-        </div>
+        </div><br><br>
+
+        <!-- most you may also want -->
+        <section class="pt-0">
+          <div class="container">
+            <div class="row">
+              <div class="col text-center mb-3">
+                <h4>{% trans "You may also want" %}</h4>
+              </div>
+            </div>
+            {% show_latest_products %}          
+          </div>
+        </section>
+        <!-- end most you may also want -->
       </div>
     <div class="col-lg-1">
         <div class="demo-content"></div>
     </div>
 </div>
 
-  <!-- <div class="row mb-5">
-    <div class="col-sm-6 ">        
-        <div id="primary-slider" class="splide">
-          <div class="splide__track">
-            <ul class="splide__list">
-              {% for image in product.image_set.all%}
-                <li class="splide__slide elementstyle">
-                  <img src="{{image.imageURL}}">    
-                </li>
-                {% endfor %}
-            </ul>
-          </div>
-        </div><br>
-        <div id="secondary-slider" class="splide">
-          <div class="splide__track">
-            <ul class="splide__list">
-              {% for image in product.image_set.all%}
-                <li class="splide__slide">
-                  <img src="{{image.imageURL}}">    
-                </li>
-                {% endfor %}
-            </ul>
-          </div>
-        </div> 
-
-    </div><br><br>         
-    <div class=" col-sm-6 mt-4">
-        <h1 class="text-black">{{ product.title }}</h1>
-        <br>
-        <div class="product">
-          <div class="product-rating  float-left" id="product-rating">
-            <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-            {{ product.avaregereview |stringformat:".2f"}}
-          </div>
-
-          <div class="d-flex justify-content-around">
-            <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
-          </div>
-        </div><br>
-        <span class="item-price text-accent">
-            US  ${{ product.get_price }}  <small  class="text-muted ml-3"><del> $113</del></small ></span><br><hr>
-        <p>{% trans "Available stock:" %} {{ product.stock }} {% trans "units" %}</p>
-        {% if product.in_stock %}
-        <form method="POST">
-            {% csrf_token %}
-            <div class="form-row">
-              <div class="col-4 col-sm-3">
-                {{ form.colour|as_crispy_field }}
-              </div>
-              <div class="col-4 col-sm-3" id="qty">
-                {{ form.size|as_crispy_field }}
-              </div>            
-            </div>
-            <div class="form-row">
-              <div class="col-2 col-sm-3">
-                {{ form.quantity|as_crispy_field }}
-              </div>
-              <div class="col-10 col-sm-9">
-                <button type="submit" class="btn btn-primary btn-sm btn-block addtocart" id="addtocart">{% trans "Add to cart" %}</button>
-              </div>
-            </div>
-        </form><br>
-
-        <div class="accordion" id="accordionExample">
-          {% for product_detail in product.product_detail_set.all %}
-          <div class="card {% if forloop.counter0 == 0 %} active {% endif %}">
-            <div class="card-header " id="headingOne">
-              <h5 class="mb-0">                     
-                <div class="clearfix">
-                  <span class="float-left"><button class="btn btn-link text-capitalize" type="button" 
-                    data-toggle="collapse" 
-                    data-target="#collapseOne-{{ product_detail.pk }}" aria-expanded="true" 
-                    aria-controls="collapseOne">
-                    {{ product_detail.title|safe }}</a>
-                  </button></span>
-                  <span class="float-right"><button class="btn btn-link" type="button" 
-                    data-toggle="collapse" 
-                    data-target="#collapseOne-{{ product_detail.pk }}"
-                    aria-expanded="true" 
-                    aria-controls="collapseOne">
-                    <i class="icon-angle-down float"></i></a>
-                  </button></span>
-                </div>
-              </h5>
-            </div>
-        
-            <div id="collapseOne-{{ product_detail.pk }}" 
-              class="collapse show-{{ product_detail.pk }}" aria-labelledby="headingOne" 
-              data-parent="#accordionExample">
-              <div class="card-body">{{ product_detail.description|safe }}
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        {% else %}
-        {% endif %}
-    </div> 
-  </div>  -->
+ 
 </div><br><br>
 <script>
   document.addEventListener( 'DOMContentLoaded', function () {

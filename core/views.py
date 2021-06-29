@@ -36,9 +36,12 @@ def home(request):
     product = Product.objects.all()
     carousel = Carousel.objects.all()
 
-    paginator = Paginator(product, per_page=1)
+    paginator = Paginator(product, per_page=4)
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
+
+    products_latest = Product.objects.all().order_by('id')[:4]
+    products_picked = Product.objects.all().order_by('?')[:4]
 
     context = {
         'page': 'page',
@@ -46,6 +49,8 @@ def home(request):
         'carousel': carousel,
         'paginator': paginator,
         'page_number': int(page_number),
+        'products_latest':products_latest,
+        'products_picked':products_picked,
     }
 
     return render(request, 'home.html',context)

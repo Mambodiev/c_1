@@ -30,11 +30,11 @@
                                     <p class="mb-0">{{ product.title }}</p>
                                 
                                 <div class="product-rating mb-0" id="product-rating">
-                                    <i class="fa fa-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-                                    <i class="fa fa-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                                    <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                                    <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                                    <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                                    <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                                    <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
                                 </div>
 
                                 <span class="text-muted text-center">${{ product.get_price }}
@@ -51,7 +51,28 @@
                             
                         </div>
                     {% endfor %}
+
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+                    
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+                    
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
                 </div>
+
+
+
             </div>
             <div class="col-md-3 mb-4">
                 <div class="border p-4 rounded mb-4">

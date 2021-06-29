@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-24 03:05-0700\n"
-"PO-Revision-Date: 2021-06-24 10:28+0000\n"
+"PO-Revision-Date: 2021-06-28 11:26+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -2060,7 +2060,7 @@ msgstr ""
 
 #: templates/openid/login.html:16
 msgid "Sign In"
-msgstr ""
+msgstr "Se Connecter"
 
 #: templates/privacy_policy.html:13
 msgid "Privacy Policy & Returns"

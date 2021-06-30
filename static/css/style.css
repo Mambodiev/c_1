@@ -1452,6 +1452,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   padding: .0rem 0rem;
   /* border-bottom: 0.5px solid rgba(0,0,0,.125)!important; */
 }
+
+.card-header {
+  border-bottom: 0px solid rgba(0,0,0,.125)!important;
+}
 .card{
   border: 0.5px solid #dde4eb!important;
 }
@@ -2178,29 +2182,29 @@ topbar {
 
 
 /* slide img  */
-.splide__slide img {
+/* .splide__slide img {
 	width : 100%;
 	height: auto;
-}
+} */
 
-.elementstyle {
+/* .elementstyle {
   width: 500px!important;
   height: 500px!important;
-}
-.productImage {
+/* } */
+/* .productImage {
   width: 60px!important;
   height: 60px!important;
-}
+} */
 
 /* If the browser window is ...px or smaller, the background color will be lightblue: */
-@media only screen and (max-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
   .elementstyle {
     width: 400px!important;
     height: 400px!important;
   }
   
-}
-@media only screen and (max-width: 1025px) {
+} */ */
+/* @media only screen and (max-width: 1025px) {
   .elementstyle {
     width: 400px!important;
     height: 400px!important;
@@ -2209,13 +2213,13 @@ topbar {
 }
 @media only screen and (max-width: 999px) {
   .elementstyle {
-    width: 360px!important;
-    height: 360px!important;
+    width: 320px!important;
+    height: 320px!important;
   }
   
-}
+} */
 
-@media only screen and (max-width: 769px) {
+/* @media only screen and (max-width: 769px) {
   .elementstyle {
     width: 230px!important;
     height: 230px!important;
@@ -2234,10 +2238,10 @@ topbar {
       width: 320px!important;
       /* height: 60px!important; */
     }
-  } */
+  } */ */
   
 }
-@media only screen and (max-device-width: 480px) {
+/* @media only screen and (max-device-width: 480px) {
   .elementstyle {
     width: 300px!important;
     height: 300px!important;
@@ -2248,11 +2252,11 @@ topbar {
     /* margin-left: 3vh; */
     /* height: 50px!important; */
   }
-}
+} */
 
-#splideTrack {
+/* #splideTrack {
   margin: 0 3rem 0 3rem;
-}
+} */
 
 /* @media only screen and (max-width: 320px ) {
   .elementstyle {
@@ -2264,7 +2268,7 @@ topbar {
     height: 35px!important;
   }
 } */
-.splide__pagination {
+/* .splide__pagination {
   margin: 4rem 0 !important;
 }
 .splide--nav>.splide__track>.splide__list>.splide__slide.is-active {
@@ -2272,7 +2276,7 @@ topbar {
 }
 .splide--nav>.splide__track>.splide__list>.splide__slide {
   border: 1px solid transparent!important;
-}
+} */
 
 /* @media only screen and (max-width: 600px) {
   .elementstyle {
@@ -2297,3 +2301,100 @@ topbar {
 /* end write a review */
 
 /* navbar */
+
+/* comment */
+.bs-example{
+  margin: 20px;        
+}
+.media img{
+  width: 80px;
+}
+
+
+/* product img slider */
+
+#content-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .column{
+  width: 600px;
+  padding: 10px;
+
+} */
+
+#featured{
+  /* max-width: 500px;
+  max-height: 600px; */
+  object-fit: cover;
+  cursor: pointer;
+  /* border: 2px solid black; */
+
+}
+
+
+
+.thumbnail{
+  object-fit: cover;
+  max-width: 150px;
+  max-height: 80px;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 5px;
+  /* border: 2px solid black; */
+
+}
+
+.thumbnail:hover{
+  opacity:1;
+}
+
+.active{
+  opacity: 1;
+}
+
+#slide-wrapper{
+  max-width: 500px;
+  display: flex;
+  min-height: 100px;
+  align-items: center;
+}
+
+#slider{
+  width: 440px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+
+}
+
+#slider{
+  width: 440px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+
+}
+
+#slider::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+.arrow{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.arrow:hover{
+  opacity: .5;
+  width: 35px;
+  height: 35px;
+}
+/* end product img slider */

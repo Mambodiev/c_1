@@ -65,6 +65,10 @@ class ColourVariationAdmin(admin.ModelAdmin):
         ]
 
 
+class Product_detailAdmin(admin.ModelAdmin):
+    list_display = ['title',]
+
+
 admin.site.register(Category)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(ColourVariation,ColourVariationAdmin)
@@ -76,4 +80,4 @@ admin.site.register(SizeVariation, SizeVariationAdmin)
 admin.site.register(Payment)
 admin.site.register(StripePayment)
 admin.site.register(Image)
-admin.site.register(Product_detail)
+admin.site.register(Product_detail, Product_detailAdmin)

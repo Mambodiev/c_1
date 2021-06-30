@@ -292,3 +292,6 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 // 	primarySlider.sync( secondarySlider ).mount();
 // } );
 // end product img
+
+
+

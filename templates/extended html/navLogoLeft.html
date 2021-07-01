@@ -153,7 +153,7 @@
 
 
 <!-- comment with two column -->
-      <div class="container">
+  <div class="container">
         <div class="row">
                         {% for comment in product.comment_set.all %}
                         <div class="col-md-6 col-equal">
@@ -187,5 +187,25 @@
                         </div>
                         {% endfor %}
         </div>
-      </div> 
-    <!-- end comment with two column -->
+  </div> 
+<!-- end comment with two column -->
+
+<!-- icon for mobile -->
+  <div class="row cartIcon">
+          <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+          <img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/>
+          </a>
+          {% if request.user.is_authenticated %}
+          <a class="mr-2 d-block d-md-none" href="{% url 'profile' %}">
+          <img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/>
+          </a>
+          {% else %}
+          <a class="mr-2 d-block d-md-none" href="{% url 'account_login' %}">
+          <img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/>
+          </a>
+          {% endif %}  
+              
+          <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
+          <img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/><span id="cartItemCount">{{ request|cart_item_count }}</span>
+  </div>
+<!-- end icon for mobile -->

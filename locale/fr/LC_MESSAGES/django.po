@@ -37,7 +37,7 @@ msgstr ""
 
 #: ecom/urls.py:27
 msgid "about/"
-msgstr "a propos"
+msgstr "apropos"
 
 #: ecom/urls.py:28
 msgid "privacy_policy/"

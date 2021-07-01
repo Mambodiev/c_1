@@ -293,5 +293,9 @@ $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
 // } );
 // end product img
 
+// icon search searchbox
+// function myFunction() {
+// 	document.getElementById("searchbox").style.zIndex = "-1";
+//   }
 
-
+// end icon search

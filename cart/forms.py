@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from django.forms import ModelForm
 
 from django import forms
 from .models import (
@@ -8,6 +9,16 @@ from .models import (
 )
 
 User = get_user_model()
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField()
+
+
+class OrderForm(ModelForm):
+	class Meta:
+		model = Product
+		fields = '__all__'
 
 
 class AddToCartForm(forms.ModelForm):

@@ -9,15 +9,59 @@ from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404, reverse, redirect, render
 from django.utils import timezone
-from django.views import generic
+from django.views.generic import ListView
+from .utils import get_or_set_order_session
+from django.utils.translation import gettext as _
+from itertools import chain
+from django.views import generic 
 from django.views.decorators.csrf import csrf_exempt
 from .forms import AddToCartForm, AddressForm, StripePaymentForm
 from .models import Product, OrderItem, Address, Payment, Order, Category, StripePayment, CommentForm, Comment
-from .utils import get_or_set_order_session
-from django.utils.translation import gettext as _
-
+from core.models import About,Faq,Privacy_policy, Shipping_returns,  Terms_of_use
 
 # stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+class SearchView(ListView):
+    template_name = 'home.html'
+    # paginate_by = 20
+    count = 0
+    
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['count'] = self.count or 0
+        context['query'] = self.request.GET.get('q')
+        return context
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('q', None)
+        
+        if query is not None:
+            product_results        = Product.objects.search(query)
+            # about_results      = About.objects.search(query)
+            # faq_results     = Faq.objects.search(query)
+            # shipping_returns_results     = Shipping_returns.objects.search(query)
+            # privacy_policy_results     = Privacy_policy.objects.search(query)
+            # terms_of_use_results     = Terms_of_use.objects.search(query)
+            
+            
+            # combine querysets 
+            queryset_chain = chain(
+                    product_results,
+                    # about_results,
+                    # faq_results,
+                    # shipping_returns_results,
+                    # privacy_policy_results,
+                    # terms_of_use_results,
+            )        
+            qs = sorted(queryset_chain, 
+                        key=lambda instance: instance.pk, 
+                        reverse=True)
+            self.count = len(qs) # since qs is actually a list
+            return qs
+        return Product.objects.none() # just an empty queryset as default
+
 
 
 def addcomment(request, id):

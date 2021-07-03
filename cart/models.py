@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.db.models import Q
 from django.db import models
 from django.db.models import Avg, Count
 from django.db.models.signals import pre_save
@@ -10,6 +11,30 @@ from django.forms import ModelForm
 User = get_user_model()
 
 
+# blog.models
+
+
+
+class ProductQuerySet(models.QuerySet):
+    def search(self, query=None):
+        qs = self.query
+        if query is not None:
+            or_lookup = (Q(title_icontains=query)|
+                         Q(description_icontains=query)|
+                         Q(slug_icontains=query)
+                        )
+            qs = qs.filter(or_lookup).distinct()
+        return qs
+
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return ProductQuerySet(self.model, using=self._db)
+
+    def search(self, query=None):
+        return self.get_queryset().search(query=query)
+
+    
 class Category(models.Model):
     name = models.CharField(max_length=100)
 

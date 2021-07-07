@@ -12,3 +12,12 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea(attrs={
         'placeholder': _('Your message')
     }), label=_('Message'))
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(
+                    widget=forms.TextInput(attrs={'placeholder': 'Search'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['query'].label = False

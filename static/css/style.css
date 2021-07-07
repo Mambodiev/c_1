@@ -2147,9 +2147,12 @@ topbar {
 /* change language */
 .selectpicker {
   background-color: #6c757d!important;
+  color: #fff!important;
   /* list-style:none; */
 }
-
+.modal-content {
+  margin-top: 5rem!important;
+}
 
 
 /* end change language */
@@ -2412,3 +2415,8 @@ topbar {
   z-index: 1;
 }
 /* end search icon */
+
+
+/*  */
+
+/*  */

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+<!-- {% load blog_tags %} -->
+{% load i18n %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+      <div class="row justify-content-center">
+
+          <div class="col-lg-8"><br><br>
+            {% if query %}
+            <h5>Products matching<span class="badge  text-info">"{{ query }}"</span></h5>
+            <p>
+              {% with results.count as total_results %}
+                  Found {{ total_results }} result{{ total_results|pluralize }}
+              {% endwith %}
+            </p>
+
+            {% for product in results %}
+                <h4 class="text-black" ><a href="{{ product.get_absolute_url }}">{{ product.title }}-${{ product.get_price }}</a></h4><br>
+            {% empty %}
+              <p>There are no results for your query.</p>
+            {% endfor %}
+            <p class="text-black"><a href="{% url "cart:product_search" %}">Search again</a></p><br>
+          {% else %}
+            <h5>Search for products</h5><br>
+            <form method="get">
+              {{ form}}
+              <input type="submit" value="Search">
+            </form><br><br>
+          </div>
+
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

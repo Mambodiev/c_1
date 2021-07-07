@@ -12,7 +12,12 @@ User = get_user_model()
 
 
 class SearchForm(forms.Form):
-    query = forms.CharField()
+    query = forms.CharField(
+                    widget=forms.TextInput(attrs={'placeholder': 'Search'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['query'].label = False
 
 
 class OrderForm(ModelForm):

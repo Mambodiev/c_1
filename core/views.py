@@ -10,13 +10,33 @@ from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
 from django.views.generic.list import ListView
+from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import TrigramSimilarity
 
-from .forms import ContactForm
 from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use, Privacy_policy
 from cart.models import Order, Product
 from django.http import HttpResponse, HttpResponseRedirect, request
 from django.utils import translation
 from django.utils.translation import gettext as _
+from .forms import ContactForm, SearchForm
+
+
+def post_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Product.objects.annotate(
+                similarity=TrigramSimilarity('title', query),
+            ).filter(similarity__gt=0.1).order_by('-similarity')
+    return render(request,
+                  'cart/product/search.html',
+                  {'form': form,
+                   'query': query,
+                   'results': results})
 
 
 

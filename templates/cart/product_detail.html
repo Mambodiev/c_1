@@ -18,8 +18,6 @@
 </div> <br><br>
 
 
-
-
 <!--  -->
 <div class="container ">
   <div class="row">
@@ -32,48 +30,17 @@
                 <img id="featured" src="{{product.imageURL}}">
                 <div class="bs-example">
                   <div id="slide-wrapper">
-                    <img id="slideLeft" class="arrow" src="{% static 'images/arrow/arrow-left.png' %}">
-            
+                    <img id="slideRight" class="arrow" src = "{% static 'images/arrow/chevron-left.svg' %}" alt="My Happy SVG"/>
                     <div id="slider">
                       {% for image in product.image_set.all%}
-            
-                    
                       <img class="thumbnail" src="{{image.imageURL}}">
-            
                       {% endfor %}
-                  
                     </div>
-            
-                    <img id="slideRight" class="arrow" src="{% static 'images/arrow/arrow-right.png' %}">
+                    <img id="slideRight" class="arrow" src = "{% static 'images/arrow/chevron-right.svg' %}" alt="My Happy SVG"/>
                   </div>
                 </div>
               </div>
-            </div>
-
-
-
-            <!-- <div id="primary-slider" class="splide d-flex justify-content-center">
-              <div class="splide__track d-flex ">
-                <ul class="splide__list ml-0">
-                  {% for image in product.image_set.all%}
-                    <li class="splide__slide elementstyle">
-                      <img src="{{image.imageURL}}">    
-                    </li>
-                    {% endfor %}
-                </ul>
-              </div>
-            </div><br>
-            <div id="secondary-slider" class="splide d-flex justify-content-center">
-              <div class="splide__track d-flex " id="splideTrack">
-                <ul class="splide__list ">
-                  {% for image in product.image_set.all%}
-                    <li class="splide__slide productImage">
-                      <img src="{{image.imageURL}}">    
-                    </li>
-                    {% endfor %}
-                </ul>
-              </div>
-            </div>   -->
+            </div> 
           </div> 
                 
           <div class=" col-sm-6">
@@ -154,14 +121,15 @@
           </div>
         </div><br><br>
 
-           
-        <ul class="list-group">
+        <!-- centered product_detail.description  -->
+        <!-- <ul class="list-group">
             {% for product_detail in product.product_detail_set.all %}
               <li class="list-group-item">{{ product_detail.title|safe }}</li>
               <li class="list-group-item">
                 {{ product_detail.description|safe }}
               </li>    {% endfor %}     
-        </ul>
+        </ul> -->
+        <!-- end centered product_detail.description  -->
 
         <!-- comment-->
         <h4 class="CustomerReview text-center">{% trans "Customer Reviews" %}</h4>
@@ -250,7 +218,7 @@
                                   <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
                               </div>
                             </div><br>
-                              <p>{{ comment.comment }}</p><br>
+                              <p>{{ comment.comment }}</p>
                               <h5 class="mt-0">Jhon Carter <small><i>Posted on {{ comment.create_at}}</i></small></h5>
                           </div>
         </div><hr><br>

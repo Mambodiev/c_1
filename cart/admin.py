@@ -38,6 +38,7 @@ class ProductAdmin(admin.ModelAdmin):
                     'available_sizes',
                     'active',
                     'primary_category',
+                    'secondary_categories',
                     'price', 
                     'stock', 
                     'title_fr',

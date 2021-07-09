@@ -1646,8 +1646,11 @@ td {
 .review-form .input-rating .stars {
   display: inline-block;
   vertical-align: top;
-  font-family: 'FontAwesome';
+  font-family: 'icomoon';
 }
+
+
+
 
 .review-form .input-rating .stars input[type="radio"] {
   display: none;
@@ -2416,6 +2419,13 @@ topbar {
 }
 /* end search icon */
 
+ul {
+  list-style-type: none;
+}
+.category-ul{
+  margin-left: -1.2rem!important;
+
+}
 
 /*  */
 

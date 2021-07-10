@@ -47,11 +47,11 @@
 
 <div class="sticky-top">
   <div class="topbar ">
-    <div class="top_header bg-secondary">
+    <div class="top_header bg-light">
     <div class="container d-flex justify-content-between ">
       <div class="p-2">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner text-white text_nav">
+          <div class="carousel-inner text-black text_nav">
             <div class="carousel-item active">
               {% trans "Free Worldwide Shipping" %}
             </div>
@@ -70,7 +70,7 @@
 
         <form action="{% url 'change_language' %}" method="post" class="language">
           {% csrf_token %}
-          <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
+          <input class="form-control"  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
           <select name="language" class="selectpicker ">
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
@@ -169,7 +169,7 @@
   </div> -->
   <!--  -->
 
-<!--  -->
+  <!--  -->
   <!-- <div  id="searchbox" >
     <div class="collapse" id="collapseExample">
       <form>
@@ -181,7 +181,7 @@
   </div> -->
 
   <!-- end nav with logo left -->
-</div>
+</div> 
 
   <!--  -->
   <div class="container">

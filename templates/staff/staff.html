@@ -2,18 +2,30 @@
 {% load i18n %}
 {% block content %}
 
-<div class="site-section">
+<div class="bg-white py-3">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <h2 class="text-black">Staff Portal</h2>
-                <div class="card">
+        <div class="row">
+            <div class="col-md-11 mx-auto mb-0">
+                <a href="{% url 'home' %}">{% trans "Home" %}</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">{% trans "Staff" %}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11 mx-auto mb-0">
+                <h4 class="text-black mt-3">Staff Portal</h4>
+                <div class="card mt-5">
                     <div class="card-body">
                         <h5 class="card-title">
                             {{ request.user.email }}
                         </h5>
                         <hr />
-                        <a href="{% url 'staff:product-list' %}">Products</a>
+                        <a href="{% url 'staff:product-list' %}" class="text-primary"><u>Products</u></a>
                         <hr />
 
                         <h5 class="card-title">Recent orders</h5>
@@ -86,6 +98,6 @@
             </div>
         </div>
     </div>
-</div>
+
 
 {% endblock content %}

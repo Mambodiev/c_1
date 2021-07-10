@@ -4,11 +4,22 @@
 
 {% block content %}
 
-<div class="site-section">
+<div class="bg-white py-3">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <a href="{% url 'staff:product-list' %}">Go back to products</a>
+        <div class="row">
+            <div class="col-md-11 mx-auto mb-0">
+                <a href="{% url 'home' %}">{% trans "Home" %}</a>
+                <span class="mx-2 mb-0">/</span>
+                <strong class="text-black">{% trans "Update a product" %}</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <a href="{% url 'staff:product-list' %}" class="text-primary"><u>Go back to products</u></a>
                 <hr />
                 <h4>Update product</a>
                 <form method="POST" enctype="multipart/form-data">
@@ -19,5 +30,5 @@
             </div>
         </div>
     </div>
-</div>
+
 {% endblock content %}

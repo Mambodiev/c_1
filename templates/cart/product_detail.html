@@ -30,9 +30,9 @@
                 <img id="featured" src="{{product.imageURL}}">
                 <div class="bs-example">
                   <div id="slide-wrapper">
-                    <img id="slideRight" class="arrow" src = "{% static 'images/arrow/chevron-left.svg' %}" alt="My Happy SVG"/>
+                    <img id="slideLeft" class="arrow" src = "{% static 'images/arrow/chevron-left.svg' %}" alt="My Happy SVG"/>
                     <div id="slider">
-                      {% for image in product.image_set.all%}
+                      {% for image in product.image_set.all %}
                       <img class="thumbnail" src="{{image.imageURL}}">
                       {% endfor %}
                     </div>
@@ -271,38 +271,8 @@ let thumbnails = document.getElementsByClassName('thumbnail')
 		    buttonLeft.addEventListener('click', function(){
 		      document.getElementById('slider').scrollLeft -= 180;
 		    })
-
-
-
-        
-//   document.addEventListener( 'DOMContentLoaded', function () {
-// 	var secondarySlider = new Splide( '#secondary-slider', {
-// 		fixedWidth  : 100,
-// 		height      : 60,
-// 		gap         : 10,
-// 		cover       : true,
-// 		isNavigation: true,
-// 		focus       : 'center',
-// 		breakpoints : {
-// 			'600': {
-// 				fixedWidth: 66,
-// 				height    : 40,
-// 			}
-// 		},
-// 	} ).mount();
-	
-// 	var primarySlider = new Splide( '#primary-slider', {
-// 		type       : 'fade',
-// 		heightRatio: 0.5,
-// 		pagination : false,
-// 		arrows     : false,
-// 		cover      : true,
-// 	} ); // do not call mount() here.
-	
-// 	primarySlider.sync( secondarySlider ).mount();
-// } );
 </script>
-
+ 
 
 
 

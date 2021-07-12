@@ -24,29 +24,62 @@
     </div>
     
   <div class="col-md-6">
-        <h5>Sign up to get discount and more…</h5>
+      <!-- <h5>Sign up to get discount and more…</h5>
         <div class="input-group">
           <input type="text" class="form-control form-control-sm" placeholder="Email" aria-label="Subscribe" aria-describedby="button-addon2">
           <div class="input-group-append">
           <button class="btns btnwhite btn btn-outline-primary" type="button"id="button-addon2">Subscribe</button>
           </div>
-        </div>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/maestro-Six_Revisions.png' %}" alt="LOGO"/></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/paypal-Six_Revisions.png' %}" alt="LOGO"/></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/visa-Six_Revisions.png' %}" alt="LOGO"/></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/western_union-Six_Revisions.png' %}" alt="LOGO"/></a>
-          </li>
-        </ul>
-        
-  </div>    
+        </div>--> 
+
+        <!-- Newsletter Section-->
+        <section class="newsletter no-padding-top mb-6">    
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Subscribe to Newsletter</h5>               
+              </div>
+              <div class="col-md-8">
+                <div class="form-holder">
+                  <form action="{% url 'email-list-signup' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group email-signup">
+                        <!--<input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>-->
+                        {{ form }}
+                        <button type="submit" class="submit">Signup</button>
+                    </div>
+                  </form>
+                </div>
+              </div><br><br><br>
+
+
+            <h5>Subscribe to Newsletter</h5> 
+            <form action="{% url 'email-list-signup' %}" method="POST">
+              {% csrf_token %}
+                <div class="form-group email-signup">
+                  <!--<input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>-->
+                  {{ form }}
+                  <button type="submit" class="submit">Signup</button>
+                </div>
+            </form>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/maestro-Six_Revisions.png' %}" alt="LOGO"/></a>
+                </li>
+                <li class="list-inline-item">
+                <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/paypal-Six_Revisions.png' %}" alt="LOGO"/></a>
+                </li>
+                <li class="list-inline-item">
+                <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/visa-Six_Revisions.png' %}" alt="LOGO"/></a>
+                </li>
+                <li class="list-inline-item">
+                <a href="#!"><img style:width="100" height="60" src = "{% static 'images/payment-icon/western_union-Six_Revisions.png' %}" alt="LOGO"/></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <!-- Newsletter Section-->  
 </footer>
 
 <div class="blog-footer text-center">

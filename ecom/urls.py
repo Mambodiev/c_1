@@ -6,7 +6,7 @@ from django.urls import path, include
 
 from core import views
 from django.utils.translation import gettext_lazy as _
-
+from marketing.views import email_list_signup
 from core.views import (
     change_language,
     Shipping_returnsListView,
@@ -35,6 +35,8 @@ urlpatterns += i18n_patterns(
     path(_('profile/'), views.ProfileView.as_view(), name='profile'),
     path('_ckeditor/', include('ckeditor_uploader.urls')),
     path('rosetta/', include('rosetta.urls')),
+    path('email-signup/', email_list_signup, name='email-list-signup'),
+    
     prefix_default_language=False,
 )
 

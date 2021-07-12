@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load cart_template_tags %}
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,13 +55,13 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner text-black text_nav">
             <div class="carousel-item active">
-              {% trans "Free Worldwide Shipping" %}
+              <h5>{% trans "Free Worldwide Shipping" %}</h5>
             </div>
             <div class="carousel-item">
-              {% trans "Secure Online Payment" %}
+              <h5>{% trans "Secure Online Payment" %}</h5>
             </div>
             <div class="carousel-item">
-              {% trans "We return money within 30 days" %}
+              <h5>{% trans "We return money within 30 days" %}</h5>
             </div>
           </div>
         </div>
@@ -71,12 +73,13 @@
         <form action="{% url 'change_language' %}" method="post" class="language">
           {% csrf_token %}
           <input class="form-control"  name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" />
-          <select name="language" class="selectpicker ">
+          <select name="language" class="selectpicker mt-2">
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
               {% for language in languages %}
                 <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                  {{ language.name_local }}
+                  <h5>{{ language.name_local}}</h5>
+                  <!--<h5>{{ language.name_local|slice:":2" }}</h5>-->
                 </option>
               {% endfor %}
           </select>
@@ -184,7 +187,7 @@
 </div> 
 
   <!--  -->
-  <div class="container">
+  {% comment %} <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">    
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -210,7 +213,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
   <!--  -->
 
     {% if messages %}

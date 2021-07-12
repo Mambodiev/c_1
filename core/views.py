@@ -63,6 +63,12 @@ def home(request):
     products_latest = Product.objects.all().order_by('id')[:4]
     products_picked = Product.objects.all().order_by('?')[:4]
 
+    if request.method == 'POST':
+        email = request.POST['email']
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
+
     context = {
         'page': 'page',
         'product': page_obj.object_list,

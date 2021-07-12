@@ -32,10 +32,12 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'modeltranslation',
     'rosetta',
+    
 
     'cart',
     'core',
-    'staff'
+    'staff',
+    'marketing',
 ]
 
 # DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')

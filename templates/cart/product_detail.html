@@ -207,20 +207,20 @@
         </div>       
         {% for comment in product.comment_set.all %}
         <div class="media">
-                          <img src="{% static 'images/demo/blank-profile-picture-973460_1280.png' %}" class="mr-3 rounded" alt="Sample Image">
-                          <div class="media-body">
-                            <div class="clearfix">
-                              <div class="float-left review-rating">
-                                  <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
-                                  <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
-                                  <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
-                                  <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
-                                  <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
-                              </div>
-                            </div><br>
-                              <p>{{ comment.comment }}</p>
-                              <h5 class="mt-0">Jhon Carter <small><i>Posted on {{ comment.create_at}}</i></small></h5>
-                          </div>
+          <img src="{% static 'images/demo/blank-profile-picture-973460_1280.png' %}" class="mr-3 rounded" alt="Sample Image">
+          <div class="media-body">
+            <div class="clearfix">
+              <div class="float-left review-rating">
+                  <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
+                  <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
+                  <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
+                  <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
+                  <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
+              </div>
+            </div><br>
+              <p>{{ comment.comment }}</p>
+              <h5 class="mt-0">Jhon Carter <small><i>Posted on {{ comment.create_at}}</i></small></h5>
+          </div>
         </div><hr><br>
         {% endfor %}        
         <!-- end comment -->

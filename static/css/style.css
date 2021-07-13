@@ -1911,7 +1911,7 @@ qty{
 }
 
 #slider{
-  width: 440px;
+  /* width: 440px; */
   display: flex;
   flex-wrap: nowrap;
   /* overflow-x: hidden!important; */
@@ -1919,7 +1919,7 @@ qty{
 }
 
 #slider{
-  width: 440px;
+  /* width: 440px; */
   display: flex;
   flex-wrap: nowrap;
   /* overflow-x: hidden !important; */
@@ -2087,7 +2087,7 @@ topbar {
   font-size: 0.9rem;
 }
 .nav_link{
-  font-size: 12px !important;
+  font-size: 8px !important;
   /* margin-left: 1rem; */
   /* background-color: white; */
 }
@@ -2453,7 +2453,7 @@ topbar {
 }
 
 #slider{
-  width: 440px;
+  /* width: 440px; */
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -2461,7 +2461,7 @@ topbar {
 }
 
 #slider{
-  width: 440px;
+  /* width: 440px; */
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -2579,4 +2579,8 @@ section.newsletter .submit {
     width: 100%;
     margin-top: 10px;
   }
+}
+
+.visa{
+  margin-right: -0.8em!important;
 }

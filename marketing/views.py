@@ -20,17 +20,17 @@ import requests
 # )
 
 
-def subscribe(email):
-    data = {
-        "email_address": email,
-        "status": "subscribed"
-    }
-    r = requests.post(
-        members_endpoint,
-        auth=("", MAILCHIMP_API_KEY),
-        data=json.dumps(data)
-    )
-    return r.status_code, r.json()
+# def subscribe(email):
+#     data = {
+#         "email_address": email,
+#         "status": "subscribed"
+#     }
+#     r = requests.post(
+#         members_endpoint,
+#         auth=("", MAILCHIMP_API_KEY),
+#         data=json.dumps(data)
+#     )
+#     return r.status_code, r.json()
 
 
 def email_list_signup(request):
@@ -41,6 +41,6 @@ def email_list_signup(request):
             if email_signup_qs.exists():
                 messages.info(request, "You are already subscribed")
             else:
-                subscribe(form.instance.email)
                 form.save()
+                messages.info(request, "Thanks for subscribing")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

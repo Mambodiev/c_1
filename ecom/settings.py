@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'marketing',
 ]
 
-# DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-# NOTIFY_EMAIL = env('NOTIFY_EMAIL')
+ 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,11 +76,11 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT'),
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
@@ -196,3 +195,4 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

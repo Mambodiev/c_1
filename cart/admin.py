@@ -16,8 +16,8 @@ class AddressAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['subject', 'comment', 'status', 'create_at']
-    list_filter = ['status']
+    list_display = ['subject', 'comment', 'approved', 'create_at']
+    list_filter = ['approved']
     readonly_fields = ('subject', 'comment', 'user', 'product', 'rate', 'id')
 
 

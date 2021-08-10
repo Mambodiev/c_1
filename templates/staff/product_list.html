@@ -2,47 +2,47 @@
 {% load i18n %}
 {% block content %}
 
-
-<div class="bg-white py-3">
-    <div class="container">
+<div class="container">
+    <div class="bg-white py-3">
         <div class="row">
-            <div class="col-md-11 mx-auto mb-0">
-                <a href="{% url 'home' %}">{% trans "Home" %}</a>
+            <div class="col-md-12">
+                <a class='text-dark text-decoration-none' href="{% url 'home' %}">{% trans "Home" %}</a>
                 <span class="mx-2 mb-0">/</span>
                 <strong class="text-black">{% trans "Staff page" %}</strong>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container ">
     <div class="row">
-        <div class="col-sm-11 mx-auto">
-            <h4 class="text-black text-center">Staff Portal - Products</h4><br>
-            <a href="{% url 'staff:product-create' %}" class="text-primary"><u>Create a product</u></a><br><br>
+        <div class="col-sm-12">
+            <h5 class="text-black mt-3">Products</h5>
+            <a class='text-primary text-decoration-none' href="{% url 'staff:product-create' %}"><h5 class='mt-3'>Create a product</h5></a><br>
             <div class="table-responsive">
-                <table class="table">
+                <table class="table border">
                     <thead class="thead">
                         <tr>
                             <th scope="col">{% trans "Image" %}</th>
                             <th scope="col">{% trans "Product" %}</th>
                             <th scope="col">{% trans "Price" %}</th>
-                            <th scope="col" class='float-right'>{% trans "Actions" %}</th>
+                            <th scope="col"><span class='float-right'>{% trans "Actions" %}</span></th>
                         </tr>
                     </thead>             
                     <tbody>
                         {% for product in products %}
                             <tr>  
                                 <td>
-                                    <img src="{{product.imageURL}}" class="img-fluid" style="max-width: 50px;">
+                                    <img src="{{product.featured.url }}" class="img-fluid" style="max-width: 50px;">
                                 </td>
                                 <td>
+                                    <a class='text-dark text-decoration-none' href="{{ product.get_absolute_url }}">
                                     {{ product.title }}
+                                    </a>
                                 </td>
                                 <td>
                                     ${{ product.get_price }}
                                 </td>
-                                <td class='float-right'>
+                                <td>
+                                    <span class='float-right'>
                                     <a class="text-primary" href="{{ product.get_update_url }}"><u>Update</u></a>
                                     <a tabindex="0" class="btn btn-sm btn-primary" role='button'
                                     data-html='true' data-toggle='popover' data-trigger='focus'
@@ -50,6 +50,7 @@
                                     data-content="<a href='{{ product.get_delete_url }}'>Confirm</a>">
                                         X
                                     </a>
+                                    </span>
                                 </td>
                             </tr>
                         {% empty %}
@@ -60,10 +61,38 @@
                     </tbody>
                 </table>
             </div>  
-        </div>
-    </div>
-</div> <br><br>
 
+            {% if page_obj.has_other_pages %}
+                <ul class="list-inline text-center">
+                    {% if page_obj.has_previous %}
+                        <li class="list-inline-item page"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="list-inline-item disabled page"><span class="page-link">&laquo;</span></li>
+                    {% endif %}
+                    
+                        {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                                <li class="list-inline-item active page ">
+                                <span class='page-item page-link active'>
+                                {{ i }}
+                                    <span class='sr-only'>(current)</span>
+                                </span></li>
+                            {% else %}
+                                <li class="list-inline-item page"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="list-inline-item page"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="list-inline-item disabled page"><span class="page-link">&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+
+        </div>
+    </div><br><br>
+</div>
 
 
 {% endblock content %}

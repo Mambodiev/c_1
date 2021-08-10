@@ -165,12 +165,7 @@ class ProductDetailView(generic.FormView):
         context['product'] = self.get_object()
         return context
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context.update({
-    #         'form': CommentForm()
-    #     })
-    #     return context
+   
 
 
 class CartView(generic.TemplateView):

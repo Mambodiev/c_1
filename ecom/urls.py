@@ -3,7 +3,6 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
 from core import views
 from django.utils.translation import gettext_lazy as _
 from marketing.views import email_list_signup
@@ -14,6 +13,7 @@ from core.views import (
     Terms_of_useListView,
 
     )
+
 
 urlpatterns = [
     path('change_language/',change_language,name='change_language'),
@@ -45,3 +45,7 @@ if settings.DEBUG:
                           document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+
+admin.site.index_title = 'The Ecommerce store'
+admin.site.site_header = 'The Ecommerce store Admin'
+admin.site.site_title = 'Site Title Ecommerce store Admin'

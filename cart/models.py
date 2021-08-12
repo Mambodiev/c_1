@@ -82,7 +82,7 @@ class SizeVariation(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150, help_text='this is place for the title of the product')
     slug = models.SlugField(null=False, unique=True)
     featured = models.ImageField(upload_to='product_images')
     # description = models.TextField()
@@ -113,14 +113,14 @@ class Product(models.Model):
     def get_price(self):
         return "{:.2f}".format(self.price / 100)
 
-    @property
-    def imageURL(self):
-        try:
-            url = self.featured.url
-        except Url.DoesNotExist:
-            url = ''
-        print('URL:', url)
-        return url
+    # @property
+    # def imageURL(self):
+    #     try:
+    #         url = self.featured.url
+    #     except Url.DoesNotExist:
+    #         url = ''
+    #     print('URL:', url)
+    #     return url
 
     @property
     def in_stock(self):
@@ -166,14 +166,14 @@ class Image(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except Url.DoesNotExist:
-            url = ''
-        print('URL:', url)
-        return url
+    # @property
+    # def imageURL(self):
+    #     try:
+    #         url = self.image.url
+    #     except Url.DoesNotExist:
+    #         url = ''
+    #     print('URL:', url)
+    #     return url
 
 
 class Comment(models.Model):

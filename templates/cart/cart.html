@@ -1,23 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 {% block content %}
 
-<div class="bg-white py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-0">
-                <a href="{% url 'home' %}">{% trans "Home" %}</a>
-                <span class="mx-2 mb-0">/</span>
-                <strong class="text-black">{% trans "Cart" %}</strong>
-            </div>
-        </div>
-    </div>
-</div>
 
+<h3 class='text-center my-3'>{% trans "Your cart" %}</h3>
 
-
-
-<div class="container ">
+<div class="container mt-5">
     <div class="row">
         <div class="col-sm-11 mx-auto">
             <div class="table-responsive">
@@ -26,7 +15,6 @@
                     <tr id='thead-th'>
                         <th scope="col">{% trans "Image" %}</th>
                         <th scope="col">{% trans "Product" %}</th>
-                        <th scope="col">{% trans "Price" %}</th>
                         <th scope="col">{% trans "Quantity" %}</th>
                         <th scope="col">{% trans "Total" %}</th>
                         <th scope="col">{% trans "Actions" %}</th>
@@ -35,27 +23,35 @@
                     
                     <tbody>
                         {% for item in order.items.all %}
-                        <tr>  
+                        <tr class='border-bottom'>  
                             <th scope="row"><img src="{{ item.product.featured.url }}" class="img-fluid" style="max-width: 90px;">
                             </th>
                             <td>
                                 <h2 class="h5 text-black">{{ item.product.title }}</h2>
                                 <small>{% trans "Size" %}: {{ item.size.name }}</small>
                                 <small>{% trans "Colour" %}: {{ item.colour.name }}</small>
+                                <div><small>${{ item.product.get_price }}</small></div>
                             </td>
-                            <td>${{ item.product.get_price }}</td>
+                            
                             <td>
                                 <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-btn">
                                         <a href="{% url 'cart:decrease-quantity' item.id %}"
-                                            class="btn btn-outline-primary">
+                                            class="btn btn-sm border rounded-0">
                                             &minus;
                                         </a>
                                     </div>
-                                    <input type="text" class="form-control text-center" value="{{ item.quantity }}">
-                                    <div class="input-group-append">
+
+                                    <div class="input-group-btn">
+                                        <a href="{% url 'cart:decrease-quantity' item.id %}"
+                                            class="btn btn-sm border rounded-0">
+                                            {{ item.quantity }}
+                                        </a>
+                                    </div>
+
+                                    <div class="input-group-btn">
                                         <a href="{% url 'cart:increase-quantity' item.id %} "
-                                            class="btn btn-outline-primary">
+                                            class="btn btn-sm border rounded-0">
                                             &plus;
                                         </a>
                                     </div>
@@ -64,11 +60,13 @@
                             <td>${{ item.get_total_item_price }}</td>
                             <td>
                                 <a href="{% url 'cart:remove-from-cart' item.id %}"
-                                class="btn btn-danger btn-sm">X</a>
+                                class="ml-4">
+                                <img src="{% static 'fonts/bootstrap-icons/x-lg.svg' %}" alt="Bootstrap" width="22" height="22">
+                                </a>
                             </td>
                             {% empty %}
                             <td>
-                                {% trans "There are no items in your cart." %}
+                                <h5>{% trans "There are no items in your cart." %}</h5>
                                 <a href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a>
                             </td>
                         </tr>
@@ -78,43 +76,57 @@
             </div>  
 
             <div class="row">
-        <div class="col-md-6">
-            <div class="row mb-5">
-                <div class="col-md-12">
-                    <a class="btn btn-outline-primary btn-sm btn-block"
-                    href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row justify-content-end">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12 text-right border-bottom mb-5 ">
-                            <h3 class="text-black h4 text-uppercase">{% trans "Cart Totals" %}</h3>
-                        </div>
-                        <div class="container  mb-3">
-                            <div class="clearfix">
-                            <span class="float-left text-black">{% trans "Subtotal" %}</span>
-                            <span class="float-right text-black">${{ order.get_subtotal }}</span>
-                            </div>
-                        </div><br>
-                        <div class="container mb-5">
-                            <div class="clearfix">
-                            <span class="float-left text-black">{% trans "Total" %}</span>
-                            <span class="float-right text-black">${{ order.get_total }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-5">
-                            <a class="btn btn-success btn-sm py-3 btn-block" href="{% url 'cart:checkout' %}">{% trans "Proceed to checkout" %}</a>
+                <div class="col-md-6">
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <a class="btn btn-outline-primary btn-sm btn-block py-3"
+                            href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="row justify-content-end">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 text-right mb-5 ">
+                                    <h3 class="text-black h4 text-uppercase">{% trans "Cart Totals" %}</h3>
+                                </div>
+                                <div class="container  mb-3">
+                                    <div class="clearfix">
+                                    <span class="float-left text-black">{% trans "Subtotal" %}</span>
+                                    <span class="float-right text-black">${{ order.get_subtotal }}</span>
+                                    </div>
+                                </div><br>
+                                <div class="container mb-5">
+                                    <div class="clearfix">
+                                    <span class="float-left text-black">{% trans "Total" %}</span>
+                                    <span class="float-right text-black">${{ order.get_total }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-0">
+                                    <a class="btn btn-success btn-sm py-3 btn-block" href="{% url 'cart:checkout' %}">{% trans "Proceed to checkout" %}</a>
+                                </div>
+                                <div class="col-md-12 mb-5">
+                                    <ul class="list-inline float-right">
+                                        <li class="list-inline-item">
+                                            <img src="{% static 'fonts/bootstrap-icons/paypal-seeklogo.com.svg' %}" alt="paypal icon" width="100" height="90">
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <img src="{% static 'fonts/bootstrap-icons/ShopPay - Color.svg' %}" alt="ShopPay icon" width="100" height="90">
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <img src="{% static 'fonts/bootstrap-icons/google-pay-seeklogo.com.svg' %}" alt="google-pay icon" width="100" height="30">
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
 
-            </div>
-        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

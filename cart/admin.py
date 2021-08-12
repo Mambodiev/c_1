@@ -3,7 +3,11 @@ from .models import (
     Product, OrderItem, Order, ColourVariation,
     SizeVariation, Address, Payment, Comment, Category, StripePayment, Image, Product_detail
 )
+from . import models
+class EcommerceAdminArea(admin.AdminSite):
+    site_header = 'Ecom Admin Area'
 
+ecom_site = EcommerceAdminArea(name = 'EcomAdmin')
 
 class AddressAdmin(admin.ModelAdmin):
     list_display = [
@@ -18,6 +22,7 @@ class AddressAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['subject', 'comment', 'approved', 'create_at']
     list_filter = ['approved']
+    list_editable = ['approved']
     readonly_fields = ('subject', 'comment', 'user', 'product', 'rate', 'id')
 
 
@@ -28,7 +33,7 @@ class ProductAdmin(admin.ModelAdmin):
                     'price', 
                     'stock', 
                     'updated']
-    # list_filter = ['status']
+
     fieldsets = [
             (u'ColourVariation', {'fields': (
                     'title_en',
@@ -69,7 +74,7 @@ class ColourVariationAdmin(admin.ModelAdmin):
 class Product_detailAdmin(admin.ModelAdmin):
     list_display = ['title',]
 
-
+ecom_site.register(models.Product)
 admin.site.register(Category)
 admin.site.register(Address, AddressAdmin)
 admin.site.register(ColourVariation,ColourVariationAdmin)

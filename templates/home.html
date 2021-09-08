@@ -5,6 +5,7 @@
 {% block content %}
 
 <!--carousel-->
+<div class="container">
 <section id="third" >
   <div id="carouselExampleCaptions" class="carousel slide carousel-fade"   data-ride="carousel">
     <ol class="carousel-indicators">
@@ -20,12 +21,12 @@
           <div class="container padding-top-3x">
             <div class="row justify-content-center align-items-center">
               <div class="col-lg-5 col-md-6 padding-bottom-2x text-md-left text-center">
-                <div class="from-bottom"><img class="d-inline-block w-150 mb-4  logo_slider" src="{{carousel.carousel_logo_slider.url }}" alt="Puma">
+                <div class="from-bottom"><img class="d-inline-block w-150 mb-4  logo_slider img-fluid" src="{{carousel.carousel_logo_slider.url }}" alt="Puma">
                   <div class="h2 text-body text-normal mb-2 pt-1">{{ carousel.carousel_title }}</div>
                   <div class="p text-body text-normal mb-4 pb-1">{{ carousel.carousel_sub_title }}</div>
                 </div><a class="btn btn-outline-primary btn-sm" role="button" aria-pressed="true" href="{% url 'cart:product-list' %}">{{ carousel.carousel_action }}</a>
               </div>
-              <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto 
+              <div class="col-md-6 padding-bottom-2x mb-3"><img class="d-block mx-auto img-fluid
                " src="{{carousel.carousel_image.url }}" alt="Puma Backpack"></div>
             </div>
           </div>
@@ -42,7 +43,9 @@
       <span class="sr-only">{% trans " Next" %}</span>
     </a>
   </div>
-</section><br><br>
+</section>
+</div>
+<br><br>
 <!--end carousel-->
 
 

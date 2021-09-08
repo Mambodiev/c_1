@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.forms import ModelForm
-
+from crispy_forms.helper import FormHelper
 from django import forms
 from .models import (
     OrderItem, ColourVariation, Product, SizeVariation,
@@ -29,7 +29,7 @@ class OrderForm(ModelForm):
 class AddToCartForm(forms.ModelForm):
     colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None, label=_('colour'))
     size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None, label=_('size'))
-    quantity = forms.IntegerField(min_value=1, initial=1, label=_('quantity'))
+    quantity = forms.IntegerField(min_value=1, initial=1, label='')
 
     class Meta:
         model = OrderItem
@@ -54,15 +54,15 @@ class AddToCartForm(forms.ModelForm):
 
 class AddressForm(forms.Form):
 
-    shipping_address_line_1 = forms.CharField(required=False)
-    shipping_address_line_2 = forms.CharField(required=False)
-    shipping_zip_code = forms.CharField(required=False)
-    shipping_city = forms.CharField(required=False)
+    shipping_address_line_1 = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'shipping address line 1'}), label='')
+    shipping_address_line_2 = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Shipping address line 2 '}), label='')
+    shipping_zip_code = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Shipping zip code'}), label='')
+    shipping_city = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Shipping city'}), label='')
 
-    billing_address_line_1 = forms.CharField(required=False)
-    billing_address_line_2 = forms.CharField(required=False)
-    billing_zip_code = forms.CharField(required=False)
-    billing_city = forms.CharField(required=False)
+    billing_address_line_1 = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Billing address line 1'}), label='')
+    billing_address_line_2 = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Billing address line 2'}), label='')
+    billing_zip_code = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Billing zip code'}), label='')
+    billing_city = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Billing city'}), label='')
 
     selected_shipping_address = forms.ModelChoiceField(
         Address.objects.none(), required=False
@@ -70,6 +70,8 @@ class AddressForm(forms.Form):
     selected_billing_address = forms.ModelChoiceField(
         Address.objects.none(), required=False
     )
+
+    
 
     def __init__(self, *args, **kwargs):
         user_id = kwargs.pop('user_id')

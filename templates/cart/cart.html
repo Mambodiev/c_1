@@ -4,7 +4,7 @@
 {% block content %}
 
 
-<h3 class='text-center my-3'>{% trans "Your cart" %}</h3>
+<h3 class='text-center my-4'>{% trans "Your cart" %}</h3>
 
 <div class="container mt-5">
     <div class="row">
@@ -13,7 +13,7 @@
                 <table class="table">
                     <thead class="thead">
                     <tr id='thead-th'>
-                        <th scope="col">{% trans "Image" %}</th>
+                        <th scope="col">{% trans " " %}</th>
                         <th scope="col">{% trans "Product" %}</th>
                         <th scope="col">{% trans "Quantity" %}</th>
                         <th scope="col">{% trans "Total" %}</th>
@@ -66,8 +66,8 @@
                             </td>
                             {% empty %}
                             <td>
-                                <h5>{% trans "There are no items in your cart." %}</h5>
-                                <a href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a>
+                                <h3 class='my-4'>{% trans "There are no items in your cart." %}</h3>
+                                {% comment %} <a href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a> {% endcomment %}
                             </td>
                         </tr>
                         {% endfor %}

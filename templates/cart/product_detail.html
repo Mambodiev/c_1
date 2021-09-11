@@ -43,7 +43,7 @@
         </div>
 
         <div class="d-flex justify-content-around pl-3">
-          <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
+          <a class='text-decoration-none' href="#list-item-4">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
         </div>
       </div><br><br>
 
@@ -117,7 +117,7 @@
                       {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
                     </div><br>
                 </div>
-                <div class="float-right mb-3">
+                <div class="float-right mb-3" id="list-item-4">
                   <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %} 
                   </a>
                 </div>

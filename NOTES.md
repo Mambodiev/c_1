@@ -23,8 +23,7 @@ Payment
 Order confirmation
 
 
-Push to git
-
+<!-- Push to git -->
 git add .
 git commit -m "postgres"
 git push origin postgres

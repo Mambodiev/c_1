@@ -11,6 +11,7 @@ from core.views import (
     Shipping_returnsListView,
     FaqListView,
     Terms_of_useListView,
+    AboutListView,
 
     )
 
@@ -24,7 +25,7 @@ urlpatterns += i18n_patterns(
     path(_('admin/'), admin.site.urls),
     path(_('accounts/'), include('allauth.urls')),
     path('', views.home, name='home'),
-    path(_('about/'), views.AboutListView.as_view(), name='about'),
+    path(_('about/'), AboutListView.as_view(), name='about'),
     path(_('privacy_policy/'), views.Privacy_policyListView.as_view(), name='privacy_policy'),
     path(_('shipping_returns/'), Shipping_returnsListView.as_view(), name='shipping_returns'),
     path(_('contact/'), views.ContactView.as_view(), name='contact'),

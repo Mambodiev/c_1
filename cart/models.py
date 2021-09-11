@@ -85,8 +85,8 @@ class Product(models.Model):
     title = models.CharField(max_length=150, help_text='this is place for the title of the product')
     slug = models.SlugField(null=False, unique=True)
     featured = models.ImageField(upload_to='product_images')
-    # description = models.TextField()
-    # description_title = models.TextField()
+    product_detail = RichTextUploadingField(blank=True, null=True)
+    specification = RichTextUploadingField(blank=True, null=True)
     price = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -144,18 +144,18 @@ class Product(models.Model):
             cnt = int(reviews["count"])
         return cnt
 
-    @property
-    def product_detail(self):
-        return self.product_detail_set.all()
+    # @property
+    # def product_detail(self):
+    #     return self.product_detail_set.all()
 
 
-class Product_detail(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    title = models.CharField(max_length=150)
-    description = RichTextUploadingField()
+# class ProductDetail(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     title = models.CharField(max_length=150)
+#     description = RichTextUploadingField()
 
-    def __str__(self):
-        return self.description
+#     def __str__(self):
+#         return self.description
 
 
 class Image(models.Model):

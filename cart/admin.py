@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Product, OrderItem, Order, ColourVariation,
-    SizeVariation, Address, Payment, Comment, Category, StripePayment, Image, Product_detail
+    SizeVariation, Address, Payment, Comment, Category, StripePayment, Image
 )
 from . import models
 class EcommerceAdminArea(admin.AdminSite):
@@ -38,6 +38,8 @@ class ProductAdmin(admin.ModelAdmin):
             (u'ColourVariation', {'fields': (
                     'title_en',
                     'slug_en',
+                    'product_detail_en',
+                    'specification_en',
                     'featured',
                     'available_colours',
                     'available_sizes',
@@ -48,7 +50,8 @@ class ProductAdmin(admin.ModelAdmin):
                     'stock', 
                     'title_fr',
                     'slug_fr',
-                    
+                    'product_detail_fr',
+                    'specification_fr',
                     
             )})
         ]
@@ -70,10 +73,6 @@ class ColourVariationAdmin(admin.ModelAdmin):
             (u'ColourVariation', {'fields': ('name_en', 'name_fr',)})
         ]
 
-
-class Product_detailAdmin(admin.ModelAdmin):
-    list_display = ['title',]
-
 ecom_site.register(models.Product)
 admin.site.register(Category)
 admin.site.register(Address, AddressAdmin)
@@ -86,4 +85,3 @@ admin.site.register(SizeVariation, SizeVariationAdmin)
 admin.site.register(Payment)
 admin.site.register(StripePayment)
 admin.site.register(Image)
-admin.site.register(Product_detail, Product_detailAdmin)

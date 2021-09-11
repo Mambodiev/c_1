@@ -85,110 +85,152 @@
     </div>
   </div><br><br>
 
-  <!-- comment-->
-    <h4 class="CustomerReview text-center">{% trans "Customer Reviews" %}</h4>
-    <div class="clearfix">
-      <div class="product float-left">
-          <div class="product-rating" id="product-rating">
-            <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-            <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-            {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
-          </div><br>
-      </div>
-      <div class="float-right mb-3">
-        <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %} 
-        </a>
+
+  <ul class="navar-nav text-center p-1">
+    <li class="navi list-inline-item active">
+      <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+            aria-controls="collapseOne1"><h5 class="mb-0 p-2">Feedback &amp; Ratings</h5></a>
+    </li>
+    <li class="navi list-inline-item mx-5">
+      <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+          aria-expanded="false" aria-controls="collapseTwo2"><h5 class="mb-0 p-2">Specification</h5></a> 
+    </li>
+    <li class="navi list-inline-item">
+      <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+          aria-expanded="false" aria-controls="collapseThree3" ><h5 class="mb-0 p-2">Product Details</h5></a> 
+    </li>
+  </ul>
+  <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+    <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+      data-parent="#accordionEx">
+        <div class="row justify-content-center">           
+            <div class="col-lg-10">
+              <!-- comment-->
+              <div class="clearfix">
+                <div class="product float-left">
+                    <div class="product-rating" id="product-rating">
+                      <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                      <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                      <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                      <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                      <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                      {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
+                    </div><br>
+                </div>
+                <div class="float-right mb-3">
+                  <a class="btn btn-primary btn-sm btn-block"  data-toggle="collapse" href="#reviewForm" id="writeReview">{% trans "Write Review" %} 
+                  </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="demo-content">
+                      <div class="collapse" id="reviewForm">
+                        <form class="review-form" 
+                          action="/cart/addcomment/{{ product.id }}" method="post">
+                          {% csrf_token %}
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label class="sr-only" for="reviewEmail">{% trans "subject" %}:</label>
+                                <input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <label class="sr-only" for="reviewText">{% trans "Review" %}:</label>
+                              <textarea class="form-control form-control-sm" name="comment" rows="5" placeholder="Your review " required></textarea>
+                            </div>
+                          </div><br>
+                          <div class="row">
+                            <div class="col-md-12 d-flex justify-content-between"> 
+                              
+                                <div class="form-group">
+                                  <div class="input-rating">
+                                      <strong class="">{% trans "Please rate" %}: </strong>
+                                      <div class="stars">
+                                          <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                                          <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                                          <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                                          <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                                          <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                                      </div>
+                                  </div>
+                                </div>
+                              
+                              <div class="d-flex justify-content-between">
+                                {% if user.id is not None %}
+                                <button class="btn btn-primary btn-sm btn-block" type="submit" id="postReview">
+                                  {% trans "Post Review" %}
+                                </button>
+                                {% else %}
+                                {% trans "You must be logged in to post a review" %}
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <br>
+                    </div>
+                </div>
+              </div>    
+
+              {% for comment in product.comment_set.all %}
+                {% if comment.approved %}
+                  <div class="media">
+                    <img src="{% static 'images/profile/blank-profile-picture-973460_1280.png' %}" class="mr-3 rounded" alt="Sample Image">
+                    <div class="media-body">
+                      <div class="clearfix">
+                        <div class="float-left review-rating">
+                            <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
+                            <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
+                        </div>
+                      </div><br>
+                        <p>
+                          {{ comment.comment }}
+                        </p>
+                        <h5 class="mt-0">
+                          Jhon Carter 
+                          <small>
+                            <i>
+                              {% trans 'Posted on' %} {{ comment.create_at }}' 
+                            </i>
+                          </small>
+                        </h5>
+                    </div>
+                  </div><hr><br>
+                {% endif %}
+              {% endfor %}   
+              <!-- end comment -->
+            </div>
+        </div>
+    </div>
+    <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+      data-parent="#accordionEx">
+      <div class="row justify-content-center">           
+        <div class="col-lg-10">
+        {{ product.specification|safe }}
+        </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-6">
-          <div class="demo-content">
-            <div class="collapse" id="reviewForm">
-              <form class="review-form" 
-                action="/cart/addcomment/{{ product.id }}" method="post">
-                {% csrf_token %}
-                <div class="row">
-                  <div class="col">
-                    <div class="form-group">
-                      <label class="sr-only" for="reviewEmail">{% trans "subject" %}:</label>
-                      <input class="form-control form-control-sm" name="subject" type="text" placeholder="Your subject" required>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label class="sr-only" for="reviewText">{% trans "Review" %}:</label>
-                    <textarea class="form-control form-control-sm" name="comment" rows="5" placeholder="Your review " required></textarea>
-                  </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-md-12 d-flex justify-content-between"> 
-                    
-                      <div class="form-group">
-                        <div class="input-rating">
-                            <strong class="">{% trans "Please rate" %}: </strong>
-                            <div class="stars">
-                                <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-                                <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                                <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                                <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                                <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
-                            </div>
-                        </div>
-                      </div>
-                    
-                    <div class="d-flex justify-content-between">
-                      {% if user.id is not None %}
-                      <button class="btn btn-primary btn-sm btn-block" type="submit" id="postReview">
-                        {% trans "Post Review" %}
-                      </button>
-                      {% else %}
-                      {% trans "You must be logged in to post a review" %}
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <br>
-          </div>
+    <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+      data-parent="#accordionEx">
+      <div class="row justify-content-center">           
+        <div class="col-lg-10">
+          {{ product.product_detail|safe }}
+        </div>
       </div>
-    </div>    
+    </div>
+  </div>
 
-    {% for comment in product.comment_set.all %}
-      {% if comment.approved %}
-        <div class="media">
-          <img src="{% static 'images/profile/blank-profile-picture-973460_1280.png' %}" class="mr-3 rounded" alt="Sample Image">
-          <div class="media-body">
-            <div class="clearfix">
-              <div class="float-left review-rating">
-                  <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
-              </div>
-            </div><br>
-              <p>
-                {{ comment.comment }}
-              </p>
-              <h5 class="mt-0">
-                Jhon Carter 
-                <small>
-                  <i>
-                    {% trans 'Posted on' %} {{ comment.create_at }}' 
-                  </i>
-                </small>
-              </h5>
-          </div>
-        </div><hr><br>
-      {% endif %}
-    {% endfor %}   
-  <!-- end comment -->
+
+
 
 
   <!-- most you may also want -->
@@ -197,7 +239,10 @@
       {% show_latest_products %}          
   </section>
   <!-- end most you may also want -->
-</div> 
+
+
+</div>
+ 
 
 
 <script>

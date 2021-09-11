@@ -15,7 +15,7 @@ class SizeVariationTranslationsOptions(TranslationOptions):
 
 
 class ProductTranslationsOptions(TranslationOptions):
-    fields = ('title', 'slug', 'primary_category')
+    fields = ('title', 'slug', 'primary_category', 'specification', 'product_detail')
     empty_values = {'slug': None}
 
 

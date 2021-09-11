@@ -418,7 +418,17 @@ min-height:430px;
   border-bottom: 0px solid #dee2e6;
 }
 
-
-/* .label {
-  display: none!important;
-} */
+.navar-nav > .active > a {
+  color: #6c757d;
+  background-color: #fff;
+}
+.navi > a:hover {
+  color: #6c757d;
+}
+.navara {
+  color: #6c757d;
+  background-color: #f4f5f5;
+}
+.navar-nav{
+  background-color: #f2f2f2;
+}

@@ -23,7 +23,8 @@
             
             <form class='mt-4' method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {{ form.media }}
+                {{ form|crispy }}  
                 <button type='submit' class='btn btn-primary'>Create</button>
             </form>
         </div>

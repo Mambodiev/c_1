@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 import datetime
 import json
-import stripe
+# import stripe
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin

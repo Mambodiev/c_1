@@ -38,9 +38,9 @@ class ProductAdmin(admin.ModelAdmin):
             (u'ColourVariation', {'fields': (
                     'title_en',
                     'slug_en',
+                    'featured',
                     'product_detail_en',
                     'specification_en',
-                    'featured',
                     'available_colours',
                     'available_sizes',
                     'active',

@@ -36,12 +36,11 @@
                                 <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
                                 <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
                                 <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-                                <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                                <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i> ({{ product.countreview}})
                             </div>
 
-                            <span class="text-muted text-center">${{ product.get_price }}
-                                <span class="">/</span>
-                                <span class="text-danger">{% trans "Add to Cart" %}</span>
+                            <span class="text-muted text-center h5">${{ product.get_price }}
+                                <del><small class="text-danger"> ${{ product.price_save }}</small><del>
                             </span>
                         </a>           
                     </div>

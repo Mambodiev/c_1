@@ -20,10 +20,10 @@ class AddressAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['subject', 'comment', 'approved', 'create_at']
+    list_display = ['subject', 'content', 'approved', 'create_at']
     list_filter = ['approved']
     list_editable = ['approved']
-    readonly_fields = ('subject', 'comment', 'user', 'product', 'rate', 'id')
+    readonly_fields = ('subject', 'content', 'user', 'product', 'rate', 'id')
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -47,6 +47,7 @@ class ProductAdmin(admin.ModelAdmin):
                     'primary_category',
                     'secondary_categories',
                     'price', 
+                    'price_save',
                     'stock', 
                     'title_fr',
                     'slug_fr',

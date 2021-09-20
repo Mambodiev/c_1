@@ -88,6 +88,7 @@ class Product(models.Model):
     product_detail = RichTextUploadingField(blank=True, null=True)
     specification = RichTextUploadingField(blank=True, null=True)
     price = models.IntegerField(default=0)
+    price_save = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False)
@@ -185,7 +186,7 @@ class Comment(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=50, blank=True)
-    comment = models.CharField(max_length=250, blank=True)
+    content = models.CharField(max_length=250, blank=True)
     rate = models.IntegerField(default=1)
     ip = models.CharField(max_length=20, blank=True)
     # status = models.CharField(max_length=10, choices=STATUS, default='New')
@@ -200,7 +201,7 @@ class Comment(models.Model):
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
-        fields = ['subject', 'comment', 'rate']
+        fields = ['subject', 'content', 'rate']
 
 
 class OrderItem(models.Model):

@@ -9,7 +9,7 @@
   <div class="bg-white py-3">
       <div class="row">
           <div class="col-md-12 mb-0">
-              <a href="{% url 'home' %}">{% trans "Home" %}</a>
+              <a class='text-decoration-none text-dark' href="{% url 'home' %}">{% trans "Home" %}</a>
               <span class="mx-2 mb-0">/</span>
               <strong class="text-black">{{ product.title }}</strong>
           </div>
@@ -43,13 +43,13 @@
         </div>
 
         <div class="d-flex justify-content-around pl-3">
-          <a class='text-decoration-none' href="#list-item-4">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
+          <a class='text-decoration-none text-dark' href="#list-item-4">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
         </div>
       </div><br><br>
 
       <h3>
         US  ${{ product.get_price }}
-        <del><small class="text-muted ml-3">$113</small><del>
+        <del class="text-danger"><small class="text-danger ml-3">${{ product.price_save }}</small><del>
       </h3><br><hr>
 
       <h5 class='text-muted'>
@@ -85,22 +85,27 @@
     </div>
   </div><br><br>
 
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <ul class="navar-nav  text-center p-1">
+        <li class="navi list-inline-item active float-lg-left">
+          <a class="nav-link collapsed navara px-0" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                aria-controls="collapseOne1"><h5 class="mb-0 py-2">{% trans "Feedback &amp; Ratings" %}</h5></a>
+        </li>
+        <li class="navi list-inline-item mx-5">
+          <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+              aria-expanded="false" aria-controls="collapseTwo2"><h5 class="mb-0 p-2">{% trans "Specification" %}</h5></a> 
+        </li>
+        <li class="navi list-inline-item float-lg-right text-sm-center">
+          <a class="nav-link collapsed navara px-0" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+              aria-expanded="false" aria-controls="collapseThree3" ><h5 class="mb-0 py-2">
+                {% trans "Product Details" %}</h5></a> 
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <ul class="navar-nav text-center p-1">
-    <li class="navi list-inline-item active">
-      <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-            aria-controls="collapseOne1"><h5 class="mb-0 p-2">Feedback &amp; Ratings</h5></a>
-    </li>
-    <li class="navi list-inline-item mx-5">
-      <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-          aria-expanded="false" aria-controls="collapseTwo2"><h5 class="mb-0 p-2">Specification</h5></a> 
-    </li>
-    <li class="navi list-inline-item">
-      <a class="nav-link collapsed navara" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
-          aria-expanded="false" aria-controls="collapseThree3" ><h5 class="mb-0 p-2">Product Details</h5></a> 
-    </li>
-  </ul>
-  <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+  <div class="accordion md-accordion mt-3" id="accordionEx" role="tablist" aria-multiselectable="true">
     <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
       data-parent="#accordionEx">
         <div class="row justify-content-center">           
@@ -181,7 +186,7 @@
               {% for comment in product.comment_set.all %}
                 {% if comment.approved %}
                   <div class="media">
-                    <img src="{% static 'images/profile/blank-profile-picture-973460_1280.png' %}" class="mr-3 rounded" alt="Sample Image">
+                    <img class="mt-2" src="{% static 'fonts/bootstrap-icons/person-circle.svg' %}" alt="user img" width="37" height="37">
                     <div class="media-body">
                       <div class="clearfix">
                         <div class="float-left review-rating">
@@ -191,9 +196,12 @@
                             <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
                             <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
                         </div>
-                      </div><br>
+                      </div>
+                      <h5>
+                        {{ comment.subject }}
+                      </h5>
                         <p>
-                          {{ comment.comment }}
+                          {{ comment.content }}
                         </p>
                         <h5 class="mt-0">
                           Jhon Carter 
@@ -234,10 +242,12 @@
 
 
   <!-- most you may also want -->
-  <section class="pt-0">
-    <h4 class="CustomerReview text-center my-5">{% trans "You may also want" %}</h4>
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <h4 class="CustomerReview text-center my-5">{% trans "You may also want" %}</h4>
       {% show_latest_products %}          
-  </section>
+    </div>
+  </div>
   <!-- end most you may also want -->
 
 

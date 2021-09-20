@@ -1,29 +1,29 @@
 {% load i18n %}
 <div class="row gutter-2 gutter-md-3">
     {% for product in latest_products %}
-    <div class="col-6 col-lg-3 text-center">
-      <div class="product">
-        <figure class="product-image">
-          <a href="{{ product.get_absolute_url }}">
-            <img src="{{ product.featured.url }}" class='img-fluid' alt="Image">
-          </a>
-        </figure>         
-        <a href="{{ product.get_absolute_url }}">
-          <p class="mb-0">{{ product.title }}</p>
-      
-        <div class="product-rating mb-0" id="product-rating">
-          <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-        </div>
+    <div class="col-sm-6 col-md-6 col-lg-4 mb-4" data-aos='fade-up'>
+      <figure class="block-4-image">
+          <a href="{{ product.get_absolute_url }}"><img src="{{ product.featured.url }}" class="img-fluid"></a>
+      </figure>
 
-        <span class="text-muted text-center">${{ product.get_price }}
-          <span class="">/</span>
-          <span class="text-danger">{% trans "Add to Cart" %}</span>
-        </span></a>
+      <div class="block-4-text p-4 text-center product">
+          <a class='text-decoration-none' href="{{ product.get_absolute_url }}">
+              <p class="mb-0">{{ product.title }}</p>
+              
+              <div class="product-rating mb-0" id="product-rating">
+                  <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                  <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i> ({{ product.countreview}})
+              </div>
+
+              <span class="text-muted text-center h5">${{ product.get_price }}
+                  <del><small class="text-danger"> ${{ product.price_save }}</small><del>
+              </span>
+          </a>           
       </div>
-    </div>
+      
+  </div>
     {% endfor %}
   </div><br><br>

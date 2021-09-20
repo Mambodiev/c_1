@@ -419,16 +419,12 @@ min-height:430px;
 }
 
 .navar-nav > .active > a {
-  color: #6c757d;
-  background-color: #fff;
+  background-color: aliceblue;
 }
 .navi > a:hover {
   color: #6c757d;
 }
 .navara {
   color: #6c757d;
-  background-color: #f4f5f5;
 }
-.navar-nav{
-  background-color: #f2f2f2;
-}
+

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.db.models import Q
 from django.db import models
 from django.db.models import Avg, Count
 from django.db.models.signals import pre_save
@@ -10,6 +11,30 @@ from django.forms import ModelForm
 User = get_user_model()
 
 
+# blog.models
+
+
+
+class ProductQuerySet(models.QuerySet):
+    def search(self, query=None):
+        qs = self.query
+        if query is not None:
+            or_lookup = (Q(title_icontains=query)|
+                         Q(description_icontains=query)|
+                         Q(slug_icontains=query)
+                        )
+            qs = qs.filter(or_lookup).distinct()
+        return qs
+
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return ProductQuerySet(self.model, using=self._db)
+
+    def search(self, query=None):
+        return self.get_queryset().search(query=query)
+
+    
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -66,6 +91,7 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False)
+    is_hero = models.BooleanField(default=False)
     available_colours = models.ManyToManyField(ColourVariation, blank=True)
     available_sizes = models.ManyToManyField(SizeVariation)
     primary_category = models.ForeignKey(
@@ -106,14 +132,14 @@ class Product(models.Model):
         return self.comment_set.all()[:3]
 
     def avaregereview(self):
-        reviews = Comment.objects.filter(product=self, status='True').aggregate(avarage=Avg('rate'))
+        reviews = Comment.objects.filter(product=self, approved='True').aggregate(avarage=Avg('rate'))
         avg = 0
         if reviews["avarage"] is not None:
             avg = float(reviews["avarage"])
         return avg
 
     def countreview(self):
-        reviews = Comment.objects.filter(product=self, status='True').aggregate(count=Count('id'))
+        reviews = Comment.objects.filter(product=self, approved='True').aggregate(count=Count('id'))
         cnt = 0
         if reviews["count"] is not None:
             cnt = int(reviews["count"])
@@ -126,7 +152,7 @@ class Product(models.Model):
 
 class Product_detail(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    title = RichTextUploadingField()
+    title = models.CharField(max_length=150)
     description = RichTextUploadingField()
 
     def __str__(self):
@@ -152,18 +178,19 @@ class Image(models.Model):
 
 
 class Comment(models.Model):
-    STATUS = (
-        ('New', 'New'),
-        ('True', 'True'),
-        ('False', 'False'),
-    )
+    # STATUS = (
+    #     ('New', 'New'),
+    #     ('True', 'True'),
+    #     ('False', 'False'),
+    # )
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=50, blank=True)
     comment = models.CharField(max_length=250, blank=True)
     rate = models.IntegerField(default=1)
     ip = models.CharField(max_length=20, blank=True)
-    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    # status = models.CharField(max_length=10, choices=STATUS, default='New')
+    approved=models.BooleanField(default=False)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
@@ -202,6 +229,7 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField(blank=True, null=True)
     ordered = models.BooleanField(default=False)
+    
 
     billing_address = models.ForeignKey(
         Address, related_name='billing_address', blank=True, null=True, on_delete=models.SET_NULL)

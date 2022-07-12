@@ -37,6 +37,7 @@ class Carousel(models.Model):
 
 
 class About(models.Model):
+    name = models.CharField(max_length=50)
     about_text = RichTextUploadingField()
     
     def __str__(self):
@@ -44,6 +45,7 @@ class About(models.Model):
 
 
 class Faq(models.Model):
+    name = models.CharField(max_length=50)
     faq_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):
@@ -51,14 +53,16 @@ class Faq(models.Model):
         
 
 class Privacy_policy(models.Model):
-    privacy_policiy_text = RichTextUploadingField(blank=True, null=True,)
+    name = models.CharField(max_length=50)
+    privacy_policy_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):
-        return self.privacy_policiy_text
+        return self.privacy_policy_text
 
 
 
 class Shipping_returns(models.Model):
+    name = models.CharField(max_length=50)
     shipping_returns_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):
@@ -67,6 +71,7 @@ class Shipping_returns(models.Model):
 
 
 class Terms_of_use(models.Model):
+    name = models.CharField(max_length=50)
     terms_of_use_text = RichTextUploadingField(blank=True, null=True,)
     
     def __str__(self):

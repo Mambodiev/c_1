@@ -8,6 +8,9 @@ urlpatterns = [
     path('addcomment/<int:id>', views.addcomment, name='addcomment'),
     path('shop/', views.ProductListView.as_view(), name='product-list'),
     path('shop/<slug>/', views.ProductDetailView.as_view(), name='product-detail'),
+# 
+    path('shop/<slug>/', views.ProductDetailView.as_view(), name='product-list'),
+#     
     path('increase-quantity/<pk>/',
          views.IncreaseQuantityView.as_view(), name='increase-quantity'),
     path('decrease-quantity/<pk>/',
@@ -21,5 +24,6 @@ urlpatterns = [
     path('orders/<pk>/', views.OrderDetailView.as_view(), name='order-detail'),
     path('payment/stripe/', views.StripePaymentView.as_view(), name='payment-stripe'),
     path('webhooks/stripe/', views.stripe_webhook_view, name='stripe-webhook'),
+    path('search/', views.product_search, name='product_search'),
 
 ]

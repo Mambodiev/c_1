@@ -23,20 +23,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django.contrib.sites',
+    'django.contrib.postgres',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
-
     'ckeditor',
     'ckeditor_uploader',
+    'modeltranslation',
+    'rosetta',
+    
+
     'cart',
     'core',
-    'staff'
+    'staff',
+    'marketing',
 ]
 
-# DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-# NOTIFY_EMAIL = env('NOTIFY_EMAIL')
+ 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -71,8 +75,12 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('POSTGRES_HOST'),
+        'PORT': env('POSTGRES_PORT'),
     }
 }
 
@@ -103,16 +111,24 @@ LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LANGUAGE_CODE = 'en'
+
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
 ]
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale'),
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'cart.translation',
+    # 'core.translation',
 )
 
-LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+    # os.path.join(BASE_DIR, 'cart/locale/'),
+    # os.path.join(BASE_DIR, 'core/locale/'),
+)
+
 
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -121,7 +137,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
 STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -143,17 +159,17 @@ if DEBUG is False:
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    ALLOWED_HOSTS = ['www.domain.com']
+    ALLOWED_HOSTS = ['www.domain.com', '127.0.0.1']
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': ''
+            'NAME': 'ecom',
+            'USER': 'admin1',
+            'PASSWORD': '1234',
+            'HOST': 'localhost',
+            'PORT': '',
         }
     }
 
@@ -179,3 +195,4 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

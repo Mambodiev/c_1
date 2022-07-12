@@ -9,11 +9,35 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.shortcuts import reverse, render
 from django.views import generic
-from .forms import ContactForm
+from django.views.generic.list import ListView
+from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import TrigramSimilarity
+
 from .models import Carousel, About, Faq, Shipping_returns, Terms_of_use, Privacy_policy
 from cart.models import Order, Product
 from django.http import HttpResponse, HttpResponseRedirect, request
 from django.utils import translation
+from django.utils.translation import gettext as _
+from .forms import ContactForm, SearchForm
+
+
+def post_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            results = Product.objects.annotate(
+                similarity=TrigramSimilarity('title', query),
+            ).filter(similarity__gt=0.1).order_by('-similarity')
+    return render(request,
+                  'cart/product/search.html',
+                  {'form': form,
+                   'query': query,
+                   'results': results})
+
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
@@ -36,67 +60,104 @@ def home(request):
     page_number = request.GET.get('page',1)
     page_obj = paginator.get_page(page_number)
 
+    products_latest = Product.objects.all().order_by('id')[:4]
+    products_picked = Product.objects.all().order_by('?')[:4]
+
+    if request.method == 'POST':
+        email = request.POST['email']
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
+
     context = {
         'page': 'page',
         'product': page_obj.object_list,
         'carousel': carousel,
         'paginator': paginator,
         'page_number': int(page_number),
+        'products_latest':products_latest,
+        'products_picked':products_picked,
     }
 
     return render(request, 'home.html',context)
 
 
-def selectlanguage(request):
-    if request.method == 'POST':  # check post
-        cur_language = translation.get_language()
-        lasturl = request.META.get('HTTP_REFERER')
-        lang = request.POST['language']
-        translation.activate(lang)
-        request.session[translation.LANGUAGE_SESSION_KEY] = lang
-        # return HttpResponse(lang)
-        return HttpResponseRedirect("/" + lang)
+# def selectlanguage(request):
+#     if request.method == 'POST':  # check post
+#         cur_language = translation.get_language()
+#         lasturl = request.META.get('HTTP_REFERER')
+#         lang = request.POST['language']
+#         translation.activate(lang)
+#         request.session[translation.LANGUAGE_SESSION_KEY] = lang
+#         # return HttpResponse(lang)
+#         return HttpResponseRedirect("/" + lang)
+
+def change_language(request):
+    response = HttpResponseRedirect('/')
+    if request.method == 'POST':
+        language = request.POST.get('language')
+        if language:
+            if language != settings.LANGUAGE_CODE and [lang for lang in settings.LANGUAGES if lang[0] == language]:
+                redirect_path = f'/{language}/'
+            elif language == settings.LANGUAGE_CODE:
+                redirect_path = '/'
+            else:
+                return response
+            from django.utils import translation
+            translation.activate(language)
+            response = HttpResponseRedirect(redirect_path)
+            response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+    return response
 
 
-def about(request):
-    about = About.objects.all()
-    context = {
-        'about': about,
-    }
+class AboutListView(ListView):
+    model = About
+    template_name = 'about.html'
 
-    return render(request, 'about.html', context)
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['about'] = About.objects.all()
+        return context
+        
+    
+class FaqListView(ListView):
+    model = Faq
+    template_name = 'faq.html'
 
-
-def faq(request):
-    faq = Faq.objects.all()
-    context = {
-        'faq': faq,
-    }
-    return render(request, 'faq.html', context)
-
-
-def terms_of_use(request):
-    terms_of_use = Terms_of_use.objects.all()
-    context = {
-        'terms_of_use': terms_of_use,
-    } 
-    return render(request, 'terms_of_use.html', context)
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['faq'] = Faq.objects.all()
+        return context
 
 
-def privacy_policy(request):
-    privacy_policy = Privacy_policy.objects.all()
-    context = {
-        'privacy_policy': privacy_policy,
-    } 
-    return render(request, 'privacy_policy.html', context)
+class Terms_of_useListView(ListView):
+    model = Terms_of_use
+    template_name = 'terms_of_use.html'
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['terms_of_use'] = Terms_of_use.objects.all()
+        return context
 
 
-def shipping_returns(request):
-    shipping_returns = Shipping_returns.objects.all()
-    context = {
-        'shipping_returns': shipping_returns,
-    } 
-    return render(request, 'shipping_returns.html', context)
+class Privacy_policyListView(ListView):
+    model = Privacy_policy
+    template_name = 'privacy_policy.html'
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['privacy_policy'] = Privacy_policy.objects.all()
+        return context
+
+
+class Shipping_returnsListView(ListView):
+    model = Shipping_returns
+    template_name = 'shipping_returns.html'
+    
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs)
+        context['shipping_returns'] = Shipping_returns.objects.all()
+        return context
 
 
 class ContactView(generic.FormView):
@@ -109,9 +170,9 @@ class ContactView(generic.FormView):
     def form_valid(self, form):
         messages.info(
             self.request, "Thanks for getting in touch. We have received your message.")
-        name = form.cleaned_data.get('name')
-        email = form.cleaned_data.get('email')
-        message = form.cleaned_data.get('message')
+        name = form.cleaned_data.get(_('name'))
+        email = form.cleaned_data.get(_('email'))
+        message = form.cleaned_data.get(_('message'))
 
         full_message = f"""
             Received message below from {name}, {email}

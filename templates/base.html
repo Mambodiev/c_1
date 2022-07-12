@@ -1,241 +1,63 @@
-﻿{% load static %}
+﻿﻿{% load static %}
 {% load i18n %}
 {% load cart_template_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Django Ecom {% block head_title %}{% endblock %}</title>
-    {% block extra_head %}
-    {% endblock %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'icons/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'icons/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'icons/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'icons/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'icons/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'icons/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'icons/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'icons/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'icons/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'icons/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'icons/manifest.json' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="icon"
+        href="{% static 'favicons/favicon.ico' %}">
+    <link rel="stylesheet"
+        href="{% static 'css/style.css' %}">
+  </head>
 
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static 'icons/ms-icon-144x144.png' %}">
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-</head> 
-
-
-
-<div class="topbar sticky-top">
-  <div class="top_header bg-secondary">
-    <div class="container d-flex justify-content-between ">
-      <div class="p-2">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner text-white text_nav">
-            <div class="carousel-item active">
-              {% trans "Free Worldwide Shipping" %}
-            </div>
-            <div class="carousel-item">
-              {% trans "Secure Online Payment" %}
-            </div>
-            <div class="carousel-item">
-              {% trans "We return money within 30 days" %}
-            </div>
-          </div>
+<body>
+<!-- header -->
+<!-- end header -->
+<div class="navbar">
+    <div class="navbar-container container">
+        <input type="checkbox" name="" id="">
+        <div class="hamburger-lines">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
         </div>
-      </div>
-      <!-- <a class="nav-link dropdown-toggle text-white" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Eng / $
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another</a></li>
-        <li class="dropdown-submenu-right">
-          <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Submenu2 </a></li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-              </ul>
-            </li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-                <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-              </ul>
-            </li> 
-          </ul>
-        </li>
-        
-      </ul> -->
-      <form action="{% url 'selectlanguage' %}" method="post">{% csrf_token %}
-        <input name="next" type="hidden" value="{{ redirect_to }}">
-        <select name="language" onchange="submit()" >
-
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            {% for language in languages %}
-                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                    {{ language.name_local }} ({{ language.code }})
-                </option>
-            {% endfor %}
-
-        </select>
-        <noscript>
-            <input type="submit" value="Set" />
-        </noscript>
-      </form>
+        <h1 class="logo">LOGO</h1> 
+        <ul class="menu-items">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+        <div class="icons">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </a>
+                <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-basket3" viewBox="0 0 16 16">
+                <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6h-9.21z"/>
+                </svg>
+            </a>
+            <span class="badge">6</span>
+        </div>
     </div>
-    
-  </div>
-
-    <nav class="navbar navbar-expand-md navbar-light   bg-light ">
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <a class="navbar-brand" href="{% url 'home' %}"><img style:width="140px" height="35px" src = "{% static 'images/logo_new.png' %}" alt="LOGO"/></a>
-
-      <!-- icon mobile -->
-      <div class="row">
-        <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-        {% if request.user.is_authenticated %}
-        <a class="mr-2 d-block d-md-none" href="{% url 'profile' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/></span>
-        </a>
-        {% else %}
-        <a class="mr-2 d-block d-md-none" href="{% url 'account_login' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
-        </a>
-        {% endif %}
-        
-        <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
-        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
-
-        <a class="mr-2 d-block d-md-none" href="{% url 'cart:summary' %}">
-        <span class="cart_item_count"><span class="badge badge-danger  rounded-circle">{{ request|cart_item_count }}</span></span>
-        </a>
-      </div>    
-
-      {% include 'navbar.html' %} 
-      <!-- icon desktop -->
-      <div class="row">
-        <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
-          <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/search.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-
-        {% if request.user.is_authenticated %}
-          
-          <a class="mr-2 d-none  d-md-block" href="{% url 'profile' %}">
-            <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user-check.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-        {% else %}
-          <a class="mr-2 d-none  d-md-block" href="{% url 'account_login' %}">
-            <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/user.svg' %}" alt="My Happy SVG"/></span>
-          </a>
-        {% endif %}
-
-
-        <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
-        <span class="badge"><img style:width="18px" height="22px" src = "{% static 'icons/shopping-cart.svg' %}" alt="My Happy SVG"/></span>
-        </a>
-        <a class="mr-2 d-none  d-md-block" href="{% url 'cart:summary' %}">
-        <span class="badge"><span class="badge badge-danger count rounded-circle">{{ request|cart_item_count }}</span></span>
-        </a>
-      </div>
-    </nav>
 </div>
+<!-- end header -->
+{% block content %}
+{% endblock content %}
 
-
-
-<!-- <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Eng / $
-</a>
-<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  <li><a class="dropdown-item" href="#">Action</a></li>
-  <li><a class="dropdown-item" href="#">Another</a></li>
-  <li class="dropdown-submenu-right">
-    <a class="dropdown-item dropdown-toggle" href="#">Submenu</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Submenu2 </a></li>
-      <li class="dropdown-submenu">
-        <a class="dropdown-item dropdown-toggle" href="#">Subsubmenu</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-          <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a class="dropdown-item dropdown-toggle" href="#">Second subsubmenu</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Subsubmenu action</a></li>
-          <li><a class="dropdown-item" href="#">Another subsubmenu action</a></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  
-</ul> -->
-
-
-
-
-
-
-
-
-</div>
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show sticky-top" role="alert">
-          <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-          <span class="alert-inner--text">{{ message }}</span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      {% endfor %}
-    {% endif %}
-     
-
-    {% block content %}
-    {% endblock content %}
-    {% include 'footer.html' %}
-
-
-{% include 'scripts.html' %}
-
-{% block scripts %}
-{% endblock scripts %}
-
-
-
+{% include 'footer.html' %}
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

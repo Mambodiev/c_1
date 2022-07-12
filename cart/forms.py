@@ -1,4 +1,7 @@
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
+from django.forms import ModelForm
+
 from django import forms
 from .models import (
     OrderItem, ColourVariation, Product, SizeVariation,
@@ -8,10 +11,25 @@ from .models import (
 User = get_user_model()
 
 
+class SearchForm(forms.Form):
+    query = forms.CharField(
+                    widget=forms.TextInput(attrs={'placeholder': 'Search'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['query'].label = False
+
+
+class OrderForm(ModelForm):
+	class Meta:
+		model = Product
+		fields = '__all__'
+
+
 class AddToCartForm(forms.ModelForm):
-    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None)
-    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None)
-    quantity = forms.IntegerField(min_value=1, initial=1,)
+    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None, label=_('colour'))
+    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None, label=_('size'))
+    quantity = forms.IntegerField(min_value=1, initial=1, label=_('quantity'))
 
     class Meta:
         model = OrderItem

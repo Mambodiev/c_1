@@ -64,32 +64,18 @@
 
 <!-- products -->
 <div class="container">
-  <h1 class="title" >Products</h1>
+  <h1 class="title" > Our Products</h1>
   <div class="col product">
+    {% for product in product %} 
       <div class="col">
           <div class="card">
-              <img src="{% static 'images/image/product_img.png' %}" alt="Denim Jeans" style="width:100%">
-              <h1>Tailored Jeans</h1>
-              <p class="price">$19.99</p>
+              <img src="{{ product.featured.url }}" alt="Denim Jeans" style="width:100%">
+              <h1>{{ product.title }}</h1>
+              <p class="price">${{ product.get_price }}</p>
               <p><button>Add to Cart</button></p>
           </div>
       </div>
-      <div class="col">
-          <div class="card">
-              <img src="{% static 'images/image/product_img.png' %}" alt="Denim Jeans" style="width:100%">
-              <h1>Tailored Jeans</h1>
-              <p class="price">$19.99</p>
-              <p><button>Add to Cart</button></p>
-          </div>
-      </div>
-      <div class="col">
-          <div class="card">
-              <img src="{% static 'images/image/product_img.png' %}" alt="Denim Jeans" style="width:100%">
-              <h1>Tailored Jeans</h1>
-              <p class="price">$19.99</p>
-              <p><button>Add to Cart</button></p>
-          </div>
-      </div>
+    {% endfor %}
   </div>
 </div>    
 <!-- end products -->

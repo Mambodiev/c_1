@@ -27,9 +27,9 @@ class OrderForm(ModelForm):
 
 
 class AddToCartForm(forms.ModelForm):
-    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None, label=_('colour'))
-    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None, label=_('size'))
-    quantity = forms.IntegerField(min_value=1, initial=1, label=_('quantity'))
+    colour = forms.ModelChoiceField(queryset=ColourVariation.objects.none(), empty_label=None, label=_('Colour'))
+    size = forms.ModelChoiceField(queryset=SizeVariation.objects.none(), empty_label=None, label=_('Size'))
+    quantity = forms.IntegerField(min_value=1, initial=1, label=_('Quantity'))
 
     class Meta:
         model = OrderItem

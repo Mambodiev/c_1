@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'modeltranslation',
     'rosetta',
-    
+    'widget_tweaks',
 
     'cart',
     'core',

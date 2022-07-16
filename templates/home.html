@@ -6,51 +6,28 @@
 <!-- hero products -->
 <div class="container">
   <div class="slideshow-container">
-      <div class="mySlides fade">
-          <div class="col">
-              <div class="col">
-                  <img src="{% static 'images/image/product_img.png' %}" style="width:100%">
-              </div>
-          
-              <div class="col hero-content">
-                  <div class="heroContent">
-                      <h1>Produt Title 1</h1>
-                      <p>And I'm a Photographer It is a long established fact that a reader will be distracted.</p>
-                      <button>Shop Now</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="mySlides fade">
-          <div class="col">
-              <div class="col">
-                  <img src="{% static 'images/image/product_img.png' %}" style="width:100%">
-              </div>
-          
-              <div class="col hero-content">
-                  <div class="heroContent">
-                      <h1>Produt Title 2</h1>
-                      <p>And I'm a Photographer It is a long established fact that a reader will be distracted.</p>
-                      <button>Shop Now</button>
-                  </div>
-              </div>
-          </div>            
-      </div>
-      <div class="mySlides fade">
-          <div class="col">
-              <div class="col">
-                  <img src="{% static 'images/image/product_img.png' %}" style="width:100%">
-              </div>
-          
-              <div class="col hero-content">
-                  <div class="heroContent">
-                      <h1>Produt Title 3</h1>
-                      <p>And I'm a Photographer It is a long established fact that a reader will be distracted.</p>
-                      <button>Shop Now</button>
-                  </div>
-              </div>
-          </div>        
-      </div>
+    
+      {% for product in product %}
+        {% if product.is_hero %}
+            <div class="mySlides fade">
+                <div class="col">
+                    <div class="col">
+                        <img src="{{ product.featured.url }}" style="width:100%">
+                    </div>
+                
+                    <div class="col hero-content">
+                        <a href="{{ product.get_absolute_url }}">
+                            <div class="heroContent">
+                                <h1>{{ product.title }}</h1>
+                                <p>And I'm a Photographer It is a long established fact that a reader will be distracted.</p>
+                                <button>Shop Now</button>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+      {% endfor %}
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
@@ -64,19 +41,48 @@
 
 <!-- products -->
 <div class="container">
-  <h1 class="title" > Our Products</h1>
-  <div class="col product">
+  <h1 class="titles" > Our Products</h1>
+  <div class="col products">
     {% for product in product %} 
       <div class="col">
           <div class="card">
+            <a href="{{ product.get_absolute_url }}">
               <img src="{{ product.featured.url }}" alt="Denim Jeans" style="width:100%">
               <h1>{{ product.title }}</h1>
               <p class="price">${{ product.get_price }}</p>
               <p><button>Add to Cart</button></p>
+            </a>
           </div>
       </div>
     {% endfor %}
   </div>
 </div>    
 <!-- end products -->
+<script>
+    /* Project specific Javascript goes here. */
+// hero slide
+let slideIndex = 1;
+showSlides(slideIndex);
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
 {% endblock content %}

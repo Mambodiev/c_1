@@ -8,14 +8,14 @@ body {
 font-family: 'Open Sans', sans-serif;
 box-sizing: border-box;
 font-weight: 500;
-font-size: 1.125rem;
+font-size: 18px;
 } 
 a {
   text-decoration: none;
   color: #000;
 }
 h1{
-font-size:2.25rem;
+font-size:36px;
 font-weight: 500;
 }
 .navbar input[type="checkbox"],
@@ -23,7 +23,7 @@ font-weight: 500;
 display: none;
 }
 .logo {
-font-size: 2.25rem;
+font-size: 36px;
 }
 .navbar {
 width: 100%;
@@ -42,14 +42,14 @@ transition: color 0.3s ease-in-out;
 display: flex;
 justify-content: space-between;;
 align-items: center;
-height: 3.75rem;
+height: 60px;
 }
 
 .navbar a:hover {
 color: #0088a9;
 }
 .container {
-max-width: 75rem;
+max-width: 1200px;
 width: 100%;
 margin: auto;
 }
@@ -58,7 +58,7 @@ display: flex;
 }
 .menu-items li {
 list-style: none;
-margin-left: 2.24rem;
+margin-left: 36px;
 display: flex;
 align-items: center;
 }
@@ -67,52 +67,53 @@ align-items: center;
   padding-bottom: 10px;
 }
 .icons{
-font-size: 1.125rem;
-padding-right: 0.6rem;
+font-size: 18px;
+padding-right: 9.6px;
 }
 .icons a {
-margin-left: 1.6rem;
+margin-left: 26px;
 }
 .badge {
 position: absolute;
 margin: -6px 0 0 0;
-font-size: 1.125rem;
+font-size: 18px;
 }
-@media (max-width: 48rem) {
+@media (max-width: 768px)
+ {
 .navbar-container input[type="checkbox"],
 .navbar-container .hamburger-lines {
   display: block;
 }
 .container {
-  max-width: 45.5rem;
+  max-width: 728px;
   width: 100%;
-  margin: auto;
+  padding: 0 20px 0 20px;
 }
 .navbar-container {
   display: block;
-  height: 4rem;
+  height: 64px;
 }
 .badge {
-  top: -0.25rem;
+  top: -4px;
 }
 .navbar-container input[type="checkbox"] {
   position: absolute;
   display: block;
-  height: 2rem;
-  width: 1.9rem;
-  top: 1.25rem;
-  left: 1.25rem;
+  height: 32px;
+  width: 30px;
+  top: 20px;
+  left: 20px;
   z-index: 5;
   opacity: 0;
   cursor: pointer;
 }
 .navbar-container .hamburger-lines {
   display: block;
-  height: 1.75rem;
-  width: 2.187rem;
+  height: 28px;
+  width: 35px;
   position: absolute;
-  top: 0.75rem;
-  left: 1.25rem;
+  top: 12px;
+  left: 20px;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -122,9 +123,9 @@ font-size: 1.125rem;
 
 .navbar-container .hamburger-lines .line {
   display: block;
-  height: 0.25rem;
+  height: 4px;
   width: 100%;
-  border-radius: 0.625rem;
+  border-radius: 10px;
   background: rgb(0, 0, 0);
 }
 .navbar-container .hamburger-lines .line1 {
@@ -139,35 +140,35 @@ font-size: 1.125rem;
   transition: transform 0.3s ease-in-out;
 }
 .navbar .menu-items {
-  padding-top: 6.25rem;
+  padding-top: 10px;
   background: #ffffff;
   height: 100vh;
-  max-width: 18.75rem;
+  max-width: 300px;
   transform: translate(-150%);
   display: flex;
   flex-direction: column;
-  margin-left: -2.5rem;
-  padding-left: 2.5rem;
+  margin-left: -40px;
+  padding-left: 40px;
   transition: transform 0.5s ease-in-out;
   overflow: scroll;
-  border: 0.062rem solid ;
+  border: 10px solid ;
 }
 .navbar .menu-items li {
-  margin-bottom: 1.792rem;
-  font-size: 1.125rem;
+  margin-bottom: 29px;
+  font-size: 18px;
 }
 .logo {
   position: absolute;
-  top: 0.387rem;
+  top: 7px;
   right: 45%;
-  font-size: 2.187rem;
+  font-size: 35px;
   z-index: 1;
 }
 .icons{
   position: absolute;
-  top: 0.75rem;
-  right: 1.5rem;
-  font-size: 1.125rem;
+  top: 12px;
+  right: 24px;
+  font-size: 18px;
   z-index: 1;
 }
 .navbar-container input[type="checkbox"]:checked ~ .menu-items {
@@ -199,7 +200,7 @@ transition: color 0.3s ease-in-out;
 .hamburger{
 display: none;
 }
-@media (max-width: 48rem){
+@media (max-width: 768px){
 .hamburger input[type="checkbox"],
 .hamburger .hamburger-lines {
   display: block;
@@ -216,35 +217,36 @@ display: none;
   padding-left: 40rem;
   transition: transform 0.5s ease-in-out;
   overflow: scroll;
-  border: 1rem solid ;
+  border: 1px solid ;
 }
 .myheader .menu-items li {
-  margin-bottom: 1.8rem;
+  margin-bottom: 28px;
   font-size: 10rem;
 }
 .icons a {
-  margin-left: 0.937rem;
+  margin-left: 15px;
 }
 }
-@media (max-width: 22.5rem) {
+@media (max-width: 360px) {
 .icons a {
-  margin-left: 0.312rem;
+  margin-left: 5px;
 }
 .logo {
   right: 45%;
-  font-size: 2.187rem;
-  top: 0.387rem;
+  font-size: 35px;
+  top: 7px;
   color: black;
 }
 .navbar-container .hamburger-lines {
-  height: 1.5rem;
-  width: 2.187rem;
-  top: 0.837rem;
+  height: 24px;
+  width: 35px;
+  top: 13.4px;
 }
 .container, .hero-text {
-  max-width: 20rem;
+  max-width: 640px;
   width: 100%;
   margin: auto;
+  padding: 0 20px 20px;
 }
 
 .navbar .menu-items {
@@ -280,7 +282,7 @@ margin: auto;
 display: grid;
 grid-template-columns: auto auto auto;
 }
-button {
+.hero-button {
 background-color: #4CAF50; /* Green */
 border: none;
 color: white;
@@ -288,16 +290,16 @@ padding: 14px 40px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 1.125rem;
+font-size: 18px;
 margin: 4px 2px;
 transition-duration: 0.4s;
 cursor: pointer;
 }
 
-button:hover {
+.hero-button:hover {
 background-color: #4CAF50;
 color: white;
-border: 2px solid
+border: 2px solid black;
 }
 .logo-footer
 {
@@ -512,7 +514,7 @@ ul.breadcrumb li a {
 /*-- review form --*/
 @media only screen and (max-width: 769px){
   #postReview{
-    height: 2rem!important;
+    height: 32px!important;
     width: 150px!important;
   }
 }
@@ -608,6 +610,7 @@ ul.breadcrumb li a {
 }
 .product {
   display: flex;
+  margin-top: 27px;
 }
 .product-detail-text{
   text-align: left;
@@ -640,34 +643,49 @@ ul.breadcrumb li a {
 }
 @media only screen and (max-width: 769px){
   #postReview{
-    height: 2rem!important;
+    height: 32px!important;
     width: 150px!important;
   }
 }
 /* end review */
 
-.color-size a, button{
-  display: inline-block;
-  padding-right: 15px;
+.color-size{
+  display: flex;
+
+}
+.color-size a{
   margin-bottom: 27px;
 }
 .form-colour, .form-size, .form-quantity {
-  width: 160px;
-  padding: 13px 20px;
-  margin-top: 5px;
+  width: 155px;
+  padding: 16px 20px;
+  margin: 5px 10px 0 0;
   display: grid;
 }
-label {
-  margin-bottom: 5px;
-}
-.block {
-  display: block;
-  width: 100%;
+
+
+.Add-to-Cart {
+  background-color: #4CAF50; /* Green */
   border: none;
-  background-color: #4CAF50;
   color: white;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
+  padding:  14px 28px;
   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 26px;
+  width: 100%;
+  height: 60px;
+}
+@media only screen and (max-width: 360px){
+  .Add-to-Cart {
+    height: 53px;
+    margin-top: 30px;
+  }
+.form-quantity {
+    width: 100px;
+  }
+  h1 {
+    font-size: 27px;
+}
 }

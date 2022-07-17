@@ -53,6 +53,11 @@ max-width: 1200px;
 width: 100%;
 margin: auto;
 }
+@media only screen and (max-width: 1200px) {
+  .container {  
+    padding: 0 20px 0 20px!important;
+  }
+}
 .menu-items {
 display: flex;
 }
@@ -87,7 +92,6 @@ font-size: 18px;
 .container {
   max-width: 728px;
   width: 100%;
-  padding: 0 20px 0 20px;
 }
 .navbar-container {
   display: block;
@@ -140,10 +144,10 @@ font-size: 18px;
   transition: transform 0.3s ease-in-out;
 }
 .navbar .menu-items {
-  padding-top: 10px;
+  padding-top: 30px;
+  margin-top: 30px;
   background: #ffffff;
   height: 100vh;
-  max-width: 300px;
   transform: translate(-150%);
   display: flex;
   flex-direction: column;
@@ -151,7 +155,10 @@ font-size: 18px;
   padding-left: 40px;
   transition: transform 0.5s ease-in-out;
   overflow: scroll;
-  border: 10px solid ;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%), 0 3px 10px 0 rgb(0 0 0 / 10%);
+  position: absolute;
+  width: 45%;
+  z-index: 4;
 }
 .navbar .menu-items li {
   margin-bottom: 29px;
@@ -227,7 +234,7 @@ display: none;
   margin-left: 15px;
 }
 }
-@media (max-width: 360px) {
+@media only screen and (max-width: 360px)  {
 .icons a {
   margin-left: 5px;
 }
@@ -250,7 +257,7 @@ display: none;
 }
 
 .navbar .menu-items {
-  max-width: 60%;
+  width: 60%;
 }
 }
 
@@ -386,6 +393,7 @@ font-size: 14px;
 .footer {
 background-color: #373F50;
 padding-top: 27px;
+margin-top: 27px;
 }
 .aside h1, h2 {
 margin-bottom: 27px;
@@ -444,25 +452,14 @@ ul.breadcrumb li a {
 #slide-wrapper {
   display: inline-flex;
   align-items:center;
-  max-width: 463px;
+  max-width: 380px;
 }
-@media only screen and (max-width: 1000px) {
-  #slide-wrapper {
-    max-width: 400px;
-  }
-}
+
 @media only screen and (max-width: 800px) {
   #slide-wrapper {
-    max-width: 388px;
+    max-width: 290px;
   }
 }
-@media only screen and (max-width: 700px) {
-  #slide-wrapper {
-    max-width: 300px;
-  }
-}
-
-
 .arrow {
   width: 30px;
   height: 30px;
@@ -653,7 +650,7 @@ ul.breadcrumb li a {
   display: flex;
 
 }
-.color-size a{
+.color-size, .quantity  a{
   margin-bottom: 27px;
 }
 .form-colour, .form-size, .form-quantity {
@@ -679,13 +676,13 @@ ul.breadcrumb li a {
 }
 @media only screen and (max-width: 360px){
   .Add-to-Cart {
-    height: 53px;
-    margin-top: 30px;
+    height: 60px;
+    margin-top: 26px;
   }
-.form-quantity {
-    width: 100px;
-  }
+
   h1 {
     font-size: 27px;
 }
 }
+
+

@@ -9,103 +9,184 @@
 
 
 <div class="container">
-  <ul class="breadcrumb">
-    <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
-    <li>{{ product.title }}</li>
-  </ul>
 
-    <div class="col newspaper">
-      <div class="col product-detail">
-          <div class="product-hero">
-            <img id="featured" src="{{ product.featured.url }}" alt="Norway" style="width:100%">
-            <div class="product-slider" id="slide-wrapper">
-              <span id="slideLeft" class='arrow'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                </svg>
-              </span>
-              <div id="slider">
-                {% for image in product.image_set.all %}
-                <img class="thumbnail" src="{{image.imageURL}}">
-                {% endfor %}
-              </div>
-              <span class='arrow' id="slideRight" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </span>
+  <div class="col newspaper">
+    <div class="col product-detail">
+        <div class="product-hero">
+          <img id="featured" src="{{ product.featured.url }}" alt="Norway" style="width:100%">
+          <div class="product-slider" id="slide-wrapper">
+            <span id="slideLeft" class='arrow'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+              </svg>
+            </span>
+            <div id="slider">
+              {% for image in product.image_set.all %}
+              <img class="thumbnail" src="{{image.imageURL}}">
+              {% endfor %}
             </div>
+            <span class='arrow' id="slideRight" >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+            </span>
           </div>
-      </div>
-      <div class="col product-detail-text">
-        <div class=''>
-          <h1>{{ product.title }}</h1>
-          <div class="product">
+        </div>
+    </div>
+    <div class="col product-detail-text">
+      <div class=''>
+        <h1>{{ product.title }}</h1>
+        <div id="custom-review">
+          <div class='product'>
             <div class="product-rating" id="product-rating">
-              <span class="{% if product.avaregereview < 1%}-o empty{% endif%}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                </svg>
-              </span>
-              <span class="{% if product.avaregereview < 2%}-o empty{% endif%}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                </svg>
-              </span>
-              <span class="{% if product.avaregereview < 3%}-o empty{% endif%}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                </svg>
-              </span>
-              <span class="{% if product.avaregereview < 4%}-o empty{% endif%}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                </svg>
-              </span>
-              <span class="{% if product.avaregereview < 5%}-o empty{% endif%}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-                </svg>
-              </span>
-              <span>{{ product.avaregereview |stringformat:".2f"}}<span>
-            </div>
-            <div>
-              <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a>
+              <div class="product-rating" id="product-rating">
+                <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+                <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+                <span>{{ product.avaregereview |stringformat:".2f"}}<span>
+              </div>
             </div>
           </div>
-            <h3 class='product-detail-price'>US  ${{ product.get_price }}</h3>
-            <p class='available-stock'>
-              {% trans 'Available stock:' %} {{ product.stock }} {% trans 'Units' %}
-            </p>
-            {% if product.in_stock %}
-            <form method="POST">
-              {% csrf_token %}
-              <div class="color-size" >
-                <a>
-                  {{ form.colour.label_tag }}
-                  {{ form.colour|add_class:'form-colour' }}
-                </a>
+          <div class='product'>
+            <a href="#tab1">{{ product.countreview}}  {% trans "Review(s) / Add Review" %}</a> 
+          </div>
+        </div>
 
-                <a>
-                  {{ form.size.label_tag }}
-                {{ form.size|add_class:'form-size' }} 
-                </a>
-              </div>
-              <div class="quantity" >
-                <a>
-                  {{ form.quantity.label_tag }}
-                {{ form.quantity|add_class:'form-quantity'}}
-                </a>
 
-                  <button type="submit"  class="Add-to-Cart">Add to Cart</button>
-              </div>  
-            </form>
-            {% else %}
-            <h5>{% trans 'This item is out of stock' %}</h5>
-            {% endif %}          
-        </div> 
+          <h3 class='product-detail-price'>US  ${{ product.get_price }}</h3>
+          <p class='available-stock'>
+            {% trans 'Available stock:' %} {{ product.stock }} {% trans 'Units' %}
+          </p>
+          {% if product.in_stock %}
+          <form method="POST">
+            {% csrf_token %}
+            <div class="color-size" >
+              <a>
+                {{ form.colour.label_tag }}
+                {{ form.colour|add_class:'form-colour' }}
+              </a>
+
+              <a>
+                {{ form.size.label_tag }}
+              {{ form.size|add_class:'form-size' }} 
+              </a>
+            </div>
+            <div class="quantity" >
+              <a>
+                {{ form.quantity.label_tag }}
+              {{ form.quantity|add_class:'form-quantity'}}
+              </a>
+
+                <button type="submit"  class="Add-to-Cart">Add to Cart</button>
+            </div>  
+          </form>
+          {% else %}
+          <h5>{% trans 'This item is out of stock' %}</h5>
+          {% endif %}          
+      </div> 
+    </div>
+  </div>
+
+
+  <!-- end product setail description Accordion -->
+  <button class="tablink" onclick="openPage('Home', this, 'GhostWhite')" id="defaultOpen">{% trans "Customer Reviews" %}</button>
+  <button class="tablink" onclick="openPage('News', this, 'GhostWhite')">Description</button>
+  <button class="tablink" onclick="openPage('Contact', this, 'GhostWhite')">Detail</button>
+  
+  <div id="News" class="tabcontent">
+    <p>{{ product.description|safe }}</p>
+  </div>
+  
+  <div id="Home" class="tabcontent">
+    <div id="custom-review">
+      <div class="product">
+        <div class="product-rating" id="product-rating">
+          <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+          <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+          <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+          <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+          <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+          <span class="product-avaregereview">
+            {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
+          </span>
+        </div>
+      </div>
+      <div>
+       
       </div>
     </div>
+    {% for comment in product.comment_set.all %}
+    {% if comment.approved %}
+    <div class="review-content">
+      <div class="review-rating user-review">
+        <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
+        <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
+        <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
+        <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
+        <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
+    </div>
+      <img src="{% static 'images/profile/img_avatar2.png' %}" alt="Avatar" style="width:90px">
+      <h5 class="comment-subject">{{ comment.subject }}</h5>
+      <p>{{ comment.comment }}</p>
+      <p><span>Rebecca Flex.</span>{% trans 'Posted on' %} {{ comment.create_at }} </p>
+    </div>
+    {% endif %}
+    {% endfor %}
+  
+  <div id="main-review-form">
+    <form class="review-form" 
+    action="/cart/addcomment/{{ product.id }}" method="post">
+    {% csrf_token %}
+    <input type="text" id="fname" name="subject" placeholder="Your subject" required>
+    <textarea name="comment"  placeholder="Your review ..." required></textarea>
+    <div id="custom-review">
+      <div class="product">
+        <div class="input-rating">
+          <strong class="">{% trans "Please rate" %}: </strong>
+          <div class="stars">
+              <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+              <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+              <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+              <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+              <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+          </div>
+      </div>
+      </div>
+      <div class="product">
+        {% if user.id is not None %}
+        <button class="hero-button" type="submit" id="postReview">
+          {% trans "Post Review" %}
+        </button>
+        {% else %}
+        {% trans "You must be logged in to post a review" %}
+        {% endif %}
+      </div>
+    </div>
+    </form>
+  </div>
+  </div>
+  <div id="Contact" class="tabcontent">
+    <p>{{ product.detail|safe }}</p>
+  </div>
+
+  {% show_latest_products %} 
+  
+
+  <!-- end product setail description Accordion  -->
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 <script>
   let thumbnails = document.getElementsByClassName('thumbnail')
@@ -127,5 +208,45 @@
 		    buttonLeft.addEventListener('click', function(){
 		      document.getElementById('slider').scrollLeft -= 180;
 		    })
+  /* product setail description Accordion */
+  function openPage(pageName, elmnt, color) {
+    // Hide all elements with class="tabcontent" by default */
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Remove the background color of all tablinks/buttons
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].style.backgroundColor = "";
+    }
+
+    // Show the specific tab content
+    document.getElementById(pageName).style.display = "block";
+
+    // Add the specific color to the button used to open the tab content
+    elmnt.style.backgroundColor = color;
+  }
+
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+  /* end product setail description Accordion */
+
+
+  function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 </script>
 {% endblock content %}

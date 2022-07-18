@@ -33,7 +33,7 @@ class ProductAdmin(admin.ModelAdmin):
     fieldsets = [
             (u'ColourVariation', {'fields': (
                     'title_en',
-                    'slug_en',
+                     'slug_fr',
                     'featured',
                     'available_colours',
                     'available_sizes',
@@ -44,7 +44,11 @@ class ProductAdmin(admin.ModelAdmin):
                     'price', 
                     'stock', 
                     'title_fr',
-                    'slug_fr',
+                    'detail_en',
+                    'slug_en',
+                    'description_en',
+                    'detail_fr',
+                    'description_fr',
                     
                     
             )})

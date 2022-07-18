@@ -10,14 +10,24 @@
     <title>Welcome</title>
     <link rel="icon"
         href="{% static 'favicons/favicon.ico' %}">
+    <link rel="stylesheet" 
+        href="{% static 'fonts/icomoon/style.css' %}">
     <link rel="stylesheet"
         href="{% static 'css/style.css' %}">
 </head>
 <!-- end header -->
 {% include 'navbar.html' %}
 <body>
-
-<!-- end header -->
+    {% if messages %}
+      {% for message in messages %}
+      <div class="container">
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            {{ message }}
+          </div>
+      </div>
+      {% endfor %}
+    {% endif %}
 {% block content %}
 {% endblock content %}
 

@@ -90,31 +90,24 @@
   </div>
 
 
-  <!-- end product setail description Accordion -->
-  <button class="tablink" onclick="openPage('Home', this, 'GhostWhite')" id="defaultOpen">{% trans "Customer Reviews" %}</button>
-  <button class="tablink" onclick="openPage('News', this, 'GhostWhite')">Description</button>
-  <button class="tablink" onclick="openPage('Contact', this, 'GhostWhite')">Detail</button>
-  
-  <div id="News" class="tabcontent">
-    <p>{{ product.description|safe }}</p>
+  <div class="tabcontent">
+    
   </div>
-  
-  <div id="Home" class="tabcontent">
-    <div id="custom-review">
-      <div class="product">
-        <div class="product-rating" id="product-rating">
-          <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
-          <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
-          <span class="product-avaregereview">
-            {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
-          </span>
-        </div>
-      </div>
-      <div>
-       
+  <div id="myDIV1">
+    <div>{{ product.detail|safe }}</div>
+  </div>
+
+
+    <div class="product">
+      <div class="product-rating" id="product-rating">
+        <i class="icon-star{% if product.avaregereview < 1%}-o empty{% endif%}"></i>
+        <i class="icon-star{% if product.avaregereview < 2%}-o empty{% endif%}"></i>
+        <i class="icon-star{% if product.avaregereview < 3%}-o empty{% endif%}"></i>
+        <i class="icon-star{% if product.avaregereview < 4%}-o empty{% endif%}"></i>
+        <i class="icon-star{% if product.avaregereview < 5%}-o empty{% endif%}"></i>
+        <span class="product-avaregereview">
+          {% trans "Reviews" %} ({{ product.avaregereview |stringformat:".2f"}})
+        </span>
       </div>
     </div>
     {% for comment in product.comment_set.all %}
@@ -134,47 +127,37 @@
     </div>
     {% endif %}
     {% endfor %}
-  
-  <div id="main-review-form">
-    <form class="review-form" 
-    action="/cart/addcomment/{{ product.id }}" method="post">
-    {% csrf_token %}
-    <input type="text" id="fname" name="subject" placeholder="Your subject" required>
-    <textarea name="comment"  placeholder="Your review ..." required></textarea>
-    <div id="custom-review">
-      <div class="product">
-        <div class="input-rating">
-          <strong class="">{% trans "Please rate" %}: </strong>
-          <div class="stars">
-              <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-              <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-              <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-              <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-              <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
-          </div>
-      </div>
-      </div>
-      <div class="product">
-        {% if user.id is not None %}
-        <button class="hero-button" type="submit" id="postReview">
-          {% trans "Post Review" %}
-        </button>
-        {% else %}
-        {% trans "You must be logged in to post a review" %}
-        {% endif %}
-      </div>
+  <form class="review-form tabcontent" id="Contact"
+  action="/cart/addcomment/{{ product.id }}" method="post">
+  {% csrf_token %}
+  <input type="text" id="fname" name="subject" placeholder="Your subject" required>
+  <textarea name="comment"  placeholder="Your review ..." required></textarea>
+  <div id="custom-review">
+    <div class="product">
+      <div class="input-rating">
+        <strong class="">{% trans "Please rate" %}: </strong>
+        <div class="stars">
+            <input type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+            <input type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+            <input type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+            <input type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+            <input type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+        </div>
     </div>
-    </form>
+    </div>
+    <div class="product">
+      {% if user.id is not None %}
+      <button class="hero-button" type="submit" id="postReview">
+        {% trans "Post Review" %}
+      </button>
+      {% else %}
+      {% trans "You must be logged in to post a review" %}
+      {% endif %}
+    </div>
   </div>
-  </div>
-  <div id="Contact" class="tabcontent">
-    <p>{{ product.detail|safe }}</p>
-  </div>
-
+  </form>
   {% show_latest_products %} 
-  
 
-  <!-- end product setail description Accordion  -->
 
 
 
@@ -208,32 +191,19 @@
 		    buttonLeft.addEventListener('click', function(){
 		      document.getElementById('slider').scrollLeft -= 180;
 		    })
-  /* product setail description Accordion */
   function openPage(pageName, elmnt, color) {
-    // Hide all elements with class="tabcontent" by default */
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
     }
-
-    // Remove the background color of all tablinks/buttons
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].style.backgroundColor = "";
     }
-
-    // Show the specific tab content
     document.getElementById(pageName).style.display = "block";
-
-    // Add the specific color to the button used to open the tab content
     elmnt.style.backgroundColor = color;
   }
-
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
-  /* end product setail description Accordion */
-
 
   function openCity(evt, cityName) {
   var i, tabcontent, tablinks;

@@ -54,15 +54,23 @@ class AddToCartForm(forms.ModelForm):
 
 class AddressForm(forms.Form):
 
-    shipping_address_line_1 = forms.CharField(required=False)
-    shipping_address_line_2 = forms.CharField(required=False)
-    shipping_zip_code = forms.CharField(required=False)
-    shipping_city = forms.CharField(required=False)
+    shipping_address_line_1 = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Appartement, Suite, etc'}),
+                  max_length=50, required=False)
+    shipping_address_line_2 = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Appartement, Suite, etc'}),
+                  max_length=50, required=False)
+    shipping_zip_code = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Zip code'}),
+                  max_length=50, required=False)
+    shipping_city = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'City'}),
+                  max_length=50, required=False)
 
-    billing_address_line_1 = forms.CharField(required=False)
-    billing_address_line_2 = forms.CharField(required=False)
-    billing_zip_code = forms.CharField(required=False)
-    billing_city = forms.CharField(required=False)
+    billing_address_line_1 = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Appartement, Suite, etc'}),
+                  max_length=50, required=False)
+    billing_address_line_2 = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Appartement, Suite, etc'}),
+                  max_length=50, required=False)
+    billing_zip_code = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Zip code'}),
+                  max_length=50, required=False)
+    billing_city = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'City'}),
+                  max_length=50, required=False)
 
     selected_shipping_address = forms.ModelChoiceField(
         Address.objects.none(), required=False

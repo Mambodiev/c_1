@@ -3,23 +3,15 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<div class="bg-white py-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 mb-0">
-                <a href="{% url 'home' %}">{% trans "Home" %}</a><span class="mx-2 mb-0">/</span>
-                <a href="{% url 'cart:summary' %}" class="text-black">{% trans "Cart" %}</a><span class="mx-2 mb-0">/</span>
-                <strong class="text-black">{% trans "Checkout" %}</strong>
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <ul class="breadcrumb">
+        <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+        <li><a href="{% url 'cart:summary' %}">{% trans "Cart" %}</a></li>
+        <li>{% trans "Information" %}</li>
+        <li>Payment</li>
+        </ul>
 </div>
-
-
-<div class="site-section">
-    <div class="container">
-        {% if not request.user.is_authenticated %}
+{% if not request.user.is_authenticated %}
         <div class="row mb-5">
             <div class="col-md-12">
                 <div class="border p-4 rounded" role="alert">{% trans "You are nearly finished with your order.
@@ -32,113 +24,89 @@
                 </div>
             </div>
         </div>
-        {% else %}
+{% else %}
 
+<div style="overflow-x:auto;">
+<form method="POST">
+    {% csrf_token %}
+    <div class="container">
+        <div class="flex-container">
+            <div class="menu-checkout">
+                <p id='shipping-details'>{% trans "Shipping Details" %}</p>
+                <div class="form-shipping-address-line">
+                    <div class="item1">
+                        {{ form.shipping_address_line_1|as_crispy_field }}
+                    </div>
+                    <div class="item2">
+                        {{ form.billing_address_line_1|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-shipping-address-line">
+                    <div class="item1">
+                        {{ form.shipping_address_line_2 |as_crispy_field }}
+                    </div>
+                    <div class="item2">
+                        {{ form.billing_address_line_2|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-shipping-address-line">
+                    <div class="item1">
+                        {{ form.shipping_city |as_crispy_field }}
+                    </div>
+                    <div class="item2">
+                        {{ form.billing_city|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-shipping-address-line">
+                    <div class="item1">
+                        {{ form.shipping_zip_code|as_crispy_field }}
+                    </div>
+                    <div class="item2">
+                        {{ form.billing_zip_code|as_crispy_field }}
+                    </div>
+                </div>
+                <button type="submit" class="Add-to-Cart">
+                    {% trans "Proceed to payment" %}
+                </button>      
+            </div>
+            <div class="main-checkout">
+                <table>
+                    <tr>
+                        <th>{% trans "" %}</th>
+                        <th>{% trans "" %}</th>
+                    </tr>
+                    {% for item in order.items.all %}
+                    <tr>
+                        <td>
+                            <div  id="cart-product-image"><span id="item-quantity">{{item.quantity }}</span>
+                                <img src="{{ item.product.featured.url }}" alt="product image" style="width:100px;height:100px;">
+                                <p>{{ item.product.title }}</p>
+                                <small>{% trans "Size" %}: {{ item.size.name }}</small>
+                                <small>{% trans "Colour" %}: {{ item.colour.name }}</small>
+                            </div>
+                        </td>
+                        <td>
+                            ${{ item.get_total_item_price }}
+                        </td>
+                        {% empty %}
+                        <td>
+                            {% trans "There are no items in your cart." %}
+                            <a class='continue-shopping' href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
         
-
-
-        <form method="POST">
-            {% csrf_token %}
-            <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <p class="mb-0 text-black ">{% trans "Your Order" %}</p><hr>
-                    
-                    <div class="image-checkout p-lg-5">
-                        <table class="table site-block-order-table mb-0">
-                            <thead>
-                                <tr>
-                                    <th>{% trans "Image" %}</th>
-                                    <th>{% trans "Product" %}</th>
-                                    <th>{% trans "Total" %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for item in order.items.all %}
-                                <tr>
-                                    <td>
-                                        <span id="orderQuantity">{{ item.quantity }}</span>
-                                        <img src="{{ item.product.featured.url }}" class="img-fluid" style="max-width: 90px;">
-                                    </td>
-                                    
-                                    <td>
-                                        {{ item.size.name }}, {{ item.colour.name }} {{ item.product.title }}
-                                        <!-- <strong class="mx-2">x</strong> {{ item.quantity }} -->
-                                    </td>
-                                    <td>
-                                        ${{ item.get_total_item_price }}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                <tr>
-                                    <td><strong>{% trans "Subtotal" %}</strong></td>
-                                    <td>${{ order.get_subtotal }}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong class="text-black font-weight-bold">{% trans "You Pay" %}</strong></td>
-                                    <td>
-                                        <strong class="text-black font-weight-bold" id="youPay">
-                                            ${{ order.get_total }}
-                                        </strong>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <h2 class="h3 mb-0 text-black text-center">{% trans "Billing Details" %}</h2>
-                    <hr />
-                    
-                    {{ form.shipping_address_line_1|as_crispy_field }}
-                    {{ form.shipping_address_line_2|as_crispy_field }}
-            
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.shipping_city|as_crispy_field }}
-                        </div>
-
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.shipping_zip_code|as_crispy_field }}
-                        </div>
-                    </div>
-
-
-                    {{ form.billing_address_line_1|as_crispy_field }}
-                    {{ form.billing_address_line_2|as_crispy_field }}
-                    
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-0">
-                          {{ form.billing_city|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-md-6 mb-0">
-                          {{ form.billing_zip_code|as_crispy_field }}
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="form-row">
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.selected_shipping_address|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-md-6 mb-0">
-                            {{ form.selected_billing_address|as_crispy_field }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-sm py-3 btn-block">
-                            {% trans "Proceed to payment" %}
-                        </button>
+                </table>
+                <div id="myDIV1">
+                    <div  id="checkout-total">
+                        <h4>{% trans "Total" %}<span class='order-get-total'>${{ order.get_total }}</span></h4>
                     </div>
                 </div>
             </div>
-            </div>
-        </form> 
-
-        {% endif %}
+        </div>
     </div>
+</form>
 </div>
+{% endif %}
 
-  
 {% endblock content %}

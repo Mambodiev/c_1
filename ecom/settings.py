@@ -3,8 +3,6 @@ from django.utils.translation import gettext_lazy as _
 import environ
 
 env = environ.Env()
-
-# read the .env file
 environ.Env.read_env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,8 +81,16 @@ DATABASES = {
         'PASSWORD': env('POSTGRES_PASSWORD'),
         'HOST': env('POSTGRES_HOST'),
         'PORT': env('POSTGRES_PORT'),
+        'keepalives':1,
+        'keepalives_idle':130,
+        'keepalives_interval':10,
+        'keepalives_count':15
     }
 }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'].update(db_from_env)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -137,10 +144,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR, "static"),
-STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 MEDIA_URL = '/media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # PAYPAL_CLIENT_ID = env('PAYPAL_SANDBOX_CLIENT_ID')
@@ -180,22 +189,19 @@ if DEBUG is False:
 #...
 SITE_ID = 1
 
-####################################
-    ##  CKEDITOR CONFIGURATION ##
-####################################
-
+DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
-
-CKEDITOR_UPLOAD_PATH = 'images/'
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_BROWSE_SHOW_DIRS = True 
+CKEDITOR_RESTRICT_BY_DATE = True
 CKEDITOR_IMAGE_BACKEND = "pillow"
-
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': None,
     },
 }
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 AWS_S3_ACCESS_KEY_ID=env('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY=env('AWS_S3_SECRET_ACCESS_KEY')
@@ -203,6 +209,8 @@ AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

@@ -44,25 +44,6 @@
   <h1 class="titles" > Our Products</h1>
   <div class="col products">
     {% for product in product %} 
-      <!-- <div class="col">
-          <div class="card">
-            <a href="{{ product.get_absolute_url }}">
-              <img src="{{ product.featured.url }}" alt="Denim Jeans" style="width:100%">
-              <h1>{{ product.title }}</h1>
-              <p class="price">${{ product.get_price }}</p>
-              <div class="reviewcontent">
-                <div class="review-rating user-review">
-                  <i class="icon-star{% if comment.rate < 1 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 2 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 3 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 4 %}-o empty{% endif %}"></i>
-                  <i class="icon-star{% if comment.rate < 5 %}-o empty{% endif %}"></i>
-              </div>
-              </div>
-              <button class="hero-button">Add to Cart</button>
-            </a>
-          </div>
-      </div> -->
       <div class="col">
         <div class="card">
           <a href="{{ product.get_absolute_url }}">
@@ -79,14 +60,12 @@
             <button class="hero-button">Add to Cart</button>
           </a>
         </div>
-    </div>
+      </div>
       {% endfor %}
   </div>
 </div>    
 <!-- end products -->
 <script>
-    /* Project specific Javascript goes here. */
-// hero slide
 let slideIndex = 1;
 showSlides(slideIndex);
 function plusSlides(n) {

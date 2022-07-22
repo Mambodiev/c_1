@@ -1,65 +1,47 @@
 {% extends "base.html" %}
-{% load i18n %}
 {% load crispy_forms_tags %}
+{% load i18n %}
+
 
 {% block content %}
 <div class="container">
     <ul class="breadcrumb">
-        <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
         <li><a href="{% url 'cart:summary' %}">{% trans "Cart" %}</a></li>
-        <li>{% trans "Information" %}</li>
-        <li>Payment</li>
-        </ul>
+        <li>{% trans "Checkout" %}</li> 
+    </ul>
 </div>
 {% if not request.user.is_authenticated %}
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <div class="border p-4 rounded" role="alert">{% trans "You are nearly finished with your order.
-                    To finalize your order, please" %}
-                     <a>{% trans "Login" %}</a>{% trans "or" %}  <a>{% trans "Signup" %}</a>
+<div class="container">
+            <div class="progress-bar">
+                <b>You are nearly finished with your order.
+                    To finalize your order, please <a href="{% url 'account_login' %}"><span class="progress-bar-span">{% trans "Login" %}</span></a>{% trans " or" %}  <a href="{% url 'account_signup' %}"><span class="progress-bar-span">{% trans "Signup" %}</span>
+                </b>
                 </div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90"
-                        aria-valuemin="0" aria-valuemax="100">{% trans "90% complete" %}</div>
-                </div>
+            <div class="progress">
+              <div class="bar">90%</div>
             </div>
         </div>
 {% else %}
-
-<div style="overflow-x:auto;">
 <form method="POST">
     {% csrf_token %}
     <div class="container">
-        <div class="flex-container">
-            <div class="menu-checkout">
-                <p id='shipping-details'>{% trans "Shipping Details" %}</p>
-                <div class="form-shipping-address-line">
-                    <div class="item1">
-                        {{ form.shipping_address_line_1|as_crispy_field }}
-                    </div>
-                    <div class="item2">
-                        {{ form.billing_address_line_1|as_crispy_field }}
-                    </div>
-                </div>
-                <div class="form-shipping-address-line">
-                    <div class="item1">
-                        {{ form.shipping_address_line_2 |as_crispy_field }}
-                    </div>
-                    <div class="item2">
-                        {{ form.billing_address_line_2|as_crispy_field }}
-                    </div>
-                </div>
+        <div class="flex-container">   
+            <div class="flex-item-left">
+                {{ form.shipping_address_line_1|as_crispy_field }}
+                {{ form.shipping_address_line_2 |as_crispy_field }}
                 <div class="form-shipping-address-line">
                     <div class="item1">
                         {{ form.shipping_city |as_crispy_field }}
                     </div>
                     <div class="item2">
-                        {{ form.billing_city|as_crispy_field }}
+                        {{ form.shipping_zip_code|as_crispy_field }}
                     </div>
                 </div>
+                {{ form.billing_address_line_1|as_crispy_field }}
+                {{ form.billing_address_line_2|as_crispy_field }}
                 <div class="form-shipping-address-line">
                     <div class="item1">
-                        {{ form.shipping_zip_code|as_crispy_field }}
+                        {{ form.billing_city |as_crispy_field }}
                     </div>
                     <div class="item2">
                         {{ form.billing_zip_code|as_crispy_field }}
@@ -67,31 +49,32 @@
                 </div>
                 <button type="submit" class="Add-to-Cart">
                     {% trans "Proceed to payment" %}
-                </button>      
+                </button> 
             </div>
-            <div class="main-checkout">
+
+            <div style="overflow-x:auto;">
                 <table>
                     <tr>
-                        <th>{% trans "" %}</th>
-                        <th>{% trans "" %}</th>
+                    <th id='cart_img'>{% trans "Cart" %}</th>
                     </tr>
                     {% for item in order.items.all %}
                     <tr>
+                        <td id="cart-product-image">
+                            <div>
+                                <span id="item-quantity">{{item.quantity }}</span>
+                                <img src="{{ item.product.featured.url }}" alt="product image" style="width:100px;height:100px;"> 
+                            </div> 
+                        </td>
                         <td>
-                            <div  id="cart-product-image"><span id="item-quantity">{{item.quantity }}</span>
-                                <img src="{{ item.product.featured.url }}" alt="product image" style="width:100px;height:100px;">
-                                <p>{{ item.product.title }}</p>
-                                <small>{% trans "Size" %}: {{ item.size.name }}</small>
+                            <div  id="cart-product-image">
+                                <span>{{ item.product.title }}</span></br>
+                                <span>${{ item.product.get_price }}</span></br>
+                                <small>{% trans "Size" %}: {{ item.size.name }}</small></br>
                                 <small>{% trans "Colour" %}: {{ item.colour.name }}</small>
                             </div>
                         </td>
                         <td>
-                            ${{ item.get_total_item_price }}
-                        </td>
-                        {% empty %}
-                        <td>
-                            {% trans "There are no items in your cart." %}
-                            <a class='continue-shopping' href="{% url 'cart:product-list' %}">{% trans "Continue shopping" %}</a>
+                            <span class='item-get-total-item-price'>${{ item.get_total_item_price }}</span></br></br></br></br>
                         </td>
                     </tr>
                     {% endfor %}
@@ -106,7 +89,6 @@
         </div>
     </div>
 </form>
-</div>
 {% endif %}
 
 {% endblock content %}

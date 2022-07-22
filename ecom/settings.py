@@ -10,7 +10,7 @@ environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['demodjangoecom.herokuapp.com', '127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'modeltranslation',
     'rosetta',
     'widget_tweaks',
+    'storages',
 
     'cart',
     'core',
@@ -194,5 +195,14 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-###################################
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+AWS_S3_ACCESS_KEY_ID=env('AWS_S3_ACCESS_KEY_ID')
+AWS_S3_SECRET_ACCESS_KEY=env('AWS_S3_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
+
+AWS_S3_FILE_OVERWRITE=False
+AWS_DEFAULT_ACL=None
+
+DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

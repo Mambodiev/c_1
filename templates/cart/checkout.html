@@ -59,10 +59,10 @@
                     </tr>
                     {% for item in order.items.all %}
                     <tr>
-                        <td id="cart-product-image">
+                        <td id="cart-product-images">
                             <div>
-                                <span id="item-quantity">{{item.quantity }}</span>
                                 <img src="{{ item.product.featured.url }}" alt="product image" style="width:100px;height:100px;"> 
+                                <span id="item-quantity">{{item.quantity }}</span>
                             </div> 
                         </td>
                         <td>

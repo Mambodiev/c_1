@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = False
+DEBUG = env('DEBUG')
 ALLOWED_HOSTS = ['demodjangoecom.herokuapp.com', '127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

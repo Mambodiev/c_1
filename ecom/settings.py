@@ -6,8 +6,8 @@ from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['.demodjangoecom.herokuapp.com']
-# ALLOWED_HOSTS = ['demodjangoecom.herokuapp.com', '127.0.0.1']
+# ALLOWED_HOSTS = ['.demodjangoecom.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -134,7 +134,6 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # PAYPAL_CLIENT_ID = env('PAYPAL_SANDBOX_CLIENT_ID')
@@ -143,20 +142,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 # STRIPE_WEBHOOK_SECRET = env("STRIPE_WEBHOOK_SECRET")
 
-# if DEBUG is False:
-#     SESSION_COOKIE_SECURE = True
-#     SECURE_BROWSER_XSS_FILTER = True
-#     SECURE_CONTENT_TYPE_NOSNIFF = True
-#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-#     SECURE_HSTS_SECONDS = 31536000
-#     SECURE_REDIRECT_EXEMPT = []
-#     SECURE_SSL_REDIRECT = True
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-    # PAYPAL_CLIENT_ID = env('PAYPAL_LIVE_CLIENT_ID')
-    # PAYPAL_SECRET_KEY = env('PAYPAL_LIVE_SECRET_KEY')
 
-#...
+# PAYPAL_CLIENT_ID = env('PAYPAL_LIVE_CLIENT_ID')
+# PAYPAL_SECRET_KEY = env('PAYPAL_LIVE_SECRET_KEY')
+
+
 DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_RESTRICT_BY_USER = True
@@ -170,7 +161,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 SITE_ID = 1
-
 AWS_S3_ACCESS_KEY_ID=env('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY=env('AWS_S3_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
@@ -179,8 +169,8 @@ AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
 
 
-
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 

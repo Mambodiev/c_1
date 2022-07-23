@@ -84,7 +84,7 @@ class SizeVariation(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(null=False, unique=True)
-    featured = models.ImageField(upload_to='product_images')
+    featured = models.ImageField(upload_to='Featured_images/%Y/%m/%d')
     description = RichTextUploadingField(blank=True, null=True,)
     detail = RichTextUploadingField(blank=True, null=True,)
     price = models.IntegerField(default=0)
@@ -162,7 +162,7 @@ class Product_detail(models.Model):
 class Image(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, blank=True)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='product_images/%Y/%m/%d',  blank=True, null=True)
 
     def __str__(self):
         return self.name

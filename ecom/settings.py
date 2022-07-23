@@ -1,13 +1,12 @@
 import os
 from django.utils.translation import gettext_lazy as _
 import environ
-
 env = environ.Env()
 environ.Env.read_env()
-
+from pathlib import Path
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
+DEBUG = False
 ALLOWED_HOSTS = ['demodjangoecom.herokuapp.com', '127.0.0.1']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -4,7 +4,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 from pathlib import Path
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = False
 ALLOWED_HOSTS = ['demodjangoecom.herokuapp.com', '127.0.0.1']
@@ -142,13 +142,13 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # PAYPAL_CLIENT_ID = env('PAYPAL_SANDBOX_CLIENT_ID')
@@ -170,18 +170,6 @@ if DEBUG is False:
 
     ALLOWED_HOSTS = ['www.domain.com', '127.0.0.1']
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'ecom',
-            'USER': 'admin1',
-            'PASSWORD': '1234',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
-
     # PAYPAL_CLIENT_ID = env('PAYPAL_LIVE_CLIENT_ID')
     # PAYPAL_SECRET_KEY = env('PAYPAL_LIVE_SECRET_KEY')
 
@@ -213,3 +201,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

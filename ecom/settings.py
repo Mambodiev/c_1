@@ -1,8 +1,10 @@
 import os
-from django.utils.translation import gettext_lazy as _
 import environ
 env = environ.Env()
 environ.Env.read_env()
+
+from pathlib import Path
+from django.utils.translation import gettext_lazy as _
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')

@@ -5,7 +5,7 @@ environ.Env.read_env()
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
+DEBUG = False
 # ALLOWED_HOSTS = ['.demodjangoecom.herokuapp.com']
 ALLOWED_HOSTS = ['*']
 
@@ -28,8 +28,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
-    'ckeditor',
     'ckeditor_uploader',
+    'ckeditor',
     'modeltranslation',
     'rosetta',
     'widget_tweaks',
@@ -151,6 +151,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_BROWSE_SHOW_DIRS = True 
 CKEDITOR_RESTRICT_BY_DATE = True
@@ -168,9 +169,12 @@ AWS_STORAGE_BUCKET_NAME=env('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE=False
 AWS_DEFAULT_ACL=None
 
-
+# production
 DEFAULT_FILE_STORAGE='storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# end production
 
+# local
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# end local
 

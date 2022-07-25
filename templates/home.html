@@ -19,7 +19,7 @@
                         <a href="{{ product.get_absolute_url }}">
                             <div class="heroContent">
                                 <h1>{{ product.title }}</h1>
-                                <p>Hi, I'm Mambo.This is a Demo of an ecommerce Website, It can allows people to buy and sell physical goods, services,digital products, process orders and accept payments.</br> Fell free to contact me if you want one of these</p>
+                                <p>{{ product.detail|safe }}</p>
                                 <button class="hero-button">Shop Now</button>
                             </div>
                         </a>
